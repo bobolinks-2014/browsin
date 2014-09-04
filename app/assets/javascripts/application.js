@@ -13,4 +13,15 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
+//= require react
 //= require_tree .
+
+$( document ).ready(function() {
+  $("#search").on("submit", function(event) {
+    event.preventDefault();
+    var query = $("#search").searialize();
+    queryLookUp(query);
+    //clear search bar
+    //push page up
+  });
+});
