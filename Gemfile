@@ -4,8 +4,9 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
-# Use SCSS for stylesheets
+# React gem for React-Rails
 gem 'react-rails'
+# Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
 gem 'uglifier', '>= 1.3.0'
@@ -25,6 +26,8 @@ gem 'spring',        group: :development
 gem 'acts-as-taggable-on'
 # Devise
 gem 'devise'
+#Simplecov
+gem 'simplecov', :require => false, :group => :test
 
 group :test do
   gem 'rspec-rails'
@@ -37,6 +40,12 @@ end
 
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+
+# Use Dalli for memcached integration
+gem 'dalli'
+
+# Use Rails 12Factor for Heroku
+gem 'rails_12factor', group: :production
 
 # Use unicorn as the app server
 # gem 'unicorn'
