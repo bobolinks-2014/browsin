@@ -22,6 +22,8 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 # ActsAsTaggableOn
 gem 'acts-as-taggable-on'
+# Devise
+gem 'devise'
 
 group :test do
   gem 'rspec-rails'
