@@ -24,10 +24,14 @@ gem 'spring',        group: :development
 gem 'acts-as-taggable-on'
 # Devise
 gem 'devise'
+#Simplecov
+gem 'simplecov', :require => false, :group => :test
+
 
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
+
 end
 
 
