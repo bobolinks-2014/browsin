@@ -10,6 +10,61 @@
  * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
  * file per style scope.
  *
- *= require_tree .
  *= require_self
+ *= require bootstrap.min
+ *= require bootstrap-theme.min
+ *= require boboboard
+ *= require_tree .
  */
+
+@font-face {
+  font-family: 'abeatbyKai';
+  src: url('/assets/abeatbyKaiRegular.otf');
+  }
+
+.content{
+  background-color: #fdf7ef;
+}
+
+.title{
+  color: #282827;
+  font-family: 'abeatbyKai';
+  font-size: 100px;
+  letter-spacing: 4px;
+  margin-top: 300px;
+  text-align: center;
+}
+.button {
+  margin: -5px -52px;
+  display: inline-block;
+  width: 70px;
+  height: 70px;
+  position: relative;
+  background-color: rgb(122,201,67);
+  border-radius: 150px;
+}
+.triangle {
+  left: 18px;
+  top: 14px;
+  position: relative;
+  border-top: 20px solid transparent;
+  border-bottom: 20px solid transparent;
+  border-left: 40px solid white;
+  z-index: 2;
+}
+.search{
+  position: relative;
+  width: 500px;
+  margin: -60 205px;
+}
+.bar{
+  width: 475;
+}
+.search-button{
+  font-size: 20px;
+  outline: none;
+  border: none;
+  background-color: white;
+  padding-top: 20px;
+  margin-left: 180;
+}
