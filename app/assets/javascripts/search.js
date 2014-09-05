@@ -1,6 +1,6 @@
 var queryLookup = function(query) {
   var request = $.ajax({
-    url: "/search/"+query,
+    url: "/search?"+query,
     type: "GET",
     dataType: "JSON"   
   });
@@ -10,6 +10,5 @@ var queryLookup = function(query) {
   request.done(function(itemList) {
     renderList(itemList);
   });
-  
   return request;
 }
