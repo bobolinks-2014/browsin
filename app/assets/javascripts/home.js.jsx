@@ -36,3 +36,24 @@ var renderList = function (list) {
     document.getElementById('content')
  );
 };
+
+var SearchBar = React.createClass({
+  render: function() {
+    return (
+      <div className='col-md-12'>
+        <form className='navbar-form col-md-6 col-md-offset-3' role='search'>
+          <div className='form-group'>
+            <input type='text' className='form-control' placeholder='ex: I have 30 minutes' />
+          </div>
+        </form>
+      </div>
+    );
+  }
+});
+
+var renderSearchBar = function() {
+  React.renderComponent(
+    <SearchBar />,
+    document.getElementById('search-area')
+  );
+}
