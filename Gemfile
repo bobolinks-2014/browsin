@@ -4,6 +4,8 @@ source 'https://rubygems.org'
 gem 'rails', '4.1.5'
 # Use postgresql as the database for Active Record
 gem 'pg'
+# React gem for React-Rails
+gem 'react-rails'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 4.0.3'
 # Use Uglifier as compressor for JavaScript assets
@@ -27,11 +29,9 @@ gem 'devise'
 #Simplecov
 gem 'simplecov', :require => false, :group => :test
 
-
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
-
 end
 
 

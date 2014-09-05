@@ -94,6 +94,11 @@ GEM
     rake (10.3.2)
     rdoc (4.1.1)
       json (~> 1.4)
+    react-rails (0.11.1.0)
+      execjs
+      rails (>= 3.1)
+      react-source (= 0.11.1)
+    react-source (0.11.1)
     rspec-core (3.0.4)
       rspec-support (~> 3.0.0)
     rspec-expectations (3.0.4)
@@ -164,6 +169,12 @@ DEPENDENCIES
   jquery-rails
   pg
   rails (= 4.1.5)
+  react-rails
+  rspec-rails
+  sass-rails (~> 4.0.3)
+  sdoc (~> 0.4.0)
+  shoulda-matchers
+  rspec-rails
   rails_12factor
   rspec-rails
   sass-rails (~> 4.0.3)
