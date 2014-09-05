@@ -14,7 +14,11 @@ class SearchController < ApplicationController
     # search_value = "taggable, like genres"
     # Media.tagged_with(["comedy", "30 mins"]).tagged_with()
 
+<<<<<<< HEAD
     movies = Media.tagged_with(tags).tagged_with("show", on: :status, owned_by:current_user)
+=======
+    movies = Media.tagged_with(tags).tagged_with("show", on: :status, owned_by: current_user)
+>>>>>>> 3b1a3445326f33d4c79c61fa91b9f1815dae2701
     if movies == []
       respond_with movies, status: 404
     else
@@ -58,11 +62,11 @@ class SearchController < ApplicationController
 
 
   private
-  
+
   def search_value
     params.keys[0]
   end
-  
+
   def tag_key
     params.values[0]
   end
