@@ -26,6 +26,10 @@
   font-family: 'abeatbyKai';
   font-size: 100px;
   letter-spacing: 4px;
+<<<<<<< Updated upstream
+=======
+  margin-top: 200px;
+>>>>>>> Stashed changes
   text-align: center;
   padding: 0px;
 }
@@ -51,16 +55,15 @@
   position: relative;
   width: 500px;
   margin: -60 205px;
-}
-.bar{
+}*/
+/*.bar{
   width: 475;
-}
+}*/
 .search-button{
   font-size: 20px;
   outline: none;
   border: none;
   background-color: white;
-  padding-top: 20px;
-  margin-left: 180;
+  padding-top: 15px;
 }
 */
