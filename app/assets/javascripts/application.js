@@ -17,15 +17,20 @@ $( document ).ready(function() {
     $('#sign-up-form').modal('show');
   });
 
-  $("#sign-up-submit").on("click", function(event) {
-    var signUpData = $("#sign-up-data").serialize();
-    submitSignUp(signUpData);
+  $("#sign-up-submit").on("submit", function(event) {
+    event.preventDefault();
+    submitSignUp($(this));
   });
 
-  $("#sign-in-button").on("click", function(event) {
+  $(".search-area").on("click", "#sign-in-button", function(event) {
+    event.preventDefault();
     var email = $("#login-form #email").val()
     var pass = $("#login-form #password").val()
     submitSignIn(email, pass);
   });
 
+  $(".login-area").on("click", ".logout", function(event) {
+    event.preventDefault();
+    logOutUser();
+  });
 });
