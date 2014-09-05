@@ -13,7 +13,6 @@
  *= require_self
  *= require bootstrap.min
  *= require bootstrap-theme.min
- *= require boboboard
  *= require_tree .
  */
 
@@ -22,17 +21,13 @@
   src: url('/assets/abeatbyKaiRegular.otf');
   }
 
-.content{
-  background-color: #fdf7ef;
-}
-
 .title{
   color: #282827;
   font-family: 'abeatbyKai';
   font-size: 100px;
   letter-spacing: 4px;
-  margin-top: 300px;
   text-align: center;
+  padding: 0px;
 }
 .button {
   margin: -5px -52px;
@@ -52,7 +47,7 @@
   border-left: 40px solid white;
   z-index: 2;
 }
-.search{
+/*.search{
   position: relative;
   width: 500px;
   margin: -60 205px;
@@ -68,3 +63,4 @@
   padding-top: 20px;
   margin-left: 180;
 }
+*/
