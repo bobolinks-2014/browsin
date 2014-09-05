@@ -1,13 +1,39 @@
-<span class="notice"><%= notice %></span>
-<span class="alert"><%= alert %></span>
+<% if alert %>
+	<div class="alert alert-success" role="alert"><%= alert %></div>
+<% elsif notice %>
+	<div class="alert alert-warning" role="alert"><%= notice %></div>
+<% end %>
+
 <div class="content">
-  <h1 class="title">br
-    <div class="button">
-      <div class="triangle"></div>
-    </div>
-  wsin'</h1>
-  <form class="search">
-    <input class="bar" type="text" placeholder="I can show you the world" required><br/>
-    <input class="search-button" type="button" value="browse">
-  </form>
-<div>
+<div class="row">
+	<div class="col-md-12">
+	  <h1 class="title">br
+	    <div class="button">
+	      <div class="triangle"></div>
+	    </div>
+	  wsin'</h1>
+	</div>
+	</div>  
+  <% if user_signed_in? %>
+  	<div class="col-md-12">
+  	<form class="navbar-form col-md-6 col-md-offset-3" role="search">
+   	 	<div class="form-group">
+      	<input type="text" class="form-control" placeholder="ex: I have 30 minutes">
+    	</div>
+  	</form>
+  	</div>
+
+  <% else %>
+  <div class="col-md-12 col-sm-offset-3 col-md-offset-4">
+	  	<form class="form-inline" role="form" id="login-form">
+	  		<div class="form-group">
+	    	<label class="sr-only" for="email">Email address</label>
+	    		<input type="email" class="form-control" id="email" placeholder="Enter email">
+	    	<label class="sr-only" for="password">Password</label>
+	    		<input type="password" class="form-control" id="password" placeholder="Password">
+	    		</div>
+			</form>
+	  		<button type="submit" class="search-button" id="sign-in-button">Sign in</button>
+	  		<button type="submit" class="search-button" id="sign-up-button">Sign up</button>
+</div>
+  <% end %>
