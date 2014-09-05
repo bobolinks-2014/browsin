@@ -24,4 +24,9 @@ $( document ).ready(function() {
     //clear search bar
     //push page up
   });
+  $("#sign-in-button").on("click", function(event) {
+    event.preventDefault();
+
+  });
+
 });
