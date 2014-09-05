@@ -10,6 +10,5 @@ var queryLookup = function(query) {
   request.done(function(itemList) {
     renderList(itemList);
   });
-  
   return request;
 }
