@@ -2,13 +2,14 @@ require 'net/http'
 require 'json'
 
 class RTParser
+
   def self.make_rt_calls(file)
     file.each do |id|
-      response = Net::HTTP.get("http://api.rottentomatoes.com/api/public/v1.0/movies/#{id.rt_id}.json?apikey=[your_api_key]")
+      response = Net::HTTP.get("http://api.rottentomatoes.com/api/public/v1.0/movies/#{id.rt_id}.json?apikey=#{RT_API_KEY}")
       hashed = JSON.parse(response)
       rt_collection = []
       rt_data = {
-        rt_id: rt_id
+        rt_id: rt_id,
         title: hashed["title"],
         runtime: hashed["runtime"],
         genre_list: hashed["genres"],
@@ -16,7 +17,6 @@ class RTParser
         synopsis: hashed["synopsis"]}
       rt_collection << rt_data
     end
-    }
   end
 
   def self.update_media
