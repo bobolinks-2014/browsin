@@ -19,7 +19,7 @@
 $( document ).ready(function() {
   $("#search").on("submit", function(event) {
     event.preventDefault();
-    var query = $("#search").searialize();
+    var query = $("#search").serialize();
     queryLookUp(query);
     //clear search bar
     //push page up
