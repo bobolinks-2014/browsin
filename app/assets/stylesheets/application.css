@@ -26,10 +26,8 @@
   font-family: 'abeatbyKai';
   font-size: 100px;
   letter-spacing: 4px;
-
-  margin-top: 200px;
+  margin-top: 100px;
   text-align: center;
-  padding: 0px;
 }
 .button {
   margin: -5px -52px;
@@ -40,13 +38,18 @@
   background-color: rgb(122,201,67);
   border-radius: 150px;
 }
+
+.wrapper {
+	max-width: 80%;
+}
+
 .triangle {
   left: 18px;
   top: 14px;
   position: relative;
   border-top: 20px solid transparent;
   border-bottom: 20px solid transparent;
-  border-left: 40px solid white;
+  border-left: 40px solid #fdf7ef;
   z-index: 2;
 }
 /*.search{
@@ -63,5 +66,5 @@
   outline: none;
   border: none;
   padding-top: 15px;
+  text-align: right;
 }
-*/
