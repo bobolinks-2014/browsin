@@ -2,36 +2,42 @@ require 'net/http'
 require 'json'
 
 class OMDBParser
-  def self.make_omdb_calls(file)
-    file.each do |id| #1500 times
-      response = Net::HTTP.get("http://www.omdbapi.com/?i=#{id.imdb_id}")
-      hashed = JSON.parse(response)
-      omdb_collection = []
-      omdb_data = {
-        imdb_id: imdb_id,
-        rt_id: rt_id
-        title: hashed["Title"],
-        runtime: hashed["Runtime"],
-        genre_list: hashed["Genre"],
-        actor_list: hashed["Actors"],
-        synopsis: hashed["Plot"],
-        type: hashed["Type"],
-        if type != ["Movie"]
-          imdb_rating: hashed["imdbRating"]
-        end
+  def self.get_api_data(imdb_ids)
+    omdb_collection = []
+
+    imdb_ids.each do |id| #1500 times
+      uri = URI("http://www.omdbapi.com/?i=#{id}&tomatoes=true")
+      response = Net::HTTP.get_response(uri)
+      hashed = JSON.parse(response.body)
+
+      omdb_data = { imdb_id: id,
+                    title: hashed["Title"],
+                    run_time: hashed["Runtime"],
+                    genre_list: hashed["Genre"],
+                    actor_list: hashed["Actors"],
+                    synopsis: hashed["Plot"],
+                    type: hashed["Type"]
+                  }
+
+      if omdb_data[:type] == "movie"
+        omdb_data.merge!(:rating => hashed["tomatoUserMeter"])
+      else
+        imdb_rating = hashed["imdbRating"].to_f * 10
+        omdb_data.merge!(:rating => imdb_rating)
+      end
+
+      omdb_data.delete(:type)
       omdb_collection << omdb_data
     end
-    }
+    return omdb_collection
   end
 
-  def self.update_media
-    Media.find_by(imdb_id).update(omdb_data)
-    pass_to_rt = []
-    omdb_collection.map do |omdb_data|
-    if omdb_data.key(nil)
-      omdb_data.shift
-      pass_to_rt << omdb_data
-      omdb_data.shift
+  def self.update_media(imdb_data)
+    imdb_data.each do |media|
+      current_media = Media.find_by_imdb_id(media[:imdb_id])
+      media.delete(:imdb_id)
+      current_media.update(media)
     end
   end
+
 end

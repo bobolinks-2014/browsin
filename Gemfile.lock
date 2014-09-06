@@ -174,9 +174,6 @@ DEPENDENCIES
   react-rails
   retriable
   rspec-rails
-  rails_12factor
-  react-rails
-  rspec-rails
   sass-rails (~> 4.0.3)
   sdoc (~> 0.4.0)
   shoulda-matchers
