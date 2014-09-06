@@ -11,7 +11,7 @@ class SearchController < ApplicationController
   end
 
   def re_actors
-    @actor_list ||= Media.actor_counts.map{ |x| x.name }
+    @actor_list ||= Media.actor_counts.map{ |x| x.name.downcase }
     Regexp.union(@actor_list)
   end
 
@@ -22,7 +22,7 @@ class SearchController < ApplicationController
 
   # single regex to produce search groups
   def get_matches
-    query = params_query.split.each {|x| x.capitalize!}.join(" ")
+    query = params_query.split.each {|x| x.downcase!}.join(" ")
     m = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
     m.flatten!.compact!.sort!
   end
