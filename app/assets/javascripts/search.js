@@ -1,6 +1,6 @@
 var queryLookUp = function(query) {
   var request = $.ajax({
-    url: "/search?"+query,
+    url: "/search?query="+query,
     type: "GET",
     dataType: "JSON"   
   });
