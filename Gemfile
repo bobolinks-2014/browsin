@@ -24,8 +24,7 @@ gem 'sdoc', '~> 0.4.0',          group: :doc
 gem 'spring',        group: :development
 # ActsAsTaggableOn
 gem 'acts-as-taggable-on'
-# Devise
-gem 'devise'
+gem 'bcrypt'
 #Simplecov
 gem 'simplecov', :require => false, :group => :test
 # Use Dalli for memcached integration
