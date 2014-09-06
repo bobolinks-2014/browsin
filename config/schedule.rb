@@ -7,10 +7,10 @@
 #
 # set :output, "/path/to/my/cron_log.log"
 #
-every 2.hours do
-  rake "db:reset"
-  rake "db:media"
-end
+# every 2.hours do
+#   rake "db:reset"
+#   rake "db:media"
+# end
 #
 # every 4.days do
 #   runner "AnotherModel.prune_old_records"
