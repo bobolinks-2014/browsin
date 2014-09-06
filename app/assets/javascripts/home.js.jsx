@@ -6,9 +6,17 @@ var MediaItem = React.createClass({
         <tr>
           <th>{this.props.title}</th>
           <div className='icon-area'>
-            <th className='platforms'>{this.props.platform}</th>
+            <th className='platforms'>
+              {this.props.services.map(function(result, index) {
+                return <span id={result.name}>{result.name}</span>;
+              })}
+            </th>
             <th className='runtime'>{this.props.runtime}</th>
-            <th className='genres'>{this.props.genre}</th>
+            <th className='genres'>
+              {this.props.genres.map(function(result, index) {
+                return <span id={result.name}>{result.name}</span>;
+              })}
+            </th>
           </div>
         </tr>
       </tbody>
@@ -19,10 +27,10 @@ var MediaItem = React.createClass({
 var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
-        return (
-            <MediaItem title={mediaItem.title} platform={mediaItem.platforms} runtime={mediaItem.runtime} genre={mediaItem.genres} key={index} />
-        );
-        });
+      return (
+        <MediaItem title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} key={index} />
+      );
+    });
     
     return (
         <table className='table table-striped'>

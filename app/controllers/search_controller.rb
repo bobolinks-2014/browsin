@@ -5,7 +5,7 @@ class SearchController < ApplicationController
     if movies == []
       render json: {success: false, error: tag_key}
     else
-      render json: movies, include: [:genres, :services, :platforms]
+      render json: movies, include: [:genres, :services, :actors]
     end
   end
 

@@ -8,10 +8,8 @@ var queryLookUp = function(query) {
     if(response.success == false) {
       renderFail(response.error); 
     } else {
-      //animatePage();
       renderList(response);
-      $('body').css("background-color", "white");
-      $('.title').css("margin-top", "20px");
+      animatePage();
     }
   });
   return request;
@@ -27,4 +25,8 @@ function renderFail(query) {
 }
 
 function animatePage() {
+  $('body').css("background-color", "white");
+  $('.title').animate({
+    'margin-top': "20px"
+  }, 400);
 }
