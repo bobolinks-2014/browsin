@@ -33,7 +33,7 @@ var MediaList = React.createClass({
 var renderList = function (list) {
   React.renderComponent(
     <MediaList mediaItems={list} />,
-    document.getElementById('content')
+    document.getElementById('search-results-area')
  );
 };
 
@@ -86,13 +86,11 @@ var UserArea = React.createClass({
 var UserLoginArea = React.createClass({
   render: function() {
     return (
-      <div className='col-md-12 col-md-offset-4'>
+      <div className='col-md-offset-4 col-sm-offset-3'>
         <form className='form-inline' role='form' id='login-form'>
           <div className='form-group'>
-            <label className='sr-only' for='email'>Email address</label>
-              <input type="email" className="form-control" id="email" name="email" placeholder="Enter email" />
-            <label className="sr-only" for="password">Password</label>
-              <input type="password" className="form-control" id="password" name="password" placeholder="Password" />
+            <input type="email" className="form-control" id="email" name="email" placeholder="Enter email"></input>
+            <input type="password" className="form-control" id="password" name="password" placeholder="Password"></input>
           </div>
           <button type="submit" className="btn" id="sign-in-button">Sign in</button>
         </form>

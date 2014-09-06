@@ -1,9 +1,10 @@
 class SearchController < ApplicationController
 
   def search
+    puts params[:query]
     movies = Media.tagged_with(tag_key).tagged_with("show", on: :status, owned_by:current_user)
     if movies == []
-      respond_with movies, status: 404
+      render json: {success: false, error: tag_key}
     else
       render json: movies, include: [:genres, :services, :platforms]
     end
@@ -41,6 +42,7 @@ class SearchController < ApplicationController
       if genres.include?(word.downcase)
         genre = word 
       end
+    end
   end
 
 

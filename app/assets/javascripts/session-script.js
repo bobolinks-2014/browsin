@@ -10,6 +10,7 @@ function submitSignUp(location) {
       $('#sign-up-form').modal('hide');
       renderSearchBar();
       userLoggedIn(response.user);
+      $('').remove('#sign-up-button');
     } else {
       $('.modal-header').append("<div class='alert alert-danger role='alert'><strong>"+response.error+"</strong></div>")
       window.setTimeout(function() {
@@ -54,8 +55,9 @@ function submitSignIn(email, pass) {
     if(response.success == true) {
       renderSearchBar();
       userLoggedIn(response.user);
+      $('#sign-up-button').remove();
     } else {
-      errorLoggingIn();
+      errorLoggingIn(response.error);
     }
   });
   return request;
@@ -75,11 +77,11 @@ function logOutUser() {
   return request;
 }
 
-function errorLoggingIn() {
-  $('#search-area').append("<br><div class='col-md-4 col-md-offset-4 alert alert-danger' role='alert'><strong>Error loggin in, please retry.</strong></div>")
+function errorLoggingIn(message) {
+  $('.row').append("<br><div class='col-md-4 col-md-offset-4 alert alert-white' role='alert'><strong>"+message+", please try again.</strong></div>")
     window.setTimeout(function() {
       $(".alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove();
       });
-    }, 3000);
+    }, 5000);
 }
