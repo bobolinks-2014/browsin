@@ -11,4 +11,6 @@ class ApplicationController < ActionController::Base
     @user ||= User.find(session[:current_user_id]) if user_signed_in?
   end
 
+  helper_method :user_signed_in?
+  helper_method :current_user
 end
