@@ -1,7 +1,6 @@
 class SearchController < ApplicationController
 
   def search
-    puts params[:query]
     movies = Media.tagged_with(tag_key).tagged_with("show", on: :status, owned_by:current_user)
     if movies == []
       render json: {success: false, error: tag_key}
