@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def search
-    movies = Media.tagged_with(tags_search).tagged_with("show", on: :status, owned_by:current_user)
+    movies = Media.tagged_with(tags_search).where("run_time <= #{runtime_search}").tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
     if movies == []
       render json: {success: false, error: tag_key}
     else
