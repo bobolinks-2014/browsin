@@ -1,10 +1,14 @@
 class ApplicationController < ActionController::Base
-  protect_from_forgery with: :null_session
-  before_action :configure_permitted_parameters, if: :devise_controller?
+  
 
   protected
-
-  def configure_permitted_parameters
-    devise_parameter_sanitizer.for(:sign_up) << :provider
+  
+  def user_signed_in?
+    session[:current_user_id] != nil
   end
+  
+  def current_user
+    @user ||= User.find(session[:current_user_id]) if user_signed_in?
+  end
+
 end

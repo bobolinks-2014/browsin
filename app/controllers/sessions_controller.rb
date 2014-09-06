@@ -1,29 +1,33 @@
-class SessionsController < Devise::SessionsController
+class SessionsController < ActionController::Base
   respond_to :json
 
   def create
-    resource = warden.authenticate!(:scope => resource_name, :recall => "#{controller_path}#failure")
-    sign_in_and_redirect(resource_name, resource)
+    if find_user == nil
+      elsif valid_password?
+      session[:current_user_id] = @user.id
+      render :json => {success: true, user: @user.email}
+    else
+      #error
+    end
   end
 
-  def failure
-    return render :json => {:success => false, :errors => ["Login failed."]}
+  def destroy
+    session[:current_user_id] = nil
+    render :json => {success: true}
   end
 
   private
 
-  def sign_in_and_redirect(resource_or_scope, resource=nil)
-    scope = Devise::Mapping.find_scope!(resource_or_scope)
-    resource ||= resource_or_scope
-    sign_in(scope, resource) unless warden.user(scope) == resource
-    return render :json => {:success => true, :user => current_user.email}
+  def find_user
+    @user = User.find_by(email: params[:user]["email"])
   end
 
-  def respond_to_on_destroy
-    respond_to do |format|
-      format.all { head :no_content }
-      format.any(*navigational_formats) { return render :json=> {:success => true} }
-    end
+  def valid_password?
+    @user.authenticate(params[:user]["password"])
+  end
+
+  def current_user
+    @user ||= User.find(session[:current_user_id]) if user_signed_in?
   end
 
 end

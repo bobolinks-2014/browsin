@@ -1,6 +1,42 @@
-function submitSignUp(data) {
-  debugger;
+function submitSignUp(location) {
+  var request = $.ajax({
+    url: "/users",
+    type: "POST",
+    dataType: "JSON",
+    data: {user: submitDataParse(location), services: getServices(location) }
+  });
+  request.done(function(response) {
+    if(response.success == true) {
+      $('#sign-up-form').modal('hide');
+      renderSearchBar();
+      userLoggedIn(response.user);
+    } else {
+      console.log('hey');
+    }
+  });
+  return request;
 }
+
+function getServices(data) {
+  var netflix = $(data).find("#netflixBox").is(':checked');
+  var hbo = $(data).find("#hboBox").is(':checked');
+  var hulu = $(data).find("#huluBox").is(':checked');
+  if(netflix == true) {
+    netflix = "netflix"
+  } else if(hbo == true) {
+    hbo = "hbo"
+  } else if(hulu == true) {
+    hulu = "hulu"
+  } 
+  return {services: [netflix, hbo, hulu]}
+}
+
+function submitDataParse(data) {
+  var email = $(data).find("#email").val();
+  var pass = $(data).find("#pass").val();
+  var passconf = $(data).find("#pass_conf").val();
+  return {email: email, password: pass, password_confirmation: passconf}
+} 
 
 function submitSignIn(email, pass) {
   var request = $.ajax({

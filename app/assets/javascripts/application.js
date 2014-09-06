@@ -17,9 +17,9 @@ $( document ).ready(function() {
     $('#sign-up-form').modal('show');
   });
 
-  $("#sign-up-submit").on("submit", function(event) {
+  $("#sign-up-submit").on("click", function(event) {
     event.preventDefault();
-    submitSignUp($(this));
+    submitSignUp($("#sign-up-data"));
   });
 
   $(".search-area").on("click", "#sign-in-button", function(event) {

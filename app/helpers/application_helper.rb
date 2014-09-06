@@ -1,15 +1,11 @@
 module ApplicationHelper
 
-  def resource_name
-    :user
+  def user_signed_in?
+    session[:current_user_id] != nil
   end
-  
-  def resource
-    @resource ||= User.new
-  end
-  
-  def devise_mapping
-    @devise_mapping ||= Devise.mappings[:user]
+
+  def current_user
+    @user ||= User.find(session[:current_user_id])
   end
 
 end

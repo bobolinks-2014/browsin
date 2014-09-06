@@ -25,7 +25,7 @@ gem 'spring',        group: :development
 # ActsAsTaggableOn
 gem 'acts-as-taggable-on'
 # Devise
-gem 'devise'
+#gem 'devise'
 #Simplecov
 gem 'simplecov', :require => false, :group => :test
 
@@ -39,7 +39,7 @@ end
 # gem 'therubyracer',  platforms: :ruby
 
 # Use ActiveModel has_secure_password
-# gem 'bcrypt', '~> 3.1.7'
+gem 'bcrypt'
 
 # Use Dalli for memcached integration
 gem 'dalli'

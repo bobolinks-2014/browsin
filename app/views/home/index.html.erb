@@ -1,8 +1,8 @@
 <div class="content">
   <div id="login-area" class="login-area">
   <% if user_signed_in? %>
-      <span class="logout top-button pull-right">log out</span>
-      <span id="profile" class="top-button pull-right">profile</span>
+      <a class="logout top-button pull-right">log out</a>
+      <a id="profile" class="top-button pull-right"><%= current_user.email %></a>
   <% end %>
   </div>
   <div class="row">
@@ -54,17 +54,17 @@
         <form class="form-horizontal" role="form" id="sign-up-data">
           <div class="form-group">
             <div class="col-sm-12">
-              <input type="email" class="form-control" name="user[email]" placeholder="Email" required>
+              <input type="email" id="email" class="form-control" name="user[email]" placeholder="Email" required>
             </div>
           </div>
         <div class="form-group">
           <div class="col-sm-12">
-            <input type="password" class="form-control" name="user[password]" placeholder="Password">
+            <input type="password" id="pass" class="form-control" name="user[password]" placeholder="Password">
           </div>
         </div>
         <div class="form-group">
           <div class="col-sm-12">
-            <input type="password" class="form-control" name="user[password_confirmation]" placeholder="Password confirmation">
+            <input type="password" id="pass_conf" class="form-control" name="user[password_confirmation]" placeholder="Password confirmation">
           </div>
         </div>
         <div class="form-group" required>
