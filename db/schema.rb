@@ -19,7 +19,6 @@ ActiveRecord::Schema.define(version: 20140906003756) do
   create_table "media", force: true do |t|
     t.string   "rottentomatoes"
     t.string   "imdb_id"
-    t.string   "wikipedia_id"
     t.integer  "run_time"
     t.integer  "rating"
     t.text     "synopsis"

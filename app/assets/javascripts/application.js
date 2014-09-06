@@ -5,9 +5,9 @@
 //= require_tree .
 
 $( document ).ready(function() {
-  $("#search").on("submit", function(event) {
+  $(".search-area").on("submit", ".navbar-form", function(event) {
     event.preventDefault();
-    var query = $("#search").serialize();
+    var query = $('#search-bar-value').val();
     queryLookUp(query);
     //clear search bar
     //push page up

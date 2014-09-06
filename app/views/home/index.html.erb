@@ -1,97 +1,158 @@
-<div class="content">
+<!-- content -->
+<div class="content col-md-12 top-area-bar">
+  <% unless user_signed_in? %>
+    <a class="top-button pull-right" id="sign-up-button" data-target="#sign-up-form" data-toggle="modal">Sign up</a>
+  <% end %>
+  <!-- login-area -->
   <div id="login-area" class="login-area">
-  <% if user_signed_in? %>
-      <a class="logout top-button pull-right">log out</a>
-      <a id="profile" class="top-button pull-right"><%= current_user.email %></a>
-  <% end %>
+    <% if user_signed_in? %>
+    <a class="logout top-button pull-right">log out</a>
+    <a id="profile" class="top-button pull-right"><%= current_user.email %></a>
+    <% end %>
   </div>
+  <!-- login-area close -->
+
+  <!-- row -->
   <div class="row">
-  	<div class="col-md-12">
-  	  <h1 class="title">br
-  	    <div class="button">
-  	      <div class="triangle"></div>
-  	    </div>
-  	  wsin'</h1>
-  	</div>
-  	</div>  
-<div id="search-area" class="search-area">
-  <% if user_signed_in? %>
-  	<div class="col-md-12">
-  	<form class="navbar-form col-md-6 col-md-offset-3" role="search">
-   	 	<div class="form-group">
-      	<input type="text" class="form-control" placeholder="ex: I have 30 minutes for comedy">
-    	</div>
-  	</form>
-  	</div>
-  <% else %>
-
-  <div class="col-md-12 col-md-offset-4">
-	  	<form class="form-inline" role="form" id="login-form">
-	  		<div class="form-group">
-	    	<label class="sr-only" for="email">Email address</label>
-	    		<input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
-	    	<label class="sr-only" for="password">Password</label>
-	    		<input type="password" class="form-control" id="password" name="password" placeholder="Password">
-	    		</div>
-	  		<button type="submit" class="btn" id="sign-in-button">Sign in</button>
-			</form>
-	  		<button type="button" class="btn btn-primary" id="sign-up-button" data-target="#sign-up-form" data-toggle="modal" >Sign up</button>
-</div>
-
-  <!-- Sign-Up Modal -->
-  <div class="modal fade" id="sign-up-form" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
-    <div class="modal-dialog">
-      <div class="modal-content">
-        <div class="modal-header">
-          <button type="button" class="close" data-dismiss="modal">
-            <span aria-hidden="true">&times;</span><span class="sr-only">
-              Close
-            </span>
-          </button>
-          <h4 class="modal-title" id="signUp">Sign up today</h4>
+    <!-- col-md-12 -->
+    <div class="col-md-12">
+      <h1 class="title">
+        br
+        <div class="button">
+          <div class="triangle"></div>
         </div>
-      <div class="modal-body">
-        <form class="form-horizontal" role="form" id="sign-up-data">
-          <div class="form-group">
-            <div class="col-sm-12">
-              <input type="email" id="email" class="form-control" name="user[email]" placeholder="Email" required>
-            </div>
-          </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="password" id="pass" class="form-control" name="user[password]" placeholder="Password">
-          </div>
-        </div>
-        <div class="form-group">
-          <div class="col-sm-12">
-            <input type="password" id="pass_conf" class="form-control" name="user[password_confirmation]" placeholder="Password confirmation">
-          </div>
-        </div>
-        <div class="form-group" required>
-          <div class="col-sm-12">
-            <h4>Which services to you have a subscription to?</h4>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="provider[netflix]" id="netflixBox" value="netflix">
-                netflix          
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="provider[hbo]" id="hboBox" value="hbo">
-                hbo          
-            </label>
-            <label class="checkbox-inline">
-              <input type="checkbox" name="provider[hulu]" id="huluBox" value="hulu">
-                hulu+          
-            </label>
-          </div>
-        </div>
-      </div>
-        <div class="modal-footer">
-          <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-          <button type="submit" id="sign-up-submit" class="btn btn-primary">Sign up</button>
-        </div>
-      </form>
-      </div>
+        wsin'
+      </h1>
     </div>
+    <!-- col-md-12 off -->
+
+    <!-- search-area open -->
+    <div id="search-area" class="search-area col-md-12">
+      <% if user_signed_in? %>
+
+      <!-- col-md-12 -->
+      <div class="col-md-12">
+        <form id="main-search-form" class="navbar-form col-md-6 col-md-offset-3" role="search">
+          <div class="form-group">
+            <input id="search-bar-value" type="text" name="query" class="form-control" placeholder="ex: I have 30 minutes for comedy">
+          </div>
+        </form>
+      </div>
+      <!-- col-md-12 close -->
+
+      <% else %>
+
+      <!-- col-md-12 col-md-offset-4 -->
+      <div class="col-md-offset-4 col-sm-offset-3">
+        <form class="form-inline" role="form" id="login-form">
+          <!-- form-group -->
+          <div class="form-group">
+            <input type="email" class="form-control" id="email" name="email" placeholder="Enter email">
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password">
+          </div>
+          <!-- form-group close -->
+          <button type="submit" class="btn" id="sign-in-button">Sign in</button>
+        </form>
+      </div>
+      <!-- col-md-12 col-md-offset-4 close -->
+
+      <!-- Sign-Up Modal -->
+      <div class="modal fade" id="sign-up-form" tabindex="-1" role="dialog" aria-labelledby="signUp" aria-hidden="true">
+
+        <!-- modal-dialog -->
+        <div class="modal-dialog">
+          <!-- modal-content -->
+          <div class="modal-content">
+
+            <!-- modal-header -->
+            <div class="modal-header">
+              <button type="button" class="close" data-dismiss="modal">
+                <span aria-hidden="true">&times;</span><span class="sr-only">
+                Close
+                </span>
+              </button>
+              <h4 class="modal-title" id="signUp">Sign up today</h4>
+            </div>
+            <!-- modal-header close -->
+
+            <!-- modal-body -->
+            <div class="modal-body">
+              <form class="form-horizontal" role="form" id="sign-up-data">
+
+                <!-- form-group -->
+                <div class="form-group">
+                  <!-- col-sm-12 -->
+                  <div class="col-sm-12">
+                    <input type="email" id="email" class="form-control" name="user[email]" placeholder="Email" required>
+                  </div>
+                  <!-- col-sm-12 close -->
+                </div>
+                <!-- form-group close -->
+
+                <!-- form-group -->  
+                <div class="form-group">
+                  <!-- col-sm-12 -->
+                  <div class="col-sm-12">
+                    <input type="password" id="pass" class="form-control" name="user[password]" placeholder="Password">
+                  </div>
+                  <!-- col-sm-12 close -->
+                </div>
+                <!-- form-group close -->
+
+                <!-- form-group -->
+                <div class="form-group">
+                  <!-- col-sm-12 -->
+                  <div class="col-sm-12">
+                    <input type="password" id="pass_conf" class="form-control" name="user[password_confirmation]" placeholder="Password confirmation">
+                  </div>
+                  <!-- col-sm-12 close -->
+                </div>
+                <!-- form-group close -->
+
+                <!-- form-group -->
+                <div class="form-group" required>
+
+                  <!-- col-sm-12 -->
+                  <div class="col-sm-12">
+                    <h4>Which services to you have a subscription to?</h4>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="provider[netflix]" id="netflixBox" value="netflix">
+                      netflix          
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="provider[hbo]" id="hboBox" value="hbo">
+                      hbo          
+                    </label>
+                    <label class="checkbox-inline">
+                      <input type="checkbox" name="provider[hulu]" id="huluBox" value="hulu">
+                      hulu+          
+                    </label>
+                  </div>
+                  <!-- col-sm-12 close -->
+                </div>
+                <!-- form-group close -->
+              </div>
+            <!-- modal-body close -->
+
+            <!-- modal-footer -->
+            <div class="modal-footer">
+              <button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+              <button type="submit" id="sign-up-submit" class="btn btn-primary">Sign up</button>
+            </div>
+            <!-- modal-footer close -->
+          </div>
+          <!-- modal-content close -->
+          </form>
+        </div>
+        <!-- modal-dialog close -->
+        <% end %>
+      </div>
+      <!-- Sign-Up Modal close -->
+    </div>
+    <!-- search-area close -->
   </div>
-  <% end %>
+  <!-- row close -->
 </div>
+<!-- content close -->
+
+<div class="col-md-6 col-md-offset-3 table-responsive search-results-area-div" id="search-results-area"></div>

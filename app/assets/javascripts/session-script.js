@@ -10,13 +10,9 @@ function submitSignUp(location) {
       $('#sign-up-form').modal('hide');
       renderSearchBar();
       userLoggedIn(response.user);
+      $('').remove('#sign-up-button');
     } else {
-      $('.modal-header').append("<div class='alert alert-danger role='alert'><strong>"+response.error+"</strong></div>")
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove();
-          });
-        }, 3000);
+      renderLoginFail(response);
     }
   });
   return request;
@@ -26,14 +22,16 @@ function getServices(data) {
   var netflix = $(data).find("#netflixBox").is(':checked');
   var hbo = $(data).find("#hboBox").is(':checked');
   var hulu = $(data).find("#huluBox").is(':checked');
+  var hulu_free = false;
   if(netflix == true) {
     netflix = "netflix"
   } else if(hbo == true) {
-    hbo = "hbo"
+    hbo = "HBO"
   } else if(hulu == true) {
-    hulu = "hulu"
+    hulu = "hulu_plus"
+    hulu_free = "hulu_free"
   } 
-  return {services: [netflix, hbo, hulu]}
+  return {services: [netflix, hbo, hulu, hulu_free]}
 }
 
 function submitDataParse(data) {
@@ -54,8 +52,9 @@ function submitSignIn(email, pass) {
     if(response.success == true) {
       renderSearchBar();
       userLoggedIn(response.user);
+      $('#sign-up-button').remove();
     } else {
-      errorLoggingIn();
+      errorLoggingIn(response.error);
     }
   });
   return request;
@@ -68,9 +67,36 @@ function logOutUser() {
   });
 
   request.done(function(status) {
-    userLoggedOut();
-    $("#login-area").empty();
+    window.location = '/';
+    $( docuemnt ).ready(function() {
+      flashAlert();
+    });
   });
   
   return request;
+}
+
+function errorLoggingIn(message) {
+  $('#search-area').append("<br><div class='col-md-6 col-md-offset-3 alert alert-white' role='alert'><strong>"+message+", please try again.</strong></div>")
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+      });
+    }, 5000);
+}
+function flashAlert() {
+  $('#search-area').append("<br><div class='col-md-6 col-md-offset-3 alert alert-white' role='alert'><strong>Successfully logged out. Come back soon!</strong></div>")
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+      });
+    }, 5000);
+}
+function renderLoginFail(response) {
+  $('.modal-header').append("<div class='alert alert-login' role='alert'><strong>"+response.error+"</strong></div>")
+  window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove();
+    });
+  }, 3000);
 }
