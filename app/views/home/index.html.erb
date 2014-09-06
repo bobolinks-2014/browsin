@@ -17,13 +17,14 @@
 <div id="search-area" class="search-area">
   <% if user_signed_in? %>
   	<div class="col-md-12">
-  	<form class="navbar-form col-md-6 col-md-offset-3" role="search">
+  	<form id="main-search-form" class="navbar-form col-md-6 col-md-offset-3" role="search">
    	 	<div class="form-group">
-      	<input type="text" class="form-control" placeholder="ex: I have 30 minutes for comedy">
+      	<input type="text" name="query" class="form-control" placeholder="ex: I have 30 minutes for comedy">
     	</div>
   	</form>
   	</div>
   <% else %>
+	  <a class="top-button area pull-right" id="sign-up-button" data-target="#sign-up-form" data-toggle="modal">Sign up</a>
 
   <div class="col-md-12 col-md-offset-4">
 	  	<form class="form-inline" role="form" id="login-form">
@@ -35,7 +36,6 @@
 	    		</div>
 	  		<button type="submit" class="btn" id="sign-in-button">Sign in</button>
 			</form>
-	  		<button type="button" class="btn btn-primary" id="sign-up-button" data-target="#sign-up-form" data-toggle="modal" >Sign up</button>
 </div>
 
   <!-- Sign-Up Modal -->

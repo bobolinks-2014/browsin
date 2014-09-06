@@ -20,6 +20,10 @@
   font-family: 'abeatbyKai';
   src: url('/assets/abeatbyKaiRegular.otf');
   }
+.top-button {
+  padding:10px;
+  cursor: pointer;
+}
 
 .title{
   color: #282827;

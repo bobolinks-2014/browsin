@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def search
-    movies = Media.tagged_with(tags).tagged_with("show", on: :status, owned_by:current_user)
+    movies = Media.tagged_with(tag_key).tagged_with("show", on: :status, owned_by:current_user)
     if movies == []
       respond_with movies, status: 404
     else

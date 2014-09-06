@@ -74,3 +74,12 @@ function logOutUser() {
   
   return request;
 }
+
+function errorLoggingIn() {
+  $('#search-area').append("<br><div class='col-md-4 col-md-offset-4 alert alert-danger' role='alert'><strong>Error loggin in, please retry.</strong></div>")
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+      });
+    }, 3000);
+}

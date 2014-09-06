@@ -7,7 +7,7 @@ class SessionsController < ActionController::Base
       session[:current_user_id] = @user.id
       render :json => {success: true, user: @user.email}
     else
-      #error
+      render :json => {succes: false}
     end
   end
 
