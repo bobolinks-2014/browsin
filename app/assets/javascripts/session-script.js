@@ -12,12 +12,7 @@ function submitSignUp(location) {
       userLoggedIn(response.user);
       $('').remove('#sign-up-button');
     } else {
-      $('.modal-header').append("<div class='alert alert-danger role='alert'><strong>"+response.error+"</strong></div>")
-      window.setTimeout(function() {
-        $(".alert").fadeTo(500, 0).slideUp(500, function(){
-          $(this).remove();
-          });
-        }, 3000);
+      renderLoginFail(response);
     }
   });
   return request;
@@ -70,18 +65,36 @@ function logOutUser() {
   });
 
   request.done(function(status) {
-    userLoggedOut();
-    $("#login-area").empty();
+    window.location = '/';
+    $( docuemnt ).ready(function() {
+      flashAlert();
+    });
   });
   
   return request;
 }
 
 function errorLoggingIn(message) {
-  $('.row').append("<br><div class='col-md-4 col-md-offset-4 alert alert-white' role='alert'><strong>"+message+", please try again.</strong></div>")
+  $('#search-area').append("<br><div class='col-md-6 col-md-offset-3 alert alert-white' role='alert'><strong>"+message+", please try again.</strong></div>")
     window.setTimeout(function() {
       $(".alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove();
       });
     }, 5000);
+}
+function flashAlert() {
+  $('#search-area').append("<br><div class='col-md-6 col-md-offset-3 alert alert-white' role='alert'><strong>Successfully logged out. Come back soon!</strong></div>")
+    window.setTimeout(function() {
+      $(".alert").fadeTo(500, 0).slideUp(500, function(){
+        $(this).remove();
+      });
+    }, 5000);
+}
+function renderLoginFail(response) {
+  $('.modal-header').append("<div class='alert alert-login' role='alert'><strong>"+response.error+"</strong></div>")
+  window.setTimeout(function() {
+    $(".alert").fadeTo(500, 0).slideUp(500, function(){
+      $(this).remove();
+    });
+  }, 3000);
 }

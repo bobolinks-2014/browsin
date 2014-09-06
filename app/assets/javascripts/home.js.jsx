@@ -2,14 +2,16 @@
 var MediaItem = React.createClass({
   render: function() {
   return (
-      <div className='media-item'>
-      <h1 className='title'>{this.props.title}</h1>
-      <div className='icon-area'>
-        <span className='platforms'>{this.props.platform}</span> | 
-        <span className='runtime'>{this.props.runtime}</span> | 
-        <span className='genres'>{this.props.genre}</span>
-      </div>
-      </div>
+      <tbody>
+        <tr>
+          <th>{this.props.title}</th>
+          <div className='icon-area'>
+            <th className='platforms'>{this.props.platform}</th>
+            <th className='runtime'>{this.props.runtime}</th>
+            <th className='genres'>{this.props.genre}</th>
+          </div>
+        </tr>
+      </tbody>
       );
   }
 });
@@ -23,9 +25,9 @@ var MediaList = React.createClass({
         });
     
     return (
-        <div className="mediaList">
-        {mediaNodes}
-        </div>
+        <table className='table table-striped'>
+          {mediaNodes}
+        </table>
     );
     }
 });
@@ -41,9 +43,9 @@ var SearchBar = React.createClass({
   render: function() {
     return (
       <div className='col-md-12'>
-        <form className='navbar-form col-md-6 col-md-offset-3' role='search'>
+        <form id='main-search-form' className='navbar-form col-md-6 col-md-offset-3' role='search'>
           <div className='form-group'>
-            <input type='text' className='form-control' placeholder='ex: I have 30 minutes for comedy' />
+            <input id='search-bar-value' type='text' className='form-control' placeholder='ex: I have 30 minutes for comedy' />
           </div>
         </form>
       </div>

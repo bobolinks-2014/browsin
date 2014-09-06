@@ -8,8 +8,10 @@ var queryLookUp = function(query) {
     if(response.success == false) {
       renderFail(response.error); 
     } else {
-      animatePage();
+      //animatePage();
       renderList(response);
+      $('body').css("background-color", "white");
+      $('.title').css("margin-top", "20px");
     }
   });
   return request;
@@ -21,17 +23,8 @@ function renderFail(query) {
       $(".alert").fadeTo(500, 0).slideUp(500, function(){
         $(this).remove();
     });
-  }, 3000);
+  }, 4000);
 }
 
 function animatePage() {
-  $( ".content" )
-  .animate({
-    height: "20%"
-  }, {
-    queue: false,
-    duration: 2000
-  })
-  .animate({ fontSize: "24px" }, 1500 )
-  .animate({ borderRightWidth: "15px" }, 1500 );
 }

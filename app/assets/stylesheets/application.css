@@ -20,6 +20,7 @@
   font-family: 'abeatbyKai';
   src: url('/assets/abeatbyKaiRegular.otf');
   }
+
 .top-button {
   padding:10px;
   cursor: pointer;
@@ -42,14 +43,13 @@
   width: 70px;
   height: 70px;
   position: relative;
-  background-color: rgb(122,201,67);
+  background-color: gold; /**rgb(122,201,67)*/
   border-radius: 150px;
 }
 
-.wrapper {
-	max-width: 80%;
+.top-area-bar {
+  background: lightseagreen;
 }
-
 .triangle {
   left: 18px;
   top: 14px;
@@ -59,11 +59,13 @@
   border-left: 40px solid #fdf7ef;
   z-index: 2;
 }
-.search-button{
-	background-color: #fdf7ef;
-  font-size: 20px;
-  outline: none;
-  border: none;
-  padding-top: 15px;
-  text-align: right;
+
+.search-results-area-div {
+  margin-top:10px;
+}
+
+.alert-login {
+  background: gold;
+  margin-bottom: 0 !important;
+  margin-top: 10px;
 }
