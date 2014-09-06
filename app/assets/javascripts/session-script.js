@@ -11,7 +11,12 @@ function submitSignUp(location) {
       renderSearchBar();
       userLoggedIn(response.user);
     } else {
-      console.log('hey');
+      $('.modal-header').append("<div class='alert alert-danger role='alert'><strong>"+response.error+"</strong></div>")
+      window.setTimeout(function() {
+        $(".alert").fadeTo(500, 0).slideUp(500, function(){
+          $(this).remove();
+          });
+        }, 3000);
     }
   });
   return request;
