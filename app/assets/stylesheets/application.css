@@ -69,3 +69,19 @@
   margin-bottom: 0 !important;
   margin-top: 10px;
 }
+
+.panel-views { 
+  border: 1px solid lightseagreen !important;
+}
+.ratings {
+  background: gold;
+  border-radius: 30px;
+  width: 30px;
+  height: 30px;
+  position: relative;
+  left: -12px;
+  top: -8px;
+  text-align: center;
+  line-height: 2.2;
+  font-size: .9em;
+}

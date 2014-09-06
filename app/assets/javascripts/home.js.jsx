@@ -2,24 +2,32 @@
 var MediaItem = React.createClass({
   render: function() {
   return (
-      <tbody>
-        <tr>
-          <th>{this.props.title}</th>
-          <div className='icon-area'>
-            <th className='platforms'>
-              {this.props.services.map(function(result, index) {
-                return <span id={result.name}>{result.name}</span>;
-              })}
-            </th>
-            <th className='runtime'>{this.props.runtime}</th>
-            <th className='genres'>
-              {this.props.genres.map(function(result, index) {
-                return <span id={result.name}>{result.name}</span>;
-              })}
-            </th>
+          <div className='panel panel-views'>
+            <div className='panel-heading'>
+              <h4 className='panel-title'>
+                <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.id}>
+                  {this.props.title}
+                </a>
+                <span className='ratings pull-left'>{this.props.rating}</span>
+                <span className='platforms'>
+                  {this.props.services.map(function(result, index) {
+                    return <span id={result.name}>{result.name}</span>;
+                  })}
+                </span>
+                <span className='runtime'>{this.props.runtime}</span>
+                <span className='genres'>
+                  {this.props.genres.map(function(result, index) {
+                    return <span id={result.name}> {result.name} </span>;
+                  })}
+                </span>
+              </h4>
+            </div>
+            <div id={this.props.id} className='panel-collapse collapse in'>
+              <div className='panel-body'>
+                {this.props.synopsis}
+              </div>
+            </div>
           </div>
-        </tr>
-      </tbody>
       );
   }
 });
@@ -28,14 +36,14 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} key={index} />
+        <MediaItem id={mediaItem.id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} key={index} />
       );
     });
     
     return (
-        <table className='table table-striped'>
+        <div className='panel-group' id='media-items'>
           {mediaNodes}
-        </table>
+        </div>
     );
     }
 });
