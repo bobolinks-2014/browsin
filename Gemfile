@@ -33,6 +33,8 @@ gem 'dalli'
 gem 'rails_12factor', group: :production
 # Retriable to retry API call if exception is raised
 gem 'retriable'
+# Whenever provides a clear syntax for writing and deploying cron jobs
+gem 'whenever', :require => false
 
 
 group :test do
