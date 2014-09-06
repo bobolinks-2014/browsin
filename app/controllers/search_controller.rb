@@ -1,7 +1,7 @@
 class SearchController < ApplicationController
 
   def search
-    movies = Media.tagged_with(tag_key).tagged_with("show", on: :status, owned_by:current_user)
+    movies = Media.tagged_with(tags_search).where("run_time <= #{runtime_search}").tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
     if movies == []
       render json: {success: false, error: tag_key}
     else
@@ -9,62 +9,34 @@ class SearchController < ApplicationController
     end
   end
 
-  # def filter
-  # receive json data and check for the minutes(number), genre, and actor/actress that is searched for
+  def re_actors
+    actor_list = Media.actor_counts.map{ |x| x.name }
+    Regexp.union(actor_list)
+  end
+
+  def re_genres
+    genre_list = Media.genre_counts.map{ |x| x.name }
+    Regexp.union(genre_list)
+  end
 
   # single regex to produce search groups
-params_query = {query: "I have 30 minutes for comedy and Anthony Dale"}
-params_query = params_query[:query].split.each {|x| x.capitalize!}.join(" ")
+  def get_matches
+    query = params_query[:query].split.each {|x| x.capitalize!}.join(" ")
+    matches = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
+    matches.flatten!.compact!.sort!
+  end
 
-actor_list = Media.actor_counts.map{ |x| x.name }
-genre_list = Media.genre_counts.map{ |x| x.name }
+  def runtime_search
+    matches = get_matches
+    matches[0].to_i
+  end
 
-re_actors = Regexp.union(actor_list)
-re_genres = Regexp.union(genre_list)
-
-# matches_minutes = params_query.scan(/(\d+)/)
-# matches_genre = params_query.scan(/(#{re_genres})/)
-# matches_minutes_genre = params_query.scan(/(\d+)|(#{re_genres})/i)
-# matches_actor = params_query.scan(/(#{re_actors})/)
-matches = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
-
-
-
-
-  # set up 3 diff regexs and if they are true, set them to a variable
-  def check_search_actor
-    actor_regex =/([A-Z]([a-z]+|\.)(?:\s+[A-Z]([a-z]+|\.))*(?:\s+[a-z][a-z\-]+){0,2}\s+[A-Z]([a-z]+|\.))/
-
-    actor = actor_regex.match(params_query)
-
-    if actor_regex.match(params_query) != nil
-      actor = actor[0]
-    else
-      raise "That person isn't famous enough. Look for someone else!"
-    end
+  def tags_search
+    matches = get_matches
+    matches.shift
   end
 
   # Need to compare actor against acts_as_taggable_on actor_list
-
-  def check_search_minutes
-    minutes = /\d+/
-
-    run_time = minutes.match(params_query)
-
-    if minutes.match(params_query) != nil
-      run_time = run_time[0].to_i
-    end
-  end
-
-  def check_search_genre
-    genres = ["Animation", "History", "Family", "Romance", "Documentary", "Mystery", "Game-Show", "Thriller", "Fantasy", "Sport", "Reality-TV", "Talk-Show", "Western", "Musical", "News", "Music", "Adventure", "Comedy", "War", "Crime", "Action", "Horror", "Biography", "Sci-Fi", "Drama"]
-    params_query.split.each do |word|
-      if genres.include?(word.downcase)
-        genre = word
-      end
-    end
-  end
-
 
   private
 
