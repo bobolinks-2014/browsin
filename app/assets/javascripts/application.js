@@ -12,9 +12,25 @@ $( document ).ready(function() {
     //clear search bar
     //push page up
   });
-  $("#sign-in-button").on("click", function(event) {
-    event.preventDefault();
 
+  $("#sign-up-button").on("submit", function(event) {
+    $('#sign-up-form').modal('show');
   });
 
+  $("#sign-up-submit").on("click", function(event) {
+    event.preventDefault();
+    submitSignUp($("#sign-up-data"));
+  });
+
+  $(".search-area").on("click", "#sign-in-button", function(event) {
+    event.preventDefault();
+    var email = $("#login-form #email").val()
+    var pass = $("#login-form #password").val()
+    submitSignIn(email, pass);
+  });
+
+  $(".login-area").on("click", ".logout", function(event) {
+    event.preventDefault();
+    logOutUser();
+  });
 });
