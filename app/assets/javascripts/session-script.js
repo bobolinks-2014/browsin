@@ -23,13 +23,16 @@ function getServices(data) {
   var hbo = $(data).find("#hboBox").is(':checked');
   var hulu = $(data).find("#huluBox").is(':checked');
   var hulu_free = false;
+
   if(netflix == true) {
-    netflix = "netflix"
-  } else if(hbo == true) {
-    hbo = "HBO"
-  } else if(hulu == true) {
-    hulu = "hulu_plus"
-    hulu_free = "hulu_free"
+    netflix = "netflix";
+  }
+  if(hbo == true) {
+    hbo = "HBO";
+  } 
+  if(hulu == true) {
+    hulu = "hulu_plus";
+    hulu_free = "hulu_free";
   } 
   return {services: [netflix, hbo, hulu, hulu_free]}
 }

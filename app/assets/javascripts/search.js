@@ -10,6 +10,7 @@ var queryLookUp = function(query) {
     } else {
       renderList(response);
       animatePage();
+      $("#media-items").accordion({ collapsible: true, active: false });
     }
   });
   return request;
@@ -27,6 +28,6 @@ function renderFail(query) {
 function animatePage() {
   $('body').css("background-color", "white");
   $('.title').animate({
-    'margin-top': "20px"
-  }, 400);
+    'margin-top': "5px"
+  }, 800);
 }
