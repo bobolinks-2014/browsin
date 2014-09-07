@@ -5,12 +5,12 @@ var queryLookUp = function(query) {
     dataType: "JSON"   
   });
   request.done(function(response) {
+    $('.loader').remove();
     if(response.success == false) {
       renderFail(response.error); 
     } else {
-      renderList(response);
       animatePage();
-      $("#media-items").accordion({ collapsible: true, active: false });
+      renderList(response);
     }
   });
   return request;
@@ -27,7 +27,5 @@ function renderFail(query) {
 
 function animatePage() {
   $('body').css("background-color", "white");
-  $('.title').animate({
-    'margin-top': "5px"
-  }, 800);
+  $('.title').animate({'margin-top': "5px"}, 800);
 }

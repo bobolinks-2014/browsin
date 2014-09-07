@@ -73,15 +73,112 @@
 .panel-views { 
   border: 1px solid lightseagreen !important;
 }
+
 .ratings {
   background: gold;
   border-radius: 30px;
   width: 30px;
   height: 30px;
   position: relative;
-  left: -12px;
-  top: -8px;
+  left: -10px;
+  top: -7px;
   text-align: center;
-  line-height: 2.2;
+  line-height: 2.25;
   font-size: .9em;
+}
+
+.runtime {
+  background: black;
+  border-radius: 30px;
+  font-size: .8em;
+  padding: 7px;
+  color: white;
+  margin-left: 20px;
+}
+
+.hbo {
+  background: url('/assets/provider-sprite.png') -85px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
+}
+
+.hulu_plus {
+  background: url('/assets/provider-sprite.png') -42px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
+}
+
+.hulu_free {
+  background: url('/assets/provider-sprite.png') -42px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
+}
+
+.actors {
+  display: block;
+  border-top: 1px solid #dedede;
+  margin-top: 10px;
+  font-size: .9em;
+  padding-top: 5px;
+}
+
+.btn-main {
+  background: lightseagreen;
+}
+
+/* LOADING ANIMATION */
+.loader,
+.loader:before,
+.loader:after {
+  background: #FFF;
+            -webkit-animation: load1 1s infinite ease-in-out;
+            animation: load1 1s infinite ease-in-out;
+  width: 1em;
+  height: 4em;
+}
+.loader:before,
+.loader:after {
+  position: absolute;
+  top: 0;
+  content: '';
+}
+.loader:before {
+  left: -1.5em;
+}
+.loader {
+  text-indent: -9999em;
+  margin: 8em auto;
+  position: relative;
+  font-size: 11px;
+          -webkit-animation-delay: -0.16s;
+          animation-delay: -0.16s;
+}
+.loader:after {
+  left: 1.5em;
+      -webkit-animation-delay: -0.32s;
+      animation-delay: -0.32s;
+}
+@-webkit-keyframes load1 {
+  0%,
+    80%,
+    100% {
+      box-shadow: 0 0 #FFF;
+height: 4em;
+    }
+  40% {
+    box-shadow: 0 -2em #ffffff;
+height: 5em;
+  }
+}
+@keyframes load1 {
+  0%,
+    80%,
+    100% {
+      box-shadow: 0 0 #FFF;
+height: 4em;
+    }
+  40% {
+    box-shadow: 0 -2em #ffffff;
+height: 5em;
+  }
 }

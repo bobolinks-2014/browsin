@@ -6,6 +6,7 @@ function submitSignUp(location) {
     data: {user: submitDataParse(location), services: getServices(location) }
   });
   request.done(function(response) {
+    $('.loader').remove();
     if(response.success == true) {
       $('#sign-up-form').modal('hide');
       renderSearchBar();
@@ -52,6 +53,7 @@ function submitSignIn(email, pass) {
     data: {user: {email: email, password: pass} }
   });
   request.done(function(response) {
+    $('.loader').remove();
     if(response.success == true) {
       renderSearchBar();
       userLoggedIn(response.user);

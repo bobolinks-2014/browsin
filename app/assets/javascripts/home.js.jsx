@@ -9,22 +9,28 @@ var MediaItem = React.createClass({
                   {this.props.title}
                 </a>
                 <span className='ratings pull-left'>{this.props.rating}</span>
+                <span className='runtime'>{this.props.runtime}</span>
                 <span className='platforms'>
                   {this.props.services.map(function(result, index) {
-                    return <span id={result.name}>{result.name}</span>;
+                    return <span className={result.name}></span>;
                   })}
                 </span>
-                <span className='runtime'>{this.props.runtime}</span>
                 <span className='genres'>
                   {this.props.genres.map(function(result, index) {
-                    return <span id={result.name}> {result.name} </span>;
+                    return <span className={result.name}> {result.name} </span>;
                   })}
                 </span>
               </h4>
             </div>
-            <div id={this.props.id} className='panel-collapse collapse in'>
+            <div id={this.props.id} className='panel-collapse collapse'>
               <div className='panel-body'>
                 {this.props.synopsis}
+                <span className='actors'>
+                  See more from: 
+                    {this.props.actors.map(function(result, index) {
+                      return <span className='actor'> {result.name} </span>
+                     })}
+                </span>
               </div>
             </div>
           </div>
@@ -36,12 +42,12 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} key={index} />
+        <MediaItem id={mediaItem.id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} actors={mediaItem.actors} key={index} />
       );
     });
-    
+
     return (
-        <div className='panel-group' id='media-items'>
+        <div className='panel-group media-items' id='media-items'>
           {mediaNodes}
         </div>
     );
@@ -76,6 +82,13 @@ var renderSearchBar = function() {
   );
 }
 
+var renderNavItems = function(items) {
+  React.renderComponent(
+    <NavItemBar navItems={items} />,
+    document.getElementById('nav-area')
+  );
+}
+
 var userLoggedIn = function(user) {
   React.renderComponent(
     <UserArea user={user} />,
@@ -100,6 +113,16 @@ var UserArea = React.createClass({
     );
   }
 });
+
+var NavItemBar = React.createClass({
+  render: function() {
+    return (
+      <div className='nav-area'>
+        TEST
+      </div>
+    );
+  }
+})
 
 var UserLoginArea = React.createClass({
   render: function() {

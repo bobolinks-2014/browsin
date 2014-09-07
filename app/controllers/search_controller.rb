@@ -1,12 +1,32 @@
 class SearchController < ApplicationController
   attr_accessor :matches
+  respond_to :json
 
   def search
-    movies = Media.where("run_time <= #{runtime_search}").tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
-    if movies == []
+    find_results
+    if @movies == []
       render json: {success: false, error: params_query}
     else
-      render json: movies, include: [:genres, :services, :actors]
+      render json: @movies, include: [:genres, :services, :actors]
+    end
+  end
+  
+  # Need to compare actor against acts_as_taggable_on actor_list
+
+  private
+
+  def params_query
+    params[:query].downcase
+  end
+
+  def find_results
+    get_matches
+    if is_number? && is_only_number?  
+      @movies = Media.where("run_time <= #{runtime_search}").tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+    elsif is_number?
+      @movies = Media.where("run_time <= #{runtime_search}").tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25) 
+    else
+      @movies = Media.tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
     end
   end
 
@@ -22,21 +42,20 @@ class SearchController < ApplicationController
 
   # single regex to produce search groups
   def get_matches
-    query = params_query.split.each {|x| x.downcase!}.join(" ")
     m = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
-    m.flatten!.compact!.sort!
+    @matches = m.flatten.compact.sort
   end
 
   def runtime_search
-    @matches = get_matches
+    #@matches = get_matches
     @matches.shift.to_i
   end
 
-  # Need to compare actor against acts_as_taggable_on actor_list
-
-  private
-
-  def params_query
-    params[:query]
+  def is_number?
+    @matches[0].to_i > 0
+  end
+  
+  def is_only_number?
+    @matches.length == 1
   end
 end
