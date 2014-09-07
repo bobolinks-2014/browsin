@@ -5,12 +5,11 @@
 //= require_tree .
 
 $( document ).ready(function() {
-  $("#search").on("submit", function(event) {
+  $(".search-area").on("submit", ".navbar-form", function(event) {
     event.preventDefault();
-    var query = $("#search").serialize();
+    var query = $('#search-bar-value').val();
+    $(this).append("<div class='loader'>Loading...</div>");
     queryLookUp(query);
-    //clear search bar
-    //push page up
   });
 
   $("#sign-up-button").on("submit", function(event) {
@@ -19,13 +18,16 @@ $( document ).ready(function() {
 
   $("#sign-up-submit").on("click", function(event) {
     event.preventDefault();
+    $('.modal-dialog').prepend("<div class='loader'>Loading...</div>");
     submitSignUp($("#sign-up-data"));
+    $('#sign-up-button').remove();
   });
 
   $(".search-area").on("click", "#sign-in-button", function(event) {
     event.preventDefault();
     var email = $("#login-form #email").val()
     var pass = $("#login-form #password").val()
+    $('.search-area').append("<div class='loader'>Loading...</div>");
     submitSignIn(email, pass);
   });
 

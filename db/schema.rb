@@ -11,15 +11,13 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20140906003756) do
+ActiveRecord::Schema.define(version: 20140907162139) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
   create_table "media", force: true do |t|
-    t.string   "rottentomatoes"
     t.string   "imdb_id"
-    t.string   "wikipedia_id"
     t.integer  "run_time"
     t.integer  "rating"
     t.text     "synopsis"
@@ -27,6 +25,8 @@ ActiveRecord::Schema.define(version: 20140906003756) do
     t.datetime "created_at"
     t.datetime "updated_at"
   end
+
+  add_index "media", ["imdb_id"], name: "index_media_on_imdb_id", using: :btree
 
   create_table "taggings", force: true do |t|
     t.integer  "tag_id"

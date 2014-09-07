@@ -1,60 +1,61 @@
 class SearchController < ApplicationController
+  attr_accessor :matches
+  respond_to :json
 
   def search
-    movies = Media.tagged_with(tags).tagged_with("show", on: :status, owned_by:current_user)
-    if movies == []
-      respond_with movies, status: 404
+    find_results
+    if @movies == []
+      render json: {success: false, error: params_query}
     else
-      render json: movies, include: [:genres, :services, :platforms]
+      render json: @movies, include: [:genres, :services, :actors]
     end
   end
-
-  # def filter
-  # receive json data and check for the minutes(number), genre, and actor/actress that is searched for
-
-  # set up 3 diff regexs and if they are true, set them to a variable
-  def check_search_actor
-    actor_regex =/([A-Z]([a-z]+|\.)(?:\s+[A-Z]([a-z]+|\.))*(?:\s+[a-z][a-z\-]+){0,2}\s+[A-Z]([a-z]+|\.))/
-    
-    actor = actor_regex.match(params_query)
-    
-    if actor_regex.match(params_query) != nil
-      actor = actor[0]
-    else
-      raise "That person isn't famous enough. Look for someone else!"
-    end
-  end
-
-  def check_search_minutes
-    minutes = /\d+/
-
-    run_time = minutes.match(params_query)
-    
-    if minutes.match(params_query) != nil
-      run_time = run_time[0].to_i
-    end  
-  end
-
-  def check_search_genre
-    genres = ["comedy", "drama", "science fiction", "horror", "romance", "sci-fi", "action"]
-    params_query.split.each do |word|
-      if genres.include?(word.downcase)
-        genre = word 
-      end
-  end
-
+  
+  # Need to compare actor against acts_as_taggable_on actor_list
 
   private
 
-  def search_value
-    params.keys[0]
-  end
-
-  def tag_key
-    params.values[0]
-  end
-
   def params_query
-    params[:query]
+    params[:query].downcase
+  end
+
+  def find_results
+    get_matches
+    if is_number? && is_only_number?  
+      @movies = Media.where("run_time <= #{runtime_search}").tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+    elsif is_number?
+      @movies = Media.where("run_time <= #{runtime_search}").tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25) 
+    else
+      @movies = Media.tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+    end
+  end
+
+  def re_actors
+    @actor_list ||= Media.actor_counts.map{ |x| x.name.downcase }
+    Regexp.union(@actor_list)
+  end
+
+  def re_genres
+    @genre_list ||= Media.genre_counts.map{ |x| x.name.downcase }
+    Regexp.union(@genre_list)
+  end
+
+  # single regex to produce search groups
+  def get_matches
+    m = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
+    @matches = m.flatten.compact.sort
+  end
+
+  def runtime_search
+    #@matches = get_matches
+    @matches.shift.to_i
+  end
+
+  def is_number?
+    @matches[0].to_i > 0
+  end
+  
+  def is_only_number?
+    @matches.length == 1
   end
 end
