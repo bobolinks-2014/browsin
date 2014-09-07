@@ -40,8 +40,14 @@ RSpec.describe Media, :type => :model do
 		end
 	
 	it "should have a field of 'rating'" do
-			expect(media.rating).to eq(99)
+			expect(media.rating).to eq(99)	
 		end
 
+	it "should clear incomplete records" do
+			Media.create(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", status_list: "show", run_time: 55, synopsis: "A ruthless cowboy moves to a street with a lawless group of characters", title: "Seseame Street", rating: 0)
+			expect(Media.count).to eq(1)
+			Media.clear_incomplete_records
+			expect(Media.count).to eq(0)
+	end
 
 end
