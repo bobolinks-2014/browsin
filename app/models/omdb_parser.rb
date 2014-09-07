@@ -2,32 +2,15 @@ require 'net/http'
 require 'json'
 
 class OMDBParser
-  def self.get_api_data(imdb_ids)
+  def self.get_api_data(ids_titles, netflix)
     omdb_collection = []
 
-    imdb_ids.each do |id| #1500 times
-      uri = URI("http://www.omdbapi.com/?i=#{id}&tomatoes=true")
-      response = Net::HTTP.get_response(uri)
-      hashed = JSON.parse(response.body)
-
-      omdb_data = { imdb_id: id,
-                    title: hashed["Title"],
-                    run_time: hashed["Runtime"],
-                    genre_list: hashed["Genre"],
-                    actor_list: hashed["Actors"],
-                    synopsis: hashed["Plot"],
-                    type: hashed["Type"]
-                  }
-
-      if omdb_data[:type] == "movie"
-        omdb_data.merge!(:rating => hashed["tomatoUserMeter"])
-      else
-        imdb_rating = hashed["imdbRating"].to_f * 10
-        omdb_data.merge!(:rating => imdb_rating)
+    ids_titles.each do |id|
+      api_data = fetch_response(id, netflix)
+      if api_data["Response"] == "True"
+        media_data = set_media_data(api_data, id, netflix)
+        omdb_collection << media_data
       end
-
-      omdb_data.delete(:type)
-      omdb_collection << omdb_data
     end
     return omdb_collection
   end
