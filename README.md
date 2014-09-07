@@ -1,14 +1,31 @@
 [ ![Codeship Status for bobolinks-2014/browsin](https://codeship.io/projects/fa0524b0-15f6-0132-f381-3ada423a8ca3/status)](https://codeship.io/projects/33778)
 
-# Browsin
+# Browsin'
 
 ## Purpose
- 
+
 Browsin is designed for quick search of the best shows or movies based on your available time.
 
 ## Getting Started
+The available database contains over 1200 movies and tv shows from Netflix, HBO Go, and Hulu.  To get started, clone this repo.
+
+You will need to add your [Guidebox API](http://api.guidebox.com/) key to have access to their database.
+
+Add the following to your shell environment (eg. .bash_profile, .zshrc):
+```
+export GUIDEBOX_API_KEY="[your key]"
+```
+Now set up your rails environment:
+```
+rake db:reset
+rake db:media => This process can take up to 15 minutes depending on your system
+rails server => Point your browser to localhost:3000
+```
 
 ## Dependencies
+* [Guidebox](#)
+* [Netflix](#)
+* [OMDB](#)
 
 ## Contributors
 * [Grace Yim](https://github.com/graceekyim)
