@@ -3,5 +3,8 @@ Rails.application.routes.draw do
   delete '/users/sign_out' => 'sessions#destroy'
   post '/users' => 'users#create'
   root 'home#index'
+  patch '/media/:id' => 'search#remove', :as => 'remove'
   get '/search' => 'search#search', :as => 'search' 
+  get '/top25' => 'search#top'
+  get '/find' => 'search#find'
 end
