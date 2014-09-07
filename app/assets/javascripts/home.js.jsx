@@ -3,13 +3,17 @@ var MediaItem = React.createClass({
   render: function() {
   return (
           <div className='panel panel-views'>
-            <div className='panel-heading'>
-              <h4 className='panel-title'>
+            <div className='panel-heading height-extend'>
+              <div className='col-md-5 col-sm-6 col-xs-6'>
+              <span className='ratings pull-left'>{this.props.rating}</span>
+              <h4 className='panel-title upcase'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.id}>
                   {this.props.title}
                 </a>
-                <span className='ratings pull-left'>{this.props.rating}</span>
-                <span className='runtime'>{this.props.runtime}</span>
+              </h4>
+              </div>
+                <div className='col-md-6 col-sm-6 col-xs-6 col-md-offset-1'>
+                <span className='runtime' data-toggle='tooltip' data-placement='top' title={"This movie's runtime is: "+this.props.runtime+" minutes"}>T</span>
                 <span className='platforms'>
                   {this.props.services.map(function(result, index) {
                     return <span className={result.name}></span>;
@@ -20,7 +24,9 @@ var MediaItem = React.createClass({
                     return <span className={result.name}> {result.name} </span>;
                   })}
                 </span>
-              </h4>
+                <span className='delete-media-item'>
+                </span>
+                </div>
             </div>
             <div id={this.props.id} className='panel-collapse collapse'>
               <div className='panel-body'>

@@ -11,6 +11,11 @@ class SearchController < ApplicationController
     end
   end
   
+  def destroy
+    puts params[:id]
+    render json: {success: true}
+  end
+  
   # Need to compare actor against acts_as_taggable_on actor_list
 
   private

@@ -74,14 +74,22 @@
   border: 1px solid lightseagreen !important;
 }
 
+.height-extend {
+  height: 40px;
+}
+.upcase {
+  text-transform: uppercase;
+  font-weight: 800;
+}
 .ratings {
   background: gold;
   border-radius: 30px;
   width: 30px;
   height: 30px;
   position: relative;
-  left: -10px;
-  top: -7px;
+  left: -19px;
+  top: -5px;
+  font-weight:800;
   text-align: center;
   line-height: 2.25;
   font-size: .9em;
@@ -91,15 +99,25 @@
   background: black;
   border-radius: 30px;
   font-size: .8em;
-  padding: 7px;
+  padding: 11px 13px;
   color: white;
   margin-left: 20px;
 }
 
 .hbo {
-  background: url('/assets/provider-sprite.png') -85px no-repeat;
+  background: url('/assets/provider-sprite.png') -84px no-repeat;
   margin-left: 5px;
   padding: 20px;
+}
+
+.delete-media-item {
+  background: url('/assets/provider-sprite.png') -122px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
+  position: absolute;
+  right: 0;
+  top: -10px;
+  cursor: pointer;
 }
 
 .hulu_plus {

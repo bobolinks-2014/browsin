@@ -35,4 +35,11 @@ $( document ).ready(function() {
     event.preventDefault();
     logOutUser();
   });
+
+  $("#search-results-area").on("click", ".delete-media-item", function(event) {
+    var itemId = $(this).parents().eq(2).find('.panel-collapse').attr('id');
+    removeMediaItem(itemId);
+  });
+
+  $(".runtime").tooltip();
 });

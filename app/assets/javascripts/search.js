@@ -16,6 +16,22 @@ var queryLookUp = function(query) {
   return request;
 }
 
+var removeMediaItem = function(id) {
+  var request = $.ajax({
+    url: "/media?id="+id,
+    type: "PATCH"
+  });
+  request.done(function(response) {
+    if(response.success == true) {
+      removeMediaItem(response);
+    }
+  });
+}
+
+function removeMediaItem(id) {
+  debugger;
+}
+
 function renderFail(query) { 
   $('#search-area').append("<br><div class='col-md-4 col-md-offset-4 alert alert-white' role='alert'><strong>Couldn't find any results for: "+query+"</strong></div>")
     window.setTimeout(function() {
@@ -28,4 +44,5 @@ function renderFail(query) {
 function animatePage() {
   $('body').css("background-color", "white");
   $('.title').animate({'margin-top': "5px"}, 800);
+  $(".runtime").tooltip('hide');
 }
