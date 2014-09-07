@@ -102,7 +102,13 @@
 }
 
 .hbo {
-  background: url('/assets/provider-sprite.png') -84px no-repeat;
+  background: url('/assets/provider-sprite.png') -82px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
+}
+
+.netflix {
+  background: url('/assets/provider-sprite.png') 0px no-repeat;
   margin-left: 5px;
   padding: 20px;
 }
