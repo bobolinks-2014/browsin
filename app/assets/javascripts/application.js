@@ -1,6 +1,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap.min
+//= require bootstrap-confirmation
 //= require react
 //= require_tree .
 
@@ -10,6 +11,19 @@ $( document ).ready(function() {
     var query = $('#search-bar-value').val();
     $(this).append("<div class='loader'>Loading...</div>");
     queryLookUp(query);
+  });
+
+  $("#search-results-area").on("click", ".search-item", function(event) {
+    event.preventDefault();
+    var asset = $(this).attr("id");
+    $('.search-area').append("<div class='loader'>Loading...</div>");
+    assetLookUp(asset);
+  });
+
+  $(".triangle").on("click", function(event) {
+    event.preventDefault();
+    $('.search-area').append("<div class='loader'>Loading...</div>");
+    topTwentyFive();
   });
 
   $("#sign-up-button").on("submit", function(event) {
@@ -34,5 +48,10 @@ $( document ).ready(function() {
   $(".login-area").on("click", ".logout", function(event) {
     event.preventDefault();
     logOutUser();
+  });
+
+  $("#search-results-area").on("click", ".delete-media-item", function(event) {
+    var itemId = $(this).parents().eq(2).find('.panel-collapse').attr('id');
+    removeMediaItem(itemId, $(this));
   });
 });
