@@ -5,7 +5,7 @@ class OMDBParser
   def self.get_api_data(media_data, netflix)
     omdb_collection = []
 
-    media_data.each do |id| #1500 times
+    media_data.each do |id|
       if netflix == true
         url = URI.encode("http://www.omdbapi.com/?t=#{id}&tomatoes=true")
         uri = URI.parse(url)
@@ -15,6 +15,7 @@ class OMDBParser
       
       response = Net::HTTP.get_response(uri)
       api_data = response.body
+
       hashed = JSON.parse(response.body)
 
       if hashed["Response"] == false

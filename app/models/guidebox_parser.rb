@@ -5,7 +5,7 @@ class GuideboxParser
 
 	def self.get_api_data
 		all_platforms = ['shows', 'movie']
-		all_services = ['hbo', 'hulu_free', 'hulu_plus']
+		all_services = ['hbo', 'hulu_plus', 'hulu_free']
 		guidebox_data = []
 
 		all_platforms.each do |platform|
@@ -55,7 +55,7 @@ class GuideboxParser
 			new_media = Media.new(media)
 			if new_media.save
 				imdb_data << media['imdb_id']
-			else
+			elsif media['imdb_id'] != ""
 				service = media['service_list']
 				old_media = Media.find_by_imdb_id(media['imdb_id'])
 				if !old_media.service_list.include?(service)
