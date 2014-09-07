@@ -8,28 +8,69 @@ var queryLookUp = function(query) {
     $('.loader').remove();
     if(response.success == false) {
       renderFail(response.error); 
-    } else {
+    } 
+    else {
       animatePage();
       renderList(response);
+      $('[data-toggle="tooltip"]').tooltip();
     }
   });
   return request;
 }
 
-var removeMediaItem = function(id) {
+var assetLookUp = function(query) {
   var request = $.ajax({
-    url: "/media?id="+id,
-    type: "PATCH"
+    url: "/find?lookup="+query,
+    type: "GET",
+    dataType: "JSON"   
   });
   request.done(function(response) {
-    if(response.success == true) {
-      removeMediaItem(response);
+    $('.loader').remove();
+    if(response.success == false) {
+      renderFail(response.error); 
+    } 
+    else {
+      animatePage();
+      renderList(response);
+      $('[data-toggle="tooltip"]').tooltip();
     }
+  });
+  return request;
+}
+var topTwentyFive = function() {
+  var request = $.ajax({
+    url: "/top25",
+    type: "GET",
+    datatType: "JSON"
+  });
+  request.done(function(response) {
+    $('.loader').remove();
+    if (response.success == false) {
+      renderFail(response.error); 
+    } 
+    else {
+      animatePage();
+      renderList(response);
+      $('[data-toggle="tooltip"]').tooltip();
+    }
+  });
+  return request;
+}
+
+var removeMediaItem = function(dataId, locationArea) {
+  var request = $.ajax({
+    url: "/media/"+dataId,
+    type: "PATCH",
+    dataType: "JSON"
+  });
+  request.done(function(response) {
+    removeItem(locationArea);
   });
 }
 
-function removeMediaItem(id) {
-  debugger;
+function removeItem(area) {
+  $(area.parents().eq(2)).fadeTo(500, 0).slideUp(500, function() {
+  });
 }
 
 function renderFail(query) { 

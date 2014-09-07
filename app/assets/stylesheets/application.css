@@ -96,12 +96,9 @@
 }
 
 .runtime {
-  background: black;
-  border-radius: 30px;
-  font-size: .8em;
-  padding: 11px 13px;
-  color: white;
-  margin-left: 20px;
+  background: url('/assets/provider-sprite.png') -160px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
 }
 
 .hbo {
@@ -138,6 +135,7 @@
   margin-top: 10px;
   font-size: .9em;
   padding-top: 5px;
+  cursor: pointer;
 }
 
 .btn-main {

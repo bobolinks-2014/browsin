@@ -11,17 +11,35 @@ class SearchController < ApplicationController
     end
   end
   
-  def destroy
-    puts params[:id]
+  def remove 
+    current_user.tag(Media.find(params[:id]), with: :"hide", on: :status)
     render json: {success: true}
   end
   
+  def top
+    if user_signed_in?
+      @movies = top_list
+      puts @movies[0].title
+      render json: @movies, include: [:genres, :services, :actors]
+    else
+      render json: {success: false}
+    end
+  end
+
+
+  def find
+    render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
+  end
   # Need to compare actor against acts_as_taggable_on actor_list
 
   private
 
   def params_query
     params[:query].downcase
+  end
+
+  def top_list
+    Media.tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
   end
 
   def find_results
@@ -31,8 +49,12 @@ class SearchController < ApplicationController
     elsif is_number?
       @movies = Media.where("run_time <= #{runtime_search}").tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25) 
     else
-      @movies = Media.tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+      find_media(@matches)
     end
+  end
+
+  def find_media(matcher)
+      @movies = Media.tagged_with(matcher).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
   end
 
   def re_actors
