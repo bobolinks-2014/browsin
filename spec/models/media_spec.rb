@@ -1,7 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe Media, :type => :model do
-	let(:media) { Media.new(genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", status_list: "show") }
+	let(:media) { Media.new(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", status_list: "show") }
+
+	it "should have an IMDB id" do
+		expect(media.imdb_id).to eq("123test")
+	end
 
 	it "should have a genre called 'drama'" do
 		expect(media.genre_list.to_s).to eq("drama")
