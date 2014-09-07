@@ -36,7 +36,7 @@ class GuideboxParser
 
 	def self.clean_media(media_file, platform, service)
 		media_file.each do |media|
-			media.select! { |k,v| k == 'imdb' || k == 'rottentomatoes' || k == 'imdb_id' }
+			media.select! { |k,v| k == 'imdb' || k == 'imdb_id' }
 			media.merge!('platform_list' => platform, 'service_list' => service)
 		end
 
@@ -55,6 +55,12 @@ class GuideboxParser
 			new_media = Media.new(media)
 			if new_media.save
 				imdb_data << media['imdb_id']
+			else
+				service = media['service_list']
+				old_media = Media.find_by_imdb_id(media['imdb_id'])
+				if !old_media.service_list.include?(service)
+					old_media.service_list.add(service)
+				end
 			end
 		end
 		return imdb_data
