@@ -122,6 +122,10 @@
   padding-top: 5px;
 }
 
+.btn-main {
+  background: lightseagreen;
+}
+
 /* LOADING ANIMATION */
 .loader,
 .loader:before,

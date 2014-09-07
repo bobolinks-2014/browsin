@@ -45,7 +45,7 @@ var MediaList = React.createClass({
         <MediaItem id={mediaItem.id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} actors={mediaItem.actors} key={index} />
       );
     });
-    
+
     return (
         <div className='panel-group media-items' id='media-items'>
           {mediaNodes}
@@ -82,6 +82,13 @@ var renderSearchBar = function() {
   );
 }
 
+var renderNavItems = function(items) {
+  React.renderComponent(
+    <NavItemBar navItems={items} />,
+    document.getElementById('nav-area')
+  );
+}
+
 var userLoggedIn = function(user) {
   React.renderComponent(
     <UserArea user={user} />,
@@ -106,6 +113,16 @@ var UserArea = React.createClass({
     );
   }
 });
+
+var NavItemBar = React.createClass({
+  render: function() {
+    return (
+      <div className='nav-area'>
+        TEST
+      </div>
+    );
+  }
+})
 
 var UserLoginArea = React.createClass({
   render: function() {
