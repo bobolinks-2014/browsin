@@ -3,7 +3,6 @@
 # Version of your assets, change this if you want to expire all your assets.
 Rails.application.config.assets.version = '1.0'
 Rails.application.config.assets.precompile += %w( *.js )
-Rails.application.config.assets.precompile += %w( .svg .eot .woff .ttf )
 Rails.application.config.assets.precompile += %w( *.css )
 # Precompile additional assets.
 # application.js, application.css, and all non-JS/CSS in app/assets folder are already added.
