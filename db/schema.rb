@@ -17,9 +17,7 @@ ActiveRecord::Schema.define(version: 20140906003756) do
   enable_extension "plpgsql"
 
   create_table "media", force: true do |t|
-    t.string   "rottentomatoes"
     t.string   "imdb_id"
-    t.string   "wikipedia_id"
     t.integer  "run_time"
     t.integer  "rating"
     t.text     "synopsis"
