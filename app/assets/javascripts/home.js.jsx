@@ -3,24 +3,30 @@ var MediaItem = React.createClass({
   render: function() {
   return (
           <div className='panel panel-views'>
-            <div className='panel-heading'>
-              <h4 className='panel-title'>
+            <div className='panel-heading height-extend'>
+              <div className='col-md-7 col-sm-7 col-xs-7'>
+              <span className='ratings pull-left' data-toggle='tooltip' title="Movie Rating">{this.props.rating}</span>
+              <h4 className='panel-title upcase'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.id}>
                   {this.props.title}
                 </a>
-                <span className='ratings pull-left'>{this.props.rating}</span>
-                <span className='runtime'>{this.props.runtime}</span>
+              </h4>
+              </div>
+                <div className='col-md-5 col-sm-5 col-xs-5'>
+                <span className='runtime' data-toggle='tooltip' title={"This movie's runtime is: "+this.props.runtime+" minutes"}></span>
                 <span className='platforms'>
                   {this.props.services.map(function(result, index) {
-                    return <span className={result.name}></span>;
+                    return <span data-toggle='tooltip' title={result.name} className={result.name}></span>;
                   })}
                 </span>
                 <span className='genres'>
                   {this.props.genres.map(function(result, index) {
-                    return <span className={result.name}> {result.name} </span>;
+                    return <a id={result.name} className={result.name + ' search-item'}> {result.name} </a>;
                   })}
                 </span>
-              </h4>
+                <span className='delete-media-item' data-toggle='confirmation'data-singleton='true'>
+                </span>
+                </div>
             </div>
             <div id={this.props.id} className='panel-collapse collapse'>
               <div className='panel-body'>
@@ -28,7 +34,7 @@ var MediaItem = React.createClass({
                 <span className='actors'>
                   See more from: 
                     {this.props.actors.map(function(result, index) {
-                      return <span className='actor'> {result.name} </span>
+                      return <a id={result.name} className='actor search-item'> {result.name} </a>
                      })}
                 </span>
               </div>
