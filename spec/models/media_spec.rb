@@ -1,7 +1,7 @@
 require 'rails_helper'
 
 RSpec.describe Media, :type => :model do
-	let(:media) { Media.new(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", status_list: "show") }
+	let(:media) { Media.new(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", status_list: "show", run_time: 55, synopsis: "A ruthless cowboy moves to a street with a lawless group of characters", title: "Seseame Street", rating: 99) }
 
 	it "should have an IMDB id" do
 		expect(media.imdb_id).to eq("123test")
@@ -26,4 +26,22 @@ RSpec.describe Media, :type => :model do
 	it "should have a status of 'show'" do
 		expect(media.status_list.to_s).to eq("show")
 	end
+	
+	it "should have a field of 'run_time'" do
+			expect(media.run_time).to eq(55)
+		end
+	
+	it "should have a field of 'synopsis'" do
+			expect(media.synopsis).to eq("A ruthless cowboy moves to a street with a lawless group of characters")
+		end
+	
+	it "should have a field of 'title'" do
+			expect(media.title).to eq("Seseame Street")
+		end
+	
+	it "should have a field of 'rating'" do
+			expect(media.rating).to eq(99)
+		end
+
+
 end
