@@ -18,7 +18,8 @@
 
 @font-face {
   font-family: 'abeatbyKai';
-  src: url('/assets/abeatbyKaiRegular.otf');
+  src: font-url('/assets/abeatbyKaiRegular.otf');
+  src: font-url('/assets/ABEAKRG.TTF');
   }
 
 .top-button {
