@@ -19,7 +19,9 @@
 @font-face {
   font-family: 'abeatbyKai';
   src: url('/assets/ABEAKRG.TTF'), format('truetype');
+  src: font-url('/assets/ABEAKRG.TTF'), format('truetype');
   src: url('/assets/abeatbyKaiRegular.otf');
+  src: font-url('/assets/abeatbyKaiRegular.otf');
 }
 .top-button {
   padding:10px;
