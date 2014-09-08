@@ -20,6 +20,13 @@ $( document ).ready(function() {
     assetLookUp(asset);
   });
 
+  $("#search-results-area").on("click", ".load-item", function(event) {
+    event.preventDefault();
+    var asset = $(this).attr("id");
+    $('.search-area').append("<div class='loader'>Loading...</div>");
+    assetLookUp(asset);
+  });
+
   $(".triangle").on("click", function(event) {
     event.preventDefault();
     $('.search-area').append("<div class='loader'>Loading...</div>");
