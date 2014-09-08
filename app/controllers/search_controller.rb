@@ -51,7 +51,7 @@ class SearchController < ApplicationController
     if is_number? && is_only_number?  
       movies = current_user_media.where("run_time <= #{runtime_search}")
     elsif is_number?
-      movies = current_user_media.tagged_with(@matches).where("run_time <= #{runtime_search}")
+      movies = current_user_media.where("run_time <= #{runtime_search}").tagged_with(@matches)
     else
       movies = current_user_media.tagged_with(@matches)
     end
