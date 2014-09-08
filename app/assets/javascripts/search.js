@@ -57,6 +57,13 @@ var topTwentyFive = function() {
   return request;
 }
 
+var renderItem = {
+  fail: function(query) {
+  
+  }
+
+}
+
 var removeMediaItem = function(dataId, locationArea) {
   var request = $.ajax({
     url: "/media/"+dataId,
