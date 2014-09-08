@@ -1,7 +1,6 @@
 class Media < ActiveRecord::Base
   has_many :user_preferences
-  # has_many :hidden_users, -> {where view_status: "hidden"}, through: :user_preferences, source: :users
-  has_many :hidden_users, through: :user_preferences, source: :users
+  has_many :hidden_users, -> {where 'user_preferences.view_status'=> "hidden"}, through: :user_preferences, source: :user
 
 	acts_as_taggable_on :services, :genres, :platforms, :actors
 
