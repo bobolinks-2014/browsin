@@ -37,6 +37,7 @@ gem 'retriable'
 gem 'nokogiri'
 # Whenever provides a clear syntax for writing and deploying cron jobs
 # gem 'whenever', :require => false
+gem 'jasmine', :group => [:development, :test]
 
 group :test do
   gem 'rspec-rails'

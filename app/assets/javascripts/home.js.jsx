@@ -13,18 +13,18 @@ var MediaItem = React.createClass({
               </h4>
               </div>
                 <div className='col-md-5 col-sm-5 col-xs-5'>
-                <span className='runtime' data-toggle='tooltip' title={"This movie's runtime is: "+this.props.runtime+" minutes"}></span>
+                <span className='runtime sprite-size' data-toggle='tooltip' title={"This movie's runtime is: "+this.props.runtime+" minutes"}></span>
                 <span className='platforms'>
                   {this.props.services.map(function(result, index) {
-                    return <span data-toggle='tooltip' title={result.name} className={result.name}></span>;
+                    return <span data-toggle='tooltip' title={result.name} className={result.name + " sprite-size"}></span>;
                   })}
                 </span>
                 <span className='genres'>
                   {this.props.genres.map(function(result, index) {
-                    return <a id={result.name} className={result.name.toLowerCase() + ' search-item'}></a>;
+                    return <a id={result.name} data-toggle='tooltip' title={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
                   })}
                 </span>
-                <span className='delete-media-item' data-toggle='confirmation'data-singleton='true'>
+                <span className='delete-media-item' data-toggle='tooltip' title='Click to remove this from future searches'>
                 </span>
                 </div>
             </div>
