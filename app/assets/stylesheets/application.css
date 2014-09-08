@@ -66,7 +66,6 @@
   height: 40px;
 }
 .upcase {
-  text-transform: uppercase;
   font-weight: 800;
 }
 .ratings {
@@ -126,12 +125,30 @@
   background: url('/assets/provider-sprite.png') -762px no-repeat;
 }
 .sport {
-  background: url('/assets/provider-sprite.png') -542px no-repeat;
+  background: url('/assets/provider-sprite.png') -442px no-repeat;
 }
 .family {
   background: url('/assets/provider-sprite.png') -522px no-repeat;
 }
+.news {
+  background: url('/assets/provider-sprite.png') -360px no-repeat;
+}
+.talk-show {
+  background: url('/assets/provider-sprite.png') -360px no-repeat;
+}
+.game-show {
+  background: url('/assets/provider-sprite.png') -360px no-repeat;
+}
+.reality-tv {
+  background: url('/assets/provider-sprite.png') -360px no-repeat;
+}
+.music {
+  background: url('/assets/provider-sprite.png') -400px no-repeat;
+}
 .war {
+  background: url('/assets/provider-sprite.png') -482px no-repeat;
+}
+.western {
   background: url('/assets/provider-sprite.png') -482px no-repeat;
 }
 .adventure {
@@ -159,13 +176,16 @@
   background: url('/assets/provider-sprite.png') -320px no-repeat;
 }
 .animation {
-  background: url('/assets/provider-sprite.png') -662px no-repeat;
+  background: url('/assets/provider-sprite.png') -562px no-repeat;
 }
 .action {
   background: url('/assets/provider-sprite.png') -642px no-repeat;
 }
 .crime {
   background: url('/assets/provider-sprite.png') -602px no-repeat;
+}
+.documentary {
+  background: url('/assets/provider-sprite.png') -762px no-repeat;
 }
 .hulu_free {
   background: url('/assets/provider-sprite.png') -42px no-repeat;

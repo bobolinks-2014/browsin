@@ -1,7 +1,9 @@
 describe("Application File", function() {
-  it("should be able to mock DOM call", function () {
-    spyOn($.fn, "val").andReturn("bar");
-    var result = $("#Something").val();
-    expect(result).toEqual("bar");
+  it("signs in a user", function () {
+    spyOn($.fn, "click");
+    $("#email").val("joey@joey.com");
+    $("#password").val("password");
+    $("#sign-in-button").click();
+    //expect($.fn.append).toEqual();
   });
 });
