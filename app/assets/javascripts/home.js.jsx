@@ -13,7 +13,7 @@ var MediaItem = React.createClass({
               </h4>
               </div>
                 <div className='col-md-5 col-sm-5 col-xs-5'>
-                <span className='runtime sprite-size' data-toggle='tooltip' title={"This movie's runtime is: "+this.props.runtime+" minutes"}></span>
+                <span className='runtime sprite-size' data-toggle='tooltip' title={"The runtime is: "+this.props.runtime+" minutes"}></span>
                 <span className='platforms'>
                   {this.props.services.map(function(result, index) {
                     return <span key={index} data-toggle='tooltip' title={result.name} className={result.name + " sprite-size"}></span>;
@@ -32,7 +32,7 @@ var MediaItem = React.createClass({
               <div className='panel-body'>
                 {this.props.synopsis}
                 <span className='actors'>
-                  See more from: 
+                  See more from:
                     {this.props.actors.map(function(result, index) {
                       return <a key={index} id={result.name} className='actor search-item'> {result.name} </a>
                      })}
