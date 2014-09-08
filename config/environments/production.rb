@@ -36,7 +36,8 @@ Rails.application.configure do
 
   # config.action_controller.asset_host = "http://assets.example.com"
   config.assets.initialize_on_precompile = false
-  config.assets.precompile << /\.(?:svg|eot|woff|ttf)$/
+  config.assets.paths << Rails.root.join("app", "assets", "fonts").to_s
+  config.assets.precompile << (/\.(?:svg|eot|woff|ttf|png)$/)
 
   # the I18n.default_locale when a translation cannot be found).
   config.i18n.fallbacks = true
