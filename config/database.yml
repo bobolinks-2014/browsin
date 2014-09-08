@@ -81,5 +81,3 @@ test:
 production:
   <<: *default
   database: browsin-rails_production
-  username: browsin-rails
-  password: <%= ENV['BROWSIN-RAILS_DATABASE_PASSWORD'] %>
