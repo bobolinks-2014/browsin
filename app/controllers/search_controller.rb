@@ -7,7 +7,7 @@ class SearchController < ApplicationController
     if @movies == []
       render json: {success: false, error: params_query}
     else
-      render json: @movies, include: [:genres, :services, :actors]
+      render json: @movies, include: [:genres, :services, :actors, :current_user_services]
     end
   end
   
@@ -28,11 +28,11 @@ class SearchController < ApplicationController
     render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
   end
 
-  def find
-    render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
-  end
-
   private
+
+  def current_user_services
+    current_user.service_list
+  end
 
   def find_media(matcher)
       current_user_media.tagged_with(matcher).order('rating DESC, title ASC').limit(25)
@@ -51,7 +51,7 @@ class SearchController < ApplicationController
     if is_number? && is_only_number?  
       movies = current_user_media.where("run_time <= #{runtime_search}")
     elsif is_number?
-      movies = current_user_media.tagged_with(@matches).where("run_time <= #{runtime_search}")
+      movies = current_user_media.where("run_time <= #{runtime_search}").tagged_with(@matches)
     else
       movies = current_user_media.tagged_with(@matches)
     end
