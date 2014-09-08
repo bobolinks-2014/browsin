@@ -1,6 +1,6 @@
 class User < ActiveRecord::Base
   has_many :user_preferences
-  has_many :hidden_media, -> {where 'user_preferences.view_status'=> "hidden"}, through: :user_preferences, source: :media
+  has_many :hidden_media, -> {where 'user_preferences.view_status'=> "hide"}, through: :user_preferences, source: :media
 
   has_secure_password
 
