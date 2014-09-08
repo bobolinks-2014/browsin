@@ -10,5 +10,4 @@ class User < ActiveRecord::Base
   validates :password, :length => { :minimum => 6 }
 
   acts_as_taggable_on :services
-  acts_as_tagger
 end

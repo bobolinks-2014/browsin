@@ -3,7 +3,7 @@ class Media < ActiveRecord::Base
   # has_many :hidden_users, -> {where view_status: "hidden"}, through: :user_preferences, source: :users
   has_many :hidden_users, through: :user_preferences, source: :users
 
-	acts_as_taggable_on :services, :genres, :platforms, :actors, :statuses
+	acts_as_taggable_on :services, :genres, :platforms, :actors
 
 	validates_presence_of :imdb_id, :service_list, :platform_list
 	validates_uniqueness_of :imdb_id
