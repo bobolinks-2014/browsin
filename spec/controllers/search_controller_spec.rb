@@ -7,14 +7,15 @@ describe SearchController do
 	let(:hoc_json) {[hoc].to_json(:include => [:genres, :services, :actors])}
 	let(:all_movies) {[got, hoc].to_json(:include => [:genres, :services, :actors])}
 	let(:user) {User.create!(email: "testing@testing.com", password: "testing", password_confirmation: "testing")}
+	let(:error) {{success: false, error: '20 minutes'}.to_json}
 
 	describe 'search route' do 
 		before(:each) do
 			user.tag(got, with: :"show", on: :status)
 			user.tag(hoc, with: :"show", on: :status)
-			allow(got).to receive(:runtime_search){30} 
-			allow(hoc).to receive(:runtime_search){30} 
-			allow(SearchController).to receive(:current_user){ user }
+			allow(got).to receive(:runtime_search){50} 
+			allow(hoc).to receive(:runtime_search){50} 
+			allow(SearchController).to receive(:current_user){user}
 		end
 
 		it "search for '60 minutes' gets a successful response" do
@@ -35,12 +36,12 @@ describe SearchController do
 			get(:search,
 				:query => "20 minutes",
 				:format => 'json')
-			expect(response.body).to eq({success: false, error: '20 minutes'}.to_json)
+			expect(response.body).to eq(error)
 		end
 
 		it "search for 'drama' returns one movie" do
 			get(:search,
-				:query => "drama",
+				:query => "DRAMA",
 				:format => 'json')
 			expect(response.body).to eq(got_json)
 		end
@@ -51,6 +52,5 @@ describe SearchController do
 				:format => 'json')
 			expect(response.body).to eq(hoc_json)
 		end
-
 	end
 end
