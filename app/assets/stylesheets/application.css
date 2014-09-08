@@ -1,15 +1,4 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
  *= require_self
  *= require bootstrap.min
  *= require bootstrap-theme.min
@@ -18,7 +7,7 @@
 
 @font-face {
   font-family: 'abeatbyKai';
-  src: url('/assets/ABEAKRG.TTF'), format('truetype');
+  src: url('/assets/ABEAKRG.ttf');
 }
 .top-button {
   padding:10px;
@@ -101,7 +90,7 @@
 }
 
 .hbo {
-  background: url('/assets/provider-sprite.png') -84px no-repeat;
+  background: url('/assets/provider-sprite.png') -82px no-repeat;
   margin-left: 5px;
   padding: 20px;
 }
@@ -118,6 +107,17 @@
 
 .hulu_plus {
   background: url('/assets/provider-sprite.png') -42px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
+}
+
+.drama {
+  background: url('/assets/provider-sprite.png') -722px no-repeat;
+  margin-left: 5px;
+  padding: 20px;
+}
+.comedy {
+  background: url('/assets/provider-sprite.png') -682px no-repeat;
   margin-left: 5px;
   padding: 20px;
 }

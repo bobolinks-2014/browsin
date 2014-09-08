@@ -21,7 +21,7 @@ var MediaItem = React.createClass({
                 </span>
                 <span className='genres'>
                   {this.props.genres.map(function(result, index) {
-                    return <a id={result.name} className={result.name + ' search-item'}> {result.name} </a>;
+                    return <a id={result.name} className={result.name.toLowerCase() + ' search-item'}></a>;
                   })}
                 </span>
                 <span className='delete-media-item' data-toggle='confirmation'data-singleton='true'>
