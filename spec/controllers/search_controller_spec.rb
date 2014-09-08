@@ -52,5 +52,74 @@ describe SearchController do
 				:format => 'json')
 			expect(response.body).to eq(hoc_json)
 		end
+
+		it "search for Frank returns one movie" do
+			get(:search,
+				:query => "60 minutes for Frank",
+				:format => 'json')
+			expect(response.body).to eq(hoc_json)
+		end
+
+		it "search for Jim returns zero results" do
+			get(:search,
+					:query => "30 minutes for Jim",
+					:format => 'json')
+			expect(response.body).should_not eq(all_movies)
+		end
+
+		it "a search for Frank or Arya returns got and hoc doesn't compute" do
+			get(:search,
+					:query => "60 minutes for Frank and Arya",
+					:format => 'json')
+			expect(response.body).should_not eq(all_movies)
+		end		
+	end
+
+	describe 'remove route' do
+		before(:each) do
+			user.tag(got, with: :"show", on: :status)
+			user.tag(hoc, with: :"show", on: :status)
+			allow(got).to receive(:runtime_search){50} 
+			allow(hoc).to receive(:runtime_search){50} 
+			allow(SearchController).to receive(:current_user){user}
+		end
+# testing remove method
+		it "user is able to hide a show from their list" do
+
+			put(:remove, 
+					:id => hoc.id,
+					:format => 'json')
+			media = Media.find(hoc.id)
+			expect(media.status).to eq("hide")
+		end
+# testing top method --> tested in feature testing 
+
+		# it "clicking the play button give the top 25 rated media items" do
+		# 	get(:top,
+		# 			:query => ,
+		# 			:format => 'json')
+		# 	expect(response.body).to eq(all_movies)
+		# end
+
+		# it 'clicking play after removing a show does not show that item' do
+		# 	put(:remove, 
+		# 			#remove got
+		# 			:query => ,
+		# 			:format => 'json')
+
+		# 	get(:search,
+		# 			:query => ,
+		# 			:format => 'json')
+		# 	expect(response.body).to eq(hoc_json)
+
+		# end
+
+# testing find method
+		it 'finding comedy returns hoc' do
+			get(:find,
+					:lookup => "comedy",
+					:format => 'json')
+			expect(response.body).to eq(hoc_json)
+		end
 	end
 end
