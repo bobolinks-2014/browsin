@@ -89,6 +89,9 @@ var Render = {
   },
   removeLoader: function() {
     $('.loader').remove();
+  },
+  displayKey: function() {
+
   }
 }
 
@@ -100,7 +103,7 @@ var Vendor = {
     else if(vendor == "netflix") {
       return "www.netflix.com/WiSearch?v1="
     }
-    else if(vendor == "HBO") {
+    else if(vendor == "hbo") {
       return "www.hbogo.com/#search&browseMode=browseGrid?searchTerm="
     }
   }
