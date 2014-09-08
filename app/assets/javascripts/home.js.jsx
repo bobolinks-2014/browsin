@@ -4,7 +4,7 @@ var MediaItem = React.createClass({
   return (
           <div className='panel panel-views' key={index}>
             <div className='panel-heading height-extend'>
-              <div className='col-md-7 col-sm-7 col-xs-7'>
+              <div className='col-md-8 col-sm-8 col-xs-8'>
               <span className='ratings pull-left' data-toggle='tooltip' title="Movie Rating">{this.props.rating}</span>
               <h4 className='panel-title upcase'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.id}>
@@ -12,11 +12,10 @@ var MediaItem = React.createClass({
                 </a>
               </h4>
               </div>
-                <div className='col-md-5 col-sm-5 col-xs-5'>
-                <span className='runtime sprite-size' data-toggle='tooltip' title={"The runtime is: "+this.props.runtime+" minutes"}></span>
+                <div className='col-md-4 col-sm-4 col-xs-4'>
                 <span className='platforms'>
                   {this.props.services.map(function(result, index) {
-                    return <a key={index} href={"http://"+Vendor.find(result.name) + this.props.title} target='blank' data-toggle='tooltip' title={result.name} className={result.name + " sprite-size"}></a>;
+                    return <a key={index} href={"http://"+Vendor.find(result.name) + this.props.title} target='blank' data-toggle='tooltip' title="Watch" className={result.name + " sprite-size"}></a>;
                   }.bind(this))}
                 </span>
                 <span className='genres'>
@@ -36,6 +35,9 @@ var MediaItem = React.createClass({
                     {this.props.actors.map(function(result, index) {
                       return <a key={index} id={result.name} className='actor search-item'> {result.name} </a>
                      })}
+                  <span className='runtime'>
+                    / Runtime: {this.props.runtime}
+                  </span>
                 </span>
               </div>
             </div>

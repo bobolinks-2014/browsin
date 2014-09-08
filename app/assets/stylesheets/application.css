@@ -97,9 +97,8 @@
 }
 
 .runtime {
-  background: url('/assets/provider-sprite.png') -160px no-repeat;
+  cursor: default !important;
 }
-
 .hbo {
   background: url('/assets/provider-sprite.png') -82px no-repeat;
 }
@@ -200,13 +199,14 @@
 .hulu_free {
   background: url('/assets/provider-sprite.png') -42px no-repeat;
 }
-
 .actors {
   display: block;
   border-top: 1px solid #dedede;
   margin-top: 10px;
   font-size: .9em;
   padding-top: 5px;
+}
+.actors a {
   cursor: pointer;
 }
 
