@@ -6,7 +6,7 @@ namespace :db do
 
     puts "creating new media..."
   	media_data = GuideboxParser.create_media(guidebox_data)
-    puts Media.all.count.to_s + " total records..."
+    total_records
 
     puts "fetching IMDB API data..."
   	imdb_data = OMDBParser.get_api_data(media_data, false)
@@ -22,10 +22,14 @@ namespace :db do
 
     puts "creating media with Netflix & IMDB data..."
     OMDBParser.update_media(imdb_data)
-    puts Media.all.count.to_s + " total records..."
+    total_records
 
     puts "destroying incomplete media records..."
     Media.clear_incomplete_records
-    puts Media.all.count.to_s + " total records..."    
+    total_records
+  end
+
+  def total_records
+    puts "#{Media.count.to_s} total records..."
   end
 end
