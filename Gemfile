@@ -33,7 +33,13 @@ gem 'dalli'
 gem 'rails_12factor', group: :production
 # Retriable to retry API call if exception is raised
 gem 'retriable'
-
+# Nokogiri
+gem 'nokogiri'
+# Whenever provides a clear syntax for writing and deploying cron jobs
+# gem 'whenever', :require => false
+gem 'jasmine', :group => [:development, :test]
+# Because the asset pipeline sucks and we hate you.
+gem "non-stupid-digest-assets"
 
 group :test do
   gem 'rspec-rails'

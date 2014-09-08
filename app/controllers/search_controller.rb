@@ -1,5 +1,6 @@
 class SearchController < ApplicationController
   attr_accessor :matches
+  respond_to :json
 
   def search
     find_results
@@ -21,6 +22,10 @@ class SearchController < ApplicationController
     else
       render json: {success: false}
     end
+  end
+
+  def find
+    render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
   end
 
   def find

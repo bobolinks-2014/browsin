@@ -3,28 +3,40 @@ var MediaItem = React.createClass({
   render: function() {
   return (
           <div className='panel panel-views'>
-            <div className='panel-heading'>
-              <h4 className='panel-title'>
+            <div className='panel-heading height-extend'>
+              <div className='col-md-7 col-sm-7 col-xs-7'>
+              <span className='ratings pull-left' data-toggle='tooltip' title="Movie Rating">{this.props.rating}</span>
+              <h4 className='panel-title upcase'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.id}>
                   {this.props.title}
                 </a>
-                <span className='ratings pull-left'>{this.props.rating}</span>
+              </h4>
+              </div>
+                <div className='col-md-5 col-sm-5 col-xs-5'>
+                <span className='runtime sprite-size' data-toggle='tooltip' title={"This movie's runtime is: "+this.props.runtime+" minutes"}></span>
                 <span className='platforms'>
                   {this.props.services.map(function(result, index) {
-                    return <span id={result.name}>{result.name}</span>;
+                    return <span data-toggle='tooltip' title={result.name} className={result.name + " sprite-size"}></span>;
                   })}
                 </span>
-                <span className='runtime'>{this.props.runtime}</span>
                 <span className='genres'>
                   {this.props.genres.map(function(result, index) {
-                    return <span id={result.name}> {result.name} </span>;
+                    return <a id={result.name} data-toggle='tooltip' title={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
                   })}
                 </span>
-              </h4>
+                <span className='delete-media-item' data-toggle='tooltip' title='Click to remove this from future searches'>
+                </span>
+                </div>
             </div>
-            <div id={this.props.id} className='panel-collapse collapse in'>
+            <div id={this.props.id} className='panel-collapse collapse'>
               <div className='panel-body'>
                 {this.props.synopsis}
+                <span className='actors'>
+                  See more from: 
+                    {this.props.actors.map(function(result, index) {
+                      return <a id={result.name} className='actor search-item'> {result.name} </a>
+                     })}
+                </span>
               </div>
             </div>
           </div>
@@ -36,12 +48,12 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} key={index} />
+        <MediaItem id={mediaItem.id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} actors={mediaItem.actors} key={index} />
       );
     });
-    
+
     return (
-        <div className='panel-group' id='media-items'>
+        <div className='panel-group media-items' id='media-items'>
           {mediaNodes}
         </div>
     );
@@ -76,6 +88,13 @@ var renderSearchBar = function() {
   );
 }
 
+var renderNavItems = function(items) {
+  React.renderComponent(
+    <NavItemBar navItems={items} />,
+    document.getElementById('nav-area')
+  );
+}
+
 var userLoggedIn = function(user) {
   React.renderComponent(
     <UserArea user={user} />,
@@ -100,6 +119,16 @@ var UserArea = React.createClass({
     );
   }
 });
+
+var NavItemBar = React.createClass({
+  render: function() {
+    return (
+      <div className='nav-area'>
+        TEST
+      </div>
+    );
+  }
+})
 
 var UserLoginArea = React.createClass({
   render: function() {
