@@ -12,49 +12,58 @@ class SearchController < ApplicationController
   end
   
   def remove 
-    current_user.tag(Media.find(params[:id]), with: :"hide", on: :status)
+    UserPreference.create(user_id: current_user.id, media_id: params[:id], view_status: "hidden")
     render json: {success: true}
   end
   
   def top
     if user_signed_in?
-      @movies = top_list
-      puts @movies[0].title
-      render json: @movies, include: [:genres, :services, :actors]
+      render json: top_list, include: [:genres, :services, :actors]
     else
       render json: {success: false}
     end
   end
 
+  def find
+    render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
+  end
 
   def find
     render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
   end
-  # Need to compare actor against acts_as_taggable_on actor_list
 
   private
+
+  def find_media(matcher)
+      current_user_media.tagged_with(matcher).order('rating DESC, title ASC').limit(25)
+  end
 
   def params_query
     params[:query].downcase
   end
 
   def top_list
-    Media.tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+    current_user_media.order('rating DESC, title ASC').limit(25)
   end
 
   def find_results
     get_matches
     if is_number? && is_only_number?  
-      @movies = Media.where("run_time <= #{runtime_search}").tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+      movies = current_user_media.where("run_time <= #{runtime_search}")
     elsif is_number?
-      @movies = Media.where("run_time <= #{runtime_search}").tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25) 
+      movies = current_user_media.where("run_time <= #{runtime_search}").tagged_with(@matches)
     else
-      find_media(@matches)
+      movies = current_user_media.tagged_with(@matches)
     end
+    @movies = movies.order('rating DESC, title ASC').limit(25)
   end
 
-  def find_media(matcher)
-      @movies = Media.tagged_with(matcher).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+  def current_user_media
+    Media.tagged_with(current_user.service_list, :any => true).where.not(title: hidden_media)
+  end
+
+  def hidden_media
+    current_user.hidden_media.pluck(:title)
   end
 
   def re_actors
@@ -67,14 +76,12 @@ class SearchController < ApplicationController
     Regexp.union(@genre_list)
   end
 
-  # single regex to produce search groups
   def get_matches
     m = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
     @matches = m.flatten.compact.sort
   end
 
   def runtime_search
-    #@matches = get_matches
     @matches.shift.to_i
   end
 
@@ -84,5 +91,5 @@ class SearchController < ApplicationController
   
   def is_only_number?
     @matches.length == 1
-  end
+  end 
 end

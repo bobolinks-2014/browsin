@@ -1,7 +1,9 @@
 class Media < ActiveRecord::Base
-	acts_as_taggable_on :services, :genres, :platforms, :actors, :statuses
+  has_many :user_preferences
+  has_many :hidden_users, -> {where 'user_preferences.view_status'=> "hidden"}, through: :user_preferences, source: :user
 
-	# validates presence of tags services and platform (cant be empty)
+	acts_as_taggable_on :services, :genres, :platforms, :actors
+
 	validates_presence_of :imdb_id, :service_list, :platform_list
 	validates_uniqueness_of :imdb_id
 
@@ -11,6 +13,4 @@ class Media < ActiveRecord::Base
 		self.where(rating: nil).destroy_all
 		self.where(run_time: 0).destroy_all
 	end
-
-
 end
