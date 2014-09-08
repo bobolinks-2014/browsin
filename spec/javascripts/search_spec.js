@@ -15,10 +15,10 @@ describe("queryLookUp", function() {
     var query = "drama";
     var callOut = spyOn($, 'ajax').and.callFake(function (req) {
       var d = $.Deferred();
-      d.done({response: false});
-      return d.fail(); 
+      d.fail(query);
+      return d.promise(); 
     });
     queryLookUp(query);
-    debugger;
+    expect(renderFail).toHaveBeenCalled();
   });
 });
