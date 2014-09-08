@@ -17,7 +17,7 @@ module BrowsinRails
   class Application < Rails::Application
     config.assets.initialize_on_precompile = false
     config.assets.paths << Rails.root.join("app", "assets", "fonts", "images")
-    config.assets.precompile << (/\.(?:svg|eot|woff|ttf)$/)
-
+    config.assets.precompile << (/\.(?:svg|eot|woff|ttf|png)$/)
+    config.serve_static_assets = true
   end
 end
