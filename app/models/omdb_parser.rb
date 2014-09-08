@@ -87,7 +87,7 @@ class OMDBParser
   end
 
   def self.create_media(media)
-    new_media = Media.create(media)
+    Media.create(media)
   end
 
 end
