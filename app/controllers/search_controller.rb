@@ -7,7 +7,7 @@ class SearchController < ApplicationController
     if @movies == []
       render json: {success: false, error: params_query}
     else
-      render json: @movies, include: [:genres, :services, :actors, :current_user_services]
+      render json: @movies, include: [:genres, :services, :actors]
     end
   end
   

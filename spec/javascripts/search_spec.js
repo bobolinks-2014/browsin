@@ -2,23 +2,26 @@ describe("queryLookUp", function() {
 
   it("Sends parameters to rails server as variable in url", function () {
     var query = "comedy";
-    var call = spyOn($, 'ajax').and.callFake(function (req) {
-      var d = $.Deferred();
-      d.done(query);
-      return d.promise();
-    }); 
-    queryLookUp(query);
-    expect(call.calls.allArgs()[0][0].url).toEqual("/search?query="+query);
+
+    var d = $.Deferred();
+    var call = spyOn($, 'ajax').and.returnValue(d);
+
+    Search.query(query);
+    expect($.ajax).toHaveBeenCalledWith({url: "/search?query="+query,
+                                         type: "GET",
+                                         dataType: "JSON"})
   });
 
-  it("Should run renderFail on error",function() {
+  it("Should run Render.fail on error", function() {
     var query = "drama";
-    var callOut = spyOn($, 'ajax').and.callFake(function (req) {
-      var d = $.Deferred();
-      d.fail(query);
-      return d.promise(); 
-    });
-    queryLookUp(query);
-    expect(renderFail).toHaveBeenCalled();
+
+    var d = $.Deferred();
+    d.resolve({success: false});
+    Search.query(query);
+
+    spyOn($, 'ajax').and.returnValue(d);
+    spyOn(Render, 'fail')
+
+    expect(Render.fail).toHaveBeenCalled();
   });
 });
