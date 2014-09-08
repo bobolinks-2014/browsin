@@ -18,15 +18,12 @@ feature 'User browsing the website' do
       @user = User.create!(email: "Rob@rob.com",
                            password: "robrob",
                            password_confirmation: "robrob")
-      session[:user_id] = @user.id
-      visit root_path
-      fill_in 'Enter email', with: @user.email
-      find('#password').set @user.password
-      click_button "Sign in"
+      visit users_backdoor_path(user_id: @user.id)
 
       expect(page).to have_content "log out"
     end
 
+# pending on Modal testing- can't test right now
     xit 'can SignUp as a new user' do
     	visit root_path
     	click_button "Sign up"
