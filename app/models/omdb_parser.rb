@@ -21,8 +21,13 @@ class OMDBParser
       if current_media == nil
         create_media(media)
       else
-        media.delete(:imdb_id)
-        current_media.update(media)
+        if media[:service_list] == ("netflix")
+          current_media.service_list.add("netflix")
+          current_media.save
+        else
+          media.delete(:imdb_id)
+          current_media.update(media)
+        end
       end
     end
   end
@@ -82,12 +87,7 @@ class OMDBParser
   end
 
   def self.create_media(media)
-    new_media = Media.create(media)
-    if new_media.errors.any?
-      old_media = Media.find_by_imdb_id(media[:imdb_id])
-      old_media.service_list.add("netflix")
-      old_media.save
-    end
+    Media.create(media)
   end
 
 end

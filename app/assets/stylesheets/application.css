@@ -1,15 +1,4 @@
 /*
- * This is a manifest file that'll be compiled into application.css, which will include all the files
- * listed below.
- *
- * Any CSS and SCSS file within this directory, lib/assets/stylesheets, vendor/assets/stylesheets,
- * or vendor/assets/stylesheets of plugins, if any, can be referenced here using a relative path.
- *
- * You're free to add application-wide styles to this file and they'll appear at the bottom of the
- * compiled file so the styles you add here take precedence over styles defined in any styles
- * defined in the other CSS/SCSS files in this directory. It is generally better to create a new
- * file per style scope.
- *
  *= require_self
  *= require bootstrap.min
  *= require bootstrap-theme.min
@@ -18,8 +7,7 @@
 
 @font-face {
   font-family: 'abeatbyKai';
-  src: url('/assets/ABEAKRG.TTF'), format('truetype');
-  src: url('/assets/abeatbyKaiRegular.otf');
+  src: url('/assets/ABEAKRG.ttf');
 }
 .top-button {
   padding:10px;
@@ -94,17 +82,21 @@
   line-height: 2.25;
   font-size: .9em;
 }
-
-.runtime {
-  background: url('/assets/provider-sprite.png') -160px no-repeat;
+.sprite-size {
   margin-left: 5px;
   padding: 20px;
 }
 
+.runtime {
+  background: url('/assets/provider-sprite.png') -160px no-repeat;
+}
+
 .hbo {
-  background: url('/assets/provider-sprite.png') -84px no-repeat;
-  margin-left: 5px;
-  padding: 20px;
+  background: url('/assets/provider-sprite.png') -82px no-repeat;
+}
+
+.netflix {
+  background: url('/assets/provider-sprite.png') 0px no-repeat;
 }
 
 .delete-media-item {
@@ -117,16 +109,66 @@
   cursor: pointer;
 }
 
-.hulu_plus {
-  background: url('/assets/provider-sprite.png') -42px no-repeat;
-  margin-left: 5px;
-  padding: 20px;
+.hand-cursor {
+  cursor: pointer;
 }
 
+.hulu_plus {
+  background: url('/assets/provider-sprite.png') -42px no-repeat;
+}
+.sci-fi {
+  background: url('/assets/provider-sprite.png') -203px no-repeat;
+}
+.drama {
+  background: url('/assets/provider-sprite.png') -722px no-repeat;
+}
+.history {
+  background: url('/assets/provider-sprite.png') -762px no-repeat;
+}
+.sport {
+  background: url('/assets/provider-sprite.png') -542px no-repeat;
+}
+.family {
+  background: url('/assets/provider-sprite.png') -522px no-repeat;
+}
+.war {
+  background: url('/assets/provider-sprite.png') -482px no-repeat;
+}
+.adventure {
+  background: url('/assets/provider-sprite.png') -959px no-repeat;
+}
+.fantasy {
+  background: url('/assets/provider-sprite.png') -203px no-repeat;
+}
+.biography {
+  background: url('/assets/provider-sprite.png') -882px no-repeat;
+}
+.romance {
+  background: url('/assets/provider-sprite.png') -842px no-repeat;
+}
+.thriller {
+  background: url('/assets/provider-sprite.png') -999px no-repeat;
+}
+.horror {
+  background: url('/assets/provider-sprite.png') -922px no-repeat;
+}
+.comedy {
+  background: url('/assets/provider-sprite.png') -682px no-repeat;
+}
+.mystery {
+  background: url('/assets/provider-sprite.png') -320px no-repeat;
+}
+.animation {
+  background: url('/assets/provider-sprite.png') -662px no-repeat;
+}
+.action {
+  background: url('/assets/provider-sprite.png') -642px no-repeat;
+}
+.crime {
+  background: url('/assets/provider-sprite.png') -602px no-repeat;
+}
 .hulu_free {
   background: url('/assets/provider-sprite.png') -42px no-repeat;
-  margin-left: 5px;
-  padding: 20px;
 }
 
 .actors {
