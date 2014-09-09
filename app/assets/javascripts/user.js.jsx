@@ -1,16 +1,4 @@
 /** @jsx React.DOM */
-/**on show of a hidden object
-S
- show
- /users
- 
- edit
- /users/edit PATCH
-  {service_list: ['list']}
- /users/add PATCH
-  {item_id: id}  
- */
-
 var UserInfo = React.createClass({
   getInitialState: function() {
     return (
@@ -32,32 +20,33 @@ var UserInfo = React.createClass({
              </div>
               <div className='modal-body'>
                 <div className='provider-list'>
-                  <h4>browsin' service list</h4>
                     <div className='row'>
                       {InfoCheck.providerList().map(function(item, index){
                         return <div className='col-sm-6 col-md-4' key={index}>
-                          <div className='thumbnail'>
-                            <span className={item + " sprite-size"}></span>
-                            <div className='caption pull-right'>
-                          <p>{(InfoCheck.getButton(item) === 'add') ? <a className='btn btn-main btn-xs' role='button'>add</a> : <button className='btn btn-xs'>remove</button> }</p>
+                          <div className='button-group-main' key={item}>
+                            <span key={item} className={item + " sprite-size"}></span>
+                            <div className='caption' id={this.props.userInfo.service_list}>
+                          <p id={item} key={item}>{(InfoCheck.getButton(item, this.props.userInfo.service_list) == 'add') ? <button key={item} className='btn btn-main btn-xs add' role='button'>add</button> : <button key={item} className='btn btn-xs remove'>remove</button> }</p>
                           </div>
                         </div>
                       </div>
-                      })}
+                      }.bind(this))}
                     </div>
                 </div>
                 <div className='hidden-media'>
-                  <h4>Hidden Media</h4>
-                  <table className='table table-hover'>
-                  {this.props.userInfo.hidden_media.map(function(item, index){
-                    return <tr key={index}>
-                    <td id={item.imdb_id} className='profile-media'><strong>{item.title}</strong></td>
-                    <td>Rating: {item.rating}</td>
-                    <td id={item.id} className='add-media-back'>
-                      <button className='btn btn-xs'>show</button>
-                    </td>
-                    </tr>
-                  })}
+                  {(this.props.userInfo.hidden_media.length > 0) ? <h4>Hidden Media</h4> : false}
+                  <table className='table table-hover' key={this.props.userInfo.id}>
+                  <tbody>
+                    {this.props.userInfo.hidden_media.map(function(item, index) {
+                      return <tr key={index}>
+                      <td id={item.imdb_id} key={item.imdb_id} className='profile-media'><strong>{item.title}</strong></td>
+                      <td key={item.rating}>Rating: {item.rating}</td>
+                      <td id={item.id} className='add-media-back'>
+                        <button key={item.id} id={item.imdb_id} className='btn btn-xs show pull-right'>show</button>
+                      </td>
+                      </tr>
+                    })}
+                  </tbody>
                    </table>
                 </div>
               </div>
