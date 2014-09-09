@@ -39,7 +39,7 @@ var Search = {
     var request = $.ajax({
       url: "/top25",
       type: "GET",
-      datatType: "JSON"
+      dataType: "JSON"
     });
     request.done(function(response) {
       Render.removeLoader();
