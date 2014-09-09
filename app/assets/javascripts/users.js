@@ -30,7 +30,7 @@ var Login = {
 
 var InfoCheck = {
   getButton: function(element) {
-    if($.inArray(element, this.providerList())) {
+    if($.inArray(element, this.wholeList())) {
       return 'remove'
     } else {
       return 'add'
@@ -40,6 +40,9 @@ var InfoCheck = {
     return title !== "hulu_free"
   },
   providerList: function() {
-    return ['hulu_free', 'hbo', 'netflix']
+    return ['hulu_plus', 'hbo', 'netflix']
+  },
+  wholeList: function() {
+    return ['hulu_plus', 'hbo', 'netflix', 'hulu_free']
   }
 }

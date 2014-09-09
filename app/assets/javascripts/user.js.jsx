@@ -1,8 +1,5 @@
 /** @jsx React.DOM */
 /**on show of a hidden object
-S
- show
- /users
  
  edit
  /users/edit PATCH
