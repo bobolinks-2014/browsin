@@ -53,12 +53,11 @@ $( document ).ready(function() {
   });
 
   $(".login-area").on("click", ".logout", function(event) {
-    event.preventDefault();
     logOutUser();
   });
 
   $("#search-results-area").on("click", ".delete-media-item", function(event) {
-    var itemId = $(this).parents().eq(2).find('.panel-collapse').attr('id');
+     var itemId = $(this).parents().eq(2).find('.panel-collapse').attr('id');
     removeMediaItem(itemId, $(this));
   });
 });

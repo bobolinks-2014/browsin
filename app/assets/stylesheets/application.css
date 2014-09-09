@@ -9,9 +9,18 @@
   font-family: 'abeatbyKai';
   src: url('/assets/ABEAKRG.ttf');
 }
+.caption {
+  margin-top: 15px;
+}
+.button-group-main {
+  text-align: center;
+}
 .top-button {
   padding:10px;
   cursor: pointer;
+}
+.table {
+  margin-bottom: 0 !important;
 }
 .alert-white {
   background-color:white;

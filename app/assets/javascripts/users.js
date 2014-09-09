@@ -1,17 +1,21 @@
 $( document ).ready(function(){
-  $('.login-area').on("click", function(event) {
+  $('.login-area').on("click", '.profile', function(event) {
     Login.fetch();
   });
   $('.profile-page').on('click', '.add', function(event) {
     var service = $(this).parent().attr('id')
-    UpdateProfile.addService(service);  
+    var service_list = $(this).parents().eq(1).attr('id').split(",");
+    UpdateProfile.addService(service, service_list);  
   });
   $('.profile-page').on('click', '.remove', function(event) {
     var service = $(this).parent().attr('id')
-    UpdateProfile.removeService(service);  
+    var service_list = $(this).parents().eq(1).attr('id').split(",");
+    UpdateProfile.removeService(service, service_list);  
   });
   $('.profile-page').on('click', '.show', function(event) {
-    UpdateProfile.reShowItem(item);  
+    var item = $(this).attr('id')
+    var area = $(this); 
+    UpdateProfile.reShowItem(item, area);  
   });
 });
 
@@ -40,32 +44,54 @@ var Login = {
 }
 
 var InfoCheck = {
-  getButton: function(element) {
-    if($.inArray(element, ['hulu_plus', 'hbo', 'netflix'])) {
+  getButton: function(element, list) {
+    if($.inArray(element, list) >= 0) {
       return 'remove'
     } else {
       return 'add'
     }
   },
-  deleteExtra: function(title) {
-    return title !== "hulu_free"
-  },
   providerList: function() {
     return ['hulu_plus', 'hbo', 'netflix']
-  },
-  wholeList: function() {
-    return ['hulu_plus', 'hbo', 'netflix', 'hulu_free']
   }
 }
-
 var UpdateProfile = {
-  addService: function(service) {
-    debugger;
+  ajaxCall: function(list) {
+    var request = $.ajax({
+      url: "/users/edit",
+      type: "PATCH",
+      dataType: "JSON",
+      data: {service_list: list}
+    });
+    request.done(function(response) {
+      if(response.success == true) {
+        Login.fetch();
+      }
+    });
+    return request;
   },
-  removeService: function(service) {
-
+  addService: function(service, list) {
+    list.push(service);
+    this.ajaxCall(list);
   },
-  reShowItem: function(item) {
-  
+  removeService: function(service, list) {
+    a = list.indexOf(service); 
+    list.splice(a, 1);
+    this.ajaxCall(list);
+  },
+  reShowItem: function(item, area) {
+    var request = $.ajax({
+      url: "/users/add",
+      type: "PATCH",
+      dataType: "JSON",
+      data: {item_id: item}
+    });
+    request.done(function(response) {
+      if(response.success == true) {
+        $(area.parents().eq(1)).fadeTo(500, 0).slideUp(500, function() {
+        });
+      }
+    });
+    return request;
   }
 }

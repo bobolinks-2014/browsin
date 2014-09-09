@@ -11,6 +11,7 @@ var Search = {
         Render.fail(response.error);
       } 
       else {
+        $('#media-items').collapse('toggle');
         Render.done(response);
       }
     });
@@ -89,9 +90,6 @@ var Render = {
   },
   removeLoader: function() {
     $('.loader').remove();
-  },
-  displayKey: function() {
-
   },
   scrollToTop: function() {
     $('html, body').animate({ scrollTop: 0 }, 800);

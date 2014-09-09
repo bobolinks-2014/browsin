@@ -16,7 +16,7 @@ class UsersController < ApplicationController
 
   def edit
     if user_signed_in?
-      current_user.update(service_list: params[:service_list])
+      current_user.update_attribute('service_list', params[:service_list])
       render :json => {success: true}
     else
       render :json => {success: false}
@@ -24,13 +24,20 @@ class UsersController < ApplicationController
   end
 
   def add
-    preference = current_user.hidden_media.find_by_imdb_id(params[:item_id])
+    preference = UserPreference.where(user: current_user).find_by(imdb_id: params[:item_id])
     preference.update(view_status: "show")
     render :json => {success: true}
   end
 
   def remove 
-    UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hide")
+    pref = UserPreference.where(user: current_user).find_by(imdb_id: params[:id])
+    if pref.nil?
+      UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hide")
+    else
+      pref.update(view_status: "hide")
+    end
+
     render json: {success: true}
   end
+
 end
