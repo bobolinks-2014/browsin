@@ -15,9 +15,6 @@ class Media < ActiveRecord::Base
 	end
 
 
-# create method that iterates through all genres that are tagged on a Media item and check if 
-# 2 genres have the same icon. If yes, only display the icon once with a / in the middle of them. 
-# ex: "talk show/ news" should have 1 icon. 
 	def genre_icons
 			genre_array =[]
 		self.genre_list.each do |genre|
@@ -71,6 +68,6 @@ class Media < ActiveRecord::Base
 				"Not a genre"			
 			end
 		end
-			genre_array
+		return genre_array
 	end
 end
