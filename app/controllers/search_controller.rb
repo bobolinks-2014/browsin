@@ -7,12 +7,12 @@ class SearchController < ApplicationController
     if @movies == []
       render json: {success: false, error: params_query}
     else
-      render json: @movies, include: [:genres, :services, :actors, :current_user_services]
+      render json: @movies, include: [:genres, :services, :actors]
     end
   end
   
   def remove 
-    UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hidden")
+    UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hide")
     render json: {success: true}
   end
   
