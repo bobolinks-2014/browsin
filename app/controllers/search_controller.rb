@@ -11,11 +11,6 @@ class SearchController < ApplicationController
     end
   end
   
-  def remove 
-    UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hide")
-    render json: {success: true}
-  end
-  
   def top
     if user_signed_in?
       render json: top_list, include: [:genres, :services, :actors]
