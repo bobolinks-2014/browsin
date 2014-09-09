@@ -7,7 +7,7 @@
   <div id="login-area" class="login-area">
     <% if user_signed_in? %>
     <a class="logout top-button pull-right">log out</a>
-    <a id="profile" data-target="#profile-page" data-toggle="modal" class="top-button pull-right"><%= current_user.email %></a>
+    <a id="profile" data-target="#profile-page" data-toggle="modal" class="profile top-button pull-right"><%= current_user.email %></a>
     <% end %>
   </div>
   <!-- login-area close -->
