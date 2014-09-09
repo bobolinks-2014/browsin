@@ -6,14 +6,14 @@ var MediaItem = React.createClass({
             <div className='panel-heading height-extend'>
               <div className='col-md-7 col-sm-7 col-xs-7'>
               <span className='ratings pull-left' data-toggle='tooltip' title="Movie Rating">{this.props.rating}</span>
-              <h4 className='panel-title upcase'>
+              <h4 className='panel-title small-title'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.imdb_id}>
                   {this.props.title}
                 </a>
               </h4>
               </div>
                 <div className='col-md-5 col-sm-5 col-xs-5'>
-                <span className='platforms'>
+                <span className='services'>
                   {this.props.services.map(function(result, index) {
                     return <a key={index} href={"http://"+Vendor.find(result.name) + this.props.title} target='blank' data-toggle='tooltip' title="Watch" className={result.name + " sprite-size"}></a>;
                   }.bind(this))}
@@ -23,7 +23,7 @@ var MediaItem = React.createClass({
                     return <a key={index} id={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
                   })}
                 </span>
-                <span className='delete-media-item' data-toggle='tooltip' title='Click to hide'>
+                <span className='delete-media-item hidden-xs' data-toggle='tooltip' title='Click to hide'>
                 </span>
                 </div>
             </div>
