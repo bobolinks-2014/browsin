@@ -8,7 +8,6 @@ RSpec.describe OMDBParser, :type => :model do
 		let(:netflix_media){Media.create!(:title=>"Hello World", :imdb_id=>"netflix123", :service_list=>"netflix", :platform_list=>"shows")}
 		let(:duplicate_data){[:imdb_id=>"testing123", :service_list=>"netflix"]}
 
-
 		before(:each) do 
 			allow(Media).to receive(:find_by_imdb_id){gb_media}
 			allow(Media).to receive(:create_media){netflix_media}
