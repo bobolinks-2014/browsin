@@ -11,48 +11,48 @@ var Search = {
         Render.fail(response.error);
       } 
       else {
+        $('#media-items').collapse('toggle');
+        Render.done(response);
+      }
+    });
+    return request;
+  },
+  lookUp: function(query) {
+    var request = $.ajax({
+      url: "/find?lookup="+query,
+      type: "GET",
+      dataType: "JSON"   
+    });
+    request.done(function(response) {
+      Render.removeLoader();
+      if(response.success == false) {
+        Render.fail(response.error);
+      } 
+      else {
+        Render.done(response);
+        Render.scrollToTop();
+      }
+    });
+    return request;
+  },
+  top25: function() {
+    var request = $.ajax({
+      url: "/top25",
+      type: "GET",
+      datatType: "JSON"
+    });
+    request.done(function(response) {
+      Render.removeLoader();
+      if (response.success == false) {
+        Render.fail(response.error);
+      } 
+      else {
         Render.done(response);
       }
     });
     return request;
   }
 }
-
-var assetLookUp = function(query) {
-  var request = $.ajax({
-    url: "/find?lookup="+query,
-    type: "GET",
-    dataType: "JSON"   
-  });
-  request.done(function(response) {
-    Render.removeLoader();
-    if(response.success == false) {
-      Render.fail(response.error);
-    } 
-    else {
-      Render.done(response);
-    }
-  });
-  return request;
-}
-var topTwentyFive = function() {
-  var request = $.ajax({
-    url: "/top25",
-    type: "GET",
-    datatType: "JSON"
-  });
-  request.done(function(response) {
-    Render.removeLoader();
-    if (response.success == false) {
-      Render.fail(response.error);
-    } 
-    else {
-      Render.done(response);
-    }
-  });
-  return request;
-}
-
 var removeMediaItem = function(dataId, locationArea) {
   var request = $.ajax({
     url: "/media/"+dataId,
@@ -89,5 +89,22 @@ var Render = {
   },
   removeLoader: function() {
     $('.loader').remove();
+  },
+  scrollToTop: function() {
+    $('html, body').animate({ scrollTop: 0 }, 800);
+  }
+}
+
+var Vendor = {
+  find: function(vendor) {
+    if(vendor == "hulu_plus" || vendor == "hulu") {
+      return "www.hulu.com/search?q="
+    }
+    else if(vendor == "netflix") {
+      return "www.netflix.com/WiSearch?v1="
+    }
+    else if(vendor == "hbo") {
+      return "www.hbogo.com/#search&browseMode=browseGrid?searchTerm="
+    }
   }
 }

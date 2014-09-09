@@ -16,10 +16,10 @@ describe("queryLookUp", function() {
     var query = "drama";
 
     var d = $.Deferred();
-    d.resolve({response: {success: false});
+    d.resolve({success: false});
     Search.query(query);
 
-    spyOn($, 'ajax').and.returnValue();
+    spyOn($, 'ajax').and.returnValue(d);
     spyOn(Render, 'fail')
 
     expect(Render.fail).toHaveBeenCalled();

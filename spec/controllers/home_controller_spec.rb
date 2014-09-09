@@ -1,10 +1,10 @@
 require 'rails_helper'
 
 feature 'Homepage' do 
-	context 'can and' do
-		it 'should load properly' do
+	context 'loading index page' do
+		it 'should return status code of 200' do
 			visit root_path
-			page.status_code.should be 200
+			expect(page.status_code).to eq(200)
 		end	 
 	end
 end
