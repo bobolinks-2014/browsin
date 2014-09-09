@@ -30,7 +30,7 @@ class UsersController < ApplicationController
   end
 
   def remove 
-    UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hidden")
+    UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hide")
     render json: {success: true}
   end
 end

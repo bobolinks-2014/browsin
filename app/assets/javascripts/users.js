@@ -3,10 +3,11 @@ $( document ).ready(function(){
     Login.fetch();
   });
   $('.profile-page').on('click', '.add', function(event) {
-    debugger;
+    var service = $(this).parent().attr('id')
     UpdateProfile.addService(service);  
   });
   $('.profile-page').on('click', '.remove', function(event) {
+    var service = $(this).parent().attr('id')
     UpdateProfile.removeService(service);  
   });
   $('.profile-page').on('click', '.show', function(event) {
@@ -59,7 +60,7 @@ var InfoCheck = {
 
 var UpdateProfile = {
   addService: function(service) {
-
+    debugger;
   },
   removeService: function(service) {
 

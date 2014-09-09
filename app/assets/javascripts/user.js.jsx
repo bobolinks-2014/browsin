@@ -36,7 +36,7 @@ var UserInfo = React.createClass({
                           <div className='thumbnail' key={item}>
                             <span key={item} className={item + " sprite-size"}></span>
                             <div className='caption pull-right'>
-                          <p key={item}>{(InfoCheck.getButton(item) === 'add') ? <button key={item} className='btn btn-main btn-xs add' role='button'>add</button> : <button key={item} className='btn btn-xs remove'>remove</button> }</p>
+                          <p id={item} key={item}>{(InfoCheck.getButton(item) === 'add') ? <button key={item} className='btn btn-main btn-xs add' role='button'>add</button> : <button key={item} className='btn btn-xs remove'>remove</button> }</p>
                           </div>
                         </div>
                       </div>
