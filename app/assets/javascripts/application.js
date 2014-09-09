@@ -10,20 +10,27 @@ $( document ).ready(function() {
     event.preventDefault();
     var query = $('#search-bar-value').val();
     $(this).append("<div class='loader'>Loading...</div>");
-    queryLookUp(query);
+    Search.query(query);
   });
 
   $("#search-results-area").on("click", ".search-item", function(event) {
     event.preventDefault();
     var asset = $(this).attr("id");
     $('.search-area').append("<div class='loader'>Loading...</div>");
-    assetLookUp(asset);
+    Search.lookUp(asset);
+  });
+
+  $("#search-results-area").on("click", ".load-item", function(event) {
+    event.preventDefault();
+    var asset = $(this).attr("id");
+    $('.search-area').append("<div class='loader'>Loading...</div>");
+    Search.lookUp(asset);
   });
 
   $(".triangle").on("click", function(event) {
     event.preventDefault();
     $('.search-area').append("<div class='loader'>Loading...</div>");
-    topTwentyFive();
+    Search.top25();
   });
 
   $("#sign-up-button").on("submit", function(event) {

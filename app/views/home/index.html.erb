@@ -7,11 +7,11 @@
   <div id="login-area" class="login-area">
     <% if user_signed_in? %>
     <a class="logout top-button pull-right">log out</a>
-    <a id="profile" class="top-button pull-right"><%= current_user.email %></a>
+    <a id="profile" data-target="#profile-page" data-toggle="modal" class="top-button pull-right"><%= current_user.email %></a>
     <% end %>
   </div>
   <!-- login-area close -->
-
+  <div class="modal fade profile-page" id='profile-page' tabindex="-1" aria-labelledby="profilePage" role="dialog" aria-hidden="true"></div>
   <!-- row -->
   <div class="row">
     <!-- col-md-12 -->
@@ -23,6 +23,7 @@
         </div>
         wsin'
       </h1>
+      <h3 class="sub-head">search less. watch more.</h3>
     </div>
     <!-- col-md-12 off -->
 
@@ -65,7 +66,7 @@
           <div class="modal-content">
 
             <!-- modal-header -->
-            <div class="modal-header">
+            <div class="modal-header mod-header-color">
               <button type="button" class="close" data-dismiss="modal">
                 <span aria-hidden="true">&times;</span><span class="sr-only">
                 Close

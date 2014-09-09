@@ -1,9 +1,9 @@
 require 'rails_helper'
 
 RSpec.describe Media, :type => :model do
-	let(:media) { Media.new(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", status_list: "show", run_time: 55, synopsis: "A ruthless cowboy moves to a street with a lawless group of characters", title: "Seseame Street", rating: 99) }
+	let(:media) { Media.new(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", run_time: 55, synopsis: "A ruthless cowboy moves to a street with a lawless group of characters", title: "Seseame Street", rating: 99) }
 
-	it "should have an IMDB id" do
+	it "should have an IMDB id of '123test'" do
 		expect(media.imdb_id).to eq("123test")
 	end
 
@@ -23,31 +23,29 @@ RSpec.describe Media, :type => :model do
 		expect(media.actor_list.to_s).to eq("John Wayne")
 	end
 
-	it "should have a status of 'show'" do
-		expect(media.status_list.to_s).to eq("show")
-	end
-	
-	it "should have a field of 'run_time'" do
+	it "should have a run-time of '55' minutes" do
 			expect(media.run_time).to eq(55)
 		end
 	
-	it "should have a field of 'synopsis'" do
+	it "should have a synopsis: 'A ruthless cowboy moves to a street with a lawless group of characters'" do
 			expect(media.synopsis).to eq("A ruthless cowboy moves to a street with a lawless group of characters")
 		end
 	
-	it "should have a field of 'title'" do
+	it "should have a title of 'Sesame Street'" do
 			expect(media.title).to eq("Seseame Street")
 		end
 	
-	it "should have a field of 'rating'" do
+	it "should have a rating of '99'" do
 			expect(media.rating).to eq(99)	
 		end
 
-	it "should clear incomplete records" do
-			Media.create(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", status_list: "show", run_time: 55, synopsis: "A ruthless cowboy moves to a street with a lawless group of characters", title: "Seseame Street", rating: 0)
-			expect(Media.count).to eq(1)
-			Media.clear_incomplete_records
-			expect(Media.count).to eq(0)
+	it "should clear media with a rating of '0'" do
+			Media.create!(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", run_time: 55, synopsis: "A ruthless cowboy moves to a street with a lawless group of characters", title: "Seseame Street", rating: 0)
+			expect{Media.clear_incomplete_records}.to change{Media.count}.from(1).to(0)
 	end
 
+	it "should clear media with a runtime of '0' minutes" do
+			Media.create!(imdb_id: "123test", genre_list: "drama", service_list: "netflix", platform_list: "movie", actor_list: "John Wayne", run_time: 0, synopsis: "A ruthless cowboy moves to a street with a lawless group of characters", title: "Seseame Street", rating: 90)
+			expect{Media.clear_incomplete_records}.to change{Media.count}.from(1).to(0)
+	end
 end
