@@ -16,6 +16,10 @@
 .alert-white {
   background-color:white;
 }
+.provider-list h4 {
+  margin-top: 0;
+  padding-bottom: 5px;
+}
 .mod-header-color {
   background: lightgrey;
 }
