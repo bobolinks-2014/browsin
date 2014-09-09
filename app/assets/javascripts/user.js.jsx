@@ -33,10 +33,10 @@ var UserInfo = React.createClass({
                     <div className='row'>
                       {InfoCheck.providerList().map(function(item, index){
                         return <div className='col-sm-6 col-md-4' key={index}>
-                          <div className='thumbnail'>
-                            <span className={item + " sprite-size"}></span>
+                          <div className='thumbnail' key={item}>
+                            <span key={item} className={item + " sprite-size"}></span>
                             <div className='caption pull-right'>
-                          <p>{(InfoCheck.getButton(item) === 'add') ? <a className='btn btn-main btn-xs' role='button'>add</a> : <button className='btn btn-xs'>remove</button> }</p>
+                          <p key={item}>{(InfoCheck.getButton(item) === 'add') ? <button key={item} className='btn btn-main btn-xs add' role='button'>add</button> : <button key={item} className='btn btn-xs remove'>remove</button> }</p>
                           </div>
                         </div>
                       </div>
@@ -45,13 +45,13 @@ var UserInfo = React.createClass({
                 </div>
                 <div className='hidden-media'>
                   <h4>Hidden Media</h4>
-                  <table className='table table-hover'>
-                  {this.props.userInfo.hidden_media.map(function(item, index){
+                  <table className='table table-hover' key={this.props.userInfo.id}>
+                  {this.props.userInfo.hidden_media.map(function(item, index) {
                     return <tr key={index}>
-                    <td id={item.imdb_id} className='profile-media'><strong>{item.title}</strong></td>
-                    <td>Rating: {item.rating}</td>
+                    <td id={item.imdb_id} key={item.imdb_id} className='profile-media'><strong>{item.title}</strong></td>
+                    <td key={item.rating}>Rating: {item.rating}</td>
                     <td id={item.id} className='add-media-back'>
-                      <button className='btn btn-xs'>show</button>
+                      <button key={item.id} className='btn btn-xs show'>show</button>
                     </td>
                     </tr>
                   })}

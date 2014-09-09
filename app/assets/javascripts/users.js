@@ -2,6 +2,16 @@ $( document ).ready(function(){
   $('.login-area').on("click", function(event) {
     Login.fetch();
   });
+  $('.profile-page').on('click', '.add', function(event) {
+    debugger;
+    UpdateProfile.addService(service);  
+  });
+  $('.profile-page').on('click', '.remove', function(event) {
+    UpdateProfile.removeService(service);  
+  });
+  $('.profile-page').on('click', '.show', function(event) {
+    UpdateProfile.reShowItem(item);  
+  });
 });
 
 var Login = {
@@ -30,7 +40,7 @@ var Login = {
 
 var InfoCheck = {
   getButton: function(element) {
-    if($.inArray(element, this.wholeList())) {
+    if($.inArray(element, ['hulu_plus', 'hbo', 'netflix'])) {
       return 'remove'
     } else {
       return 'add'
@@ -44,5 +54,17 @@ var InfoCheck = {
   },
   wholeList: function() {
     return ['hulu_plus', 'hbo', 'netflix', 'hulu_free']
+  }
+}
+
+var UpdateProfile = {
+  addService: function(service) {
+
+  },
+  removeService: function(service) {
+
+  },
+  reShowItem: function(item) {
+  
   }
 }
