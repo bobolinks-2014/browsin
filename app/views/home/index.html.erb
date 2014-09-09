@@ -1,10 +1,10 @@
 <!-- content -->
 <div class="content col-md-12 top-area-bar">
   <% unless user_signed_in? %>
-    <a class="top-button pull-right" id="sign-up-button" data-target="#sign-up-form" data-toggle="modal">Sign up</a>
+    <a class="login-area pull-right" id="sign-up-button" data-target="#sign-up-form" data-toggle="modal">Sign up</a>
   <% end %>
   <!-- login-area -->
-  <div id="login-area" class="login-area">
+  <div id="login-area" class="col-md-12 login-area">
     <% if user_signed_in? %>
     <a class="logout top-button pull-right">log out</a>
     <a id="profile" data-target="#profile-page" data-toggle="modal" class="profile top-button pull-right"><%= current_user.email %></a>
@@ -17,11 +17,11 @@
     <!-- col-md-12 -->
     <div class="col-md-12">
       <h1 class="title">
-        br
+        <span class='title-br'>br</span>
         <div class="button">
           <div class="triangle"></div>
         </div>
-        wsin'
+        <span class="title-wsin">wsin'</span>
       </h1>
       <h3 class="sub-head">search less. watch more.</h3>
     </div>

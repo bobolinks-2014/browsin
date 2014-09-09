@@ -4,26 +4,26 @@ var MediaItem = React.createClass({
   return (
           <div className='panel panel-views'>
             <div className='panel-heading height-extend'>
-              <div className='col-md-8 col-sm-8 col-xs-8'>
+              <div className='col-md-7 col-sm-7 col-xs-7'>
               <span className='ratings pull-left' data-toggle='tooltip' title="Movie Rating">{this.props.rating}</span>
-              <h4 className='panel-title upcase'>
+              <h4 className='panel-title small-title'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.imdb_id}>
                   {this.props.title}
                 </a>
               </h4>
               </div>
-                <div className='col-md-4 col-sm-4 col-xs-4'>
-                <span className='platforms'>
+                <div className='col-md-5 col-sm-5 col-xs-5'>
+                <span className='services'>
                   {this.props.services.map(function(result, index) {
                     return <a key={index} href={"http://"+Vendor.find(result.name) + this.props.title} target='blank' data-toggle='tooltip' title="Watch" className={result.name + " sprite-size"}></a>;
                   }.bind(this))}
                 </span>
-                <span className='genres'>
+                <span className='genres hidden-xs'>
                   {this.props.genres.map(function(result, index) {
                     return <a key={index} id={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
                   })}
                 </span>
-                <span className='delete-media-item' data-toggle='tooltip' title='Click to hide'>
+                <span className='delete-media-item small-trash' data-toggle='tooltip' title='Click to hide'>
                 </span>
                 </div>
             </div>
