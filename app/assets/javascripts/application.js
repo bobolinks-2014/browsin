@@ -10,10 +10,17 @@ $( document ).ready(function() {
     event.preventDefault();
     var query = $('#search-bar-value').val();
     $(this).append("<div class='loader'>Loading...</div>");
-    queryLookUp(query);
+    Search.query(query);
   });
 
   $("#search-results-area").on("click", ".search-item", function(event) {
+    event.preventDefault();
+    var asset = $(this).attr("id");
+    $('.search-area').append("<div class='loader'>Loading...</div>");
+    assetLookUp(asset);
+  });
+
+  $("#search-results-area").on("click", ".load-item", function(event) {
     event.preventDefault();
     var asset = $(this).attr("id");
     $('.search-area').append("<div class='loader'>Loading...</div>");
