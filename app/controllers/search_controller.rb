@@ -7,12 +7,12 @@ class SearchController < ApplicationController
     if @movies == []
       render json: {success: false, error: params_query}
     else
-      render json: @movies, include: [:genres, :services, :actors, :current_user_services]
+      render json: @movies, include: [:genres, :services, :actors]
     end
   end
   
   def remove 
-    UserPreference.create(user_id: current_user.id, media_id: params[:id], view_status: "hidden")
+    UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hide")
     render json: {success: true}
   end
   
@@ -59,11 +59,11 @@ class SearchController < ApplicationController
   end
 
   def current_user_media
-    Media.tagged_with(current_user.service_list, :any => true).where.not(title: hidden_media)
+    Media.tagged_with(current_user.service_list, :any => true).where.not(imdb_id: hidden_media)
   end
 
   def hidden_media
-    current_user.hidden_media.pluck(:title)
+    current_user.hidden_media.pluck(:imdb_id)
   end
 
   def re_actors
