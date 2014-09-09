@@ -13,9 +13,8 @@ var Login = {
     });
     request.done(function(response){
       if(response.success == false) {
-        debugger;
       } else {
-        this.display('hi');    
+        this.display(response.user);    
       }
     }.bind(this));
     request.fail(function(response) {
@@ -24,8 +23,23 @@ var Login = {
     return request;
   },
   display: function(info) {
-    //renderUserPage(info); 
-    renderUserPage({user: "bob@bob.com", service_list: ["one","two"]}); 
+    renderUserPage(info);
     $("#profile-page").modal('show');
+  }
+}
+
+var InfoCheck = {
+  getButton: function(element) {
+    if($.inArray(element, this.providerList())) {
+      return 'remove'
+    } else {
+      return 'add'
+    }
+  },
+  deleteExtra: function(title) {
+    return title !== "hulu_free"
+  },
+  providerList: function() {
+    return ['hulu_free', 'hbo', 'netflix']
   }
 }

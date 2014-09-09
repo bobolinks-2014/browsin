@@ -29,6 +29,7 @@ var Search = {
       } 
       else {
         Render.done(response);
+        Render.scrollToTop();
       }
     });
     return request;
@@ -91,6 +92,9 @@ var Render = {
   },
   displayKey: function() {
 
+  },
+  scrollToTop: function() {
+    $('html, body').animate({ scrollTop: 0 }, 800);
   }
 }
 
