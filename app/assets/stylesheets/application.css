@@ -16,7 +16,9 @@
 .alert-white {
   background-color:white;
 }
-
+.mod-header-color {
+  background: lightgrey;
+}
 .title{
   color: #282827;
   font-family: 'abeatbyKai';
@@ -27,8 +29,13 @@
   margin-bottom: 20px;
   padding-bottom: 0;
   line-height: 0;
+  margin-left: 10px;
 }
-
+.user-modal {
+  width: 500px !important;
+  margin-right: 120px !important;
+  margin-top: 50px !important;
+}
 .button {
   margin: -5px -52px;
   display: inline-block;

@@ -1,13 +1,13 @@
 /** @jsx React.DOM */
 var MediaItem = React.createClass({
-  render: function(index) {
+  render: function() {
   return (
-          <div className='panel panel-views' key={index}>
+          <div className='panel panel-views'>
             <div className='panel-heading height-extend'>
               <div className='col-md-8 col-sm-8 col-xs-8'>
               <span className='ratings pull-left' data-toggle='tooltip' title="Movie Rating">{this.props.rating}</span>
               <h4 className='panel-title upcase'>
-                <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.id}>
+                <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.imdb_id}>
                   {this.props.title}
                 </a>
               </h4>
@@ -20,14 +20,14 @@ var MediaItem = React.createClass({
                 </span>
                 <span className='genres'>
                   {this.props.genres.map(function(result, index) {
-                    return <a key={index} data-toggle='tooltip' title={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
+                    return <a key={index} id={result.name} data-toggle='tooltip' title={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
                   })}
                 </span>
                 <span className='delete-media-item' data-toggle='tooltip' title='Click to hide'>
                 </span>
                 </div>
             </div>
-            <div id={this.props.id} className='panel-collapse collapse'>
+            <div id={this.props.imdb_id} className='panel-collapse collapse'>
               <div className='panel-body'>
                 {this.props.synopsis}
                 <span className='actors'>
@@ -50,7 +50,7 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} actors={mediaItem.actors} key={index} />
+        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genres} actors={mediaItem.actors} key={index} />
       );
     });
 
@@ -116,7 +116,7 @@ var UserArea = React.createClass({
     return (
       <div className='userArea'>
         <a className='logout top-button pull-right'>log out</a>
-        <a className='profile top-button pull-right'>{this.props.user}</a>
+        <a className='profile top-button pull-right' data-target='#profile-page' data-toggle='modal'>{this.props.user}</a>
       </div>
     );
   }
