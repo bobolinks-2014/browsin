@@ -8,6 +8,7 @@ class SearchController < ApplicationController
       render json: {success: false, error: params_query}
     else
       render json: @movies, include: [:genres, :services, :actors]
+      render json: {@movies.as_json(include: [:genres,:services,:actors], methods: :genres)}
     end
   end
   
