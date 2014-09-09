@@ -67,10 +67,7 @@ describe SearchController do
 		it "specific search including time, actors and genres passes appropriate results" do
 			all_movies
 			hoc
-			get(:search, :query => "I have FrAnk and Comedy", :format => 'json')
-			# p response.body
-			# p "*"* 50
-			# p all_movies
+			get(:search, :query => "I have frank and COMEDY", :format => 'json')
 			expect(response.body).to eq(hoc_json)
 		end
 
