@@ -6,7 +6,6 @@ class UsersController < ApplicationController
       session[:current_user_id] = @user.id
       render :json => {success: true, user: @user.email}
     else
-      puts @user.errors.full_messages
       render :json => {success: false, error: @user.errors.full_messages}
     end
   end
