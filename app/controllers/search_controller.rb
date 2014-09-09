@@ -12,23 +12,54 @@ class SearchController < ApplicationController
     end
   end
   
-  # Need to compare actor against acts_as_taggable_on actor_list
+  def top
+    if user_signed_in?
+      render json: top_list, include: [:genres, :services, :actors]
+    else
+      render json: {success: false}
+    end
+  end
+
+  def find
+    render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
+  end
 
   private
+
+  def current_user_services
+    current_user.service_list
+  end
+
+  def find_media(matcher)
+      current_user_media.tagged_with(matcher).order('rating DESC, title ASC').limit(25)
+  end
 
   def params_query
     params[:query].downcase
   end
 
+  def top_list
+    current_user_media.order('rating DESC, title ASC').limit(25)
+  end
+
   def find_results
     get_matches
     if is_number? && is_only_number?  
-      @movies = Media.where("run_time <= #{runtime_search}").tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+      movies = current_user_media.where("run_time <= #{runtime_search}")
     elsif is_number?
-      @movies = Media.where("run_time <= #{runtime_search}").tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25) 
+      movies = current_user_media.where("run_time <= #{runtime_search}").tagged_with(@matches)
     else
-      @movies = Media.tagged_with(@matches).tagged_with("show", on: :status, owned_by:current_user).order('rating DESC').limit(25)
+      movies = current_user_media.tagged_with(@matches)
     end
+    @movies = movies.order('rating DESC, title ASC').limit(25)
+  end
+
+  def current_user_media
+    Media.tagged_with(current_user.service_list, :any => true).where.not(imdb_id: hidden_media)
+  end
+
+  def hidden_media
+    current_user.hidden_media.pluck(:imdb_id)
   end
 
   def re_actors
@@ -41,14 +72,12 @@ class SearchController < ApplicationController
     Regexp.union(@genre_list)
   end
 
-  # single regex to produce search groups
   def get_matches
     m = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
     @matches = m.flatten.compact.sort
   end
 
   def runtime_search
-    #@matches = get_matches
     @matches.shift.to_i
   end
 
@@ -58,5 +87,5 @@ class SearchController < ApplicationController
   
   def is_only_number?
     @matches.length == 1
-  end
+  end 
 end

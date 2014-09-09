@@ -37,8 +37,15 @@ gem 'retriable'
 gem 'nokogiri'
 # Whenever provides a clear syntax for writing and deploying cron jobs
 # gem 'whenever', :require => false
+gem 'jasmine', :group => [:development, :test]
+# Because the asset pipeline sucks and we hate you.
+gem "non-stupid-digest-assets"
 
 group :test do
   gem 'rspec-rails'
   gem 'shoulda-matchers', require: false
+  gem 'capybara'
+  gem 'poltergeist'
+  gem 'database_cleaner'
+
 end
