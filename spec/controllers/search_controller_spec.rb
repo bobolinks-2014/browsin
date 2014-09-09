@@ -59,127 +59,21 @@ describe SearchController do
 		it "search for Jim returns zero results" do
 			all_movies
 			get(:search,
-					:query => "30 minutes for Jim",
+					:query => "30 minutes for jim",
 					:format => 'json')
-			expect(response.body).should_not eq(all_movies)
+			expect(response.body).to_not eq(all_movies)
 		end
 
 		it "specific search including time, actors and genres passes appropriate results" do
 			all_movies
 			hoc
-			get(:search, :query => "I have 80 minutes for Frank and COMEDY", :format => 'json')
-		end
-	end
-
-	describe 'remove route' do
-		before(:each) do
-			user = User.create!(email: "testing@testing.com", password: "testing", password_confirmation: "testing", service_list: "hbo")
-			allow(got).to receive(:runtime_search){50}
-			allow(hoc).to receive(:runtime_search){50}
-			allow(SearchController).to receive(:current_user){user}
-			allow(UserPreference).to receive(:create){preference}
-
-			# allow(SearchController).to receive('UserPreference.create')
-		end
-# testing remove method
-		it "user is able to hide a show from their list" do
-			put(:remove,
-					:id => hoc.id,
-					:format => 'json')
-			media = Media.find(hoc.id)
-			expect(media.status).to eq("hide")
-		end
-# testing top method --> tested in feature testing
-
-		# it "clicking the play button give the top 25 rated media items" do
-		# 	get(:top,
-		# 			:query => ,
-		# 			:format => 'json')
-		# 	expect(response.body).to eq(all_movies)
-		# end
-
-		# it 'clicking play after removing a show does not show that item' do
-		# 	put(:remove,
-		# 			#remove got
-		# 			:query => ,
-		# 			:format => 'json')
-
-		# 	get(:search,
-		# 			:query => ,
-		# 			:format => 'json')
-		# 	expect(response.body).to eq(hoc_json)
-
-		# end
-
-# testing find method
-		it 'finding comedy returns hoc' do
-			get(:find,
-					:lookup => "comedy",
-					:format => 'json')
+			get(:search, :query => "I have FrAnk and Comedy", :format => 'json')
+			# p response.body
+			# p "*"* 50
+			# p all_movies
 			expect(response.body).to eq(hoc_json)
 		end
 
 	end
+
 end
-
-
-# 		it "a search for Frank or Arya returns got and hoc doesn't compute" do
-# 			get(:search,
-# 					:query => "60 minutes for Frank and Arya",
-# 					:format => 'json')
-# 			expect(response.body).should_not eq(all_movies)
-# 		end
-# 	end
-
-# 	describe 'remove route' do
-# 		before(:each) do
-# 			# user.tag(got, with: :"show", on: :status)
-# 			user.hidden_media.count == 0
-# 			allow(got).to receive(:runtime_search){50}
-# 			allow(hoc).to receive(:runtime_search){50}
-# 			# allow(SearchController).to receive(:current_user){user}
-# 			allow(SearchController).to receive_message_chain('current_user.id'){user.id}
-# 		end
-# # testing remove method
-# 		it "user is able to hide a show from their list" do
-# 			arrow = Media.create!(imdb_id: "testing32", service_list: "netflix", platform_list: "shows", run_time: 50, actor_list: "Frank, Claire", rating: 90, genre_list: "Comedy")
-
-# 			patch(:remove,
-# 					:id => arrow.id,
-# 					:format => 'json')
-
-# 			expect(user.hidden_media.count).to eq(1)
-# 			# media = Media.find(hoc.id)
-# 			# expect(media.status).to eq("hide")
-# 		end
-# # testing top method --> tested in feature testing
-
-# 		# it "clicking the play button give the top 25 rated media items" do
-# 		# 	get(:top,
-# 		# 			:query => ,
-# 		# 			:format => 'json')
-# 		# 	expect(response.body).to eq(all_movies)
-# 		# end
-
-# 		# it 'clicking play after removing a show does not show that item' do
-# 		# 	put(:remove,
-# 		# 			#remove got
-# 		# 			:query => ,
-# 		# 			:format => 'json')
-
-# 		# 	get(:search,
-# 		# 			:query => ,
-# 		# 			:format => 'json')
-# 		# 	expect(response.body).to eq(hoc_json)
-
-# 		# end
-
-# # testing find method
-# 		it 'finding comedy returns hoc' do
-# 			get(:find,
-# 					:lookup => "comedy",
-# 					:format => 'json')
-# 			expect(response.body).to eq(hoc_json)
-# 		end
-# 	end
-# end
