@@ -23,7 +23,7 @@ var MediaItem = React.createClass({
                     return <a key={index} id={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
                   })}
                 </span>
-                <span className='delete-media-item hidden-xs' data-toggle='tooltip' title='Click to hide'>
+                <span className='delete-media-item small-trash' data-toggle='tooltip' title='Click to hide'>
                 </span>
                 </div>
             </div>
