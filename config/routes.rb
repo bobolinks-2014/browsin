@@ -7,4 +7,6 @@ Rails.application.routes.draw do
   get '/search' => 'search#search', :as => 'search' 
   get '/top25' => 'search#top'
   get '/find' => 'search#find'
+
+  get '/users/backdoor' => 'sessions#backdoor' if Rails.env.test?
 end

@@ -1,22 +1,55 @@
 [ ![Codeship Status for bobolinks-2014/browsin](https://codeship.io/projects/fa0524b0-15f6-0132-f381-3ada423a8ca3/status)](https://codeship.io/projects/33778)
 
-# Browsin
+# Browsin'
 
 ## Purpose
- 
+
 Browsin is designed for quick search of the best shows or movies based on your available time.
 
-## Getting Started
+#### Getting Started
+The available database contains over 1200 movies and tv shows from Netflix, HBO Go, and Hulu.
+
+* Fork our repository
+* Clone your fork
+* You will need to add your [Guidebox API](http://api.guidebox.com/) key to have access to their database. Add the following to your shell environment (eg. .bash_profile, .zshrc):
+```
+export GUIDEBOX_API_KEY="[your key]"
+```
+* run
+  * ```bundle```
+  * ```rake db:create```
+  * ```rake db:migrate```
+  * ```rake db:seed```
+  * ```rails s```
+* Open your localhost in a webbrowser and start searching.
+* Or visit our herokuapp page!
+  * [deployed app](http://browsin-dbc.herokuapp.com/)
 
 ## Dependencies
+* [Guidebox](#)
+* [Netflix](#)
+* [OMDB](#)
+
+####How to contribute:
+
+* Fork the project
+* ```Git clone``` your forked repository
+* ```Git add upstream master https://github.com/bobolinks-2014/browsin.git```
+* Make a new branch describing the feature, bug, test or chore you are adding or editing, eg ```git checkout -b feature/search```
+* Make one or more well commented and clean commits to your fork.
+* Perform a pull request to the upstream master repository for review.
 
 ## Contributors
-* [Grace Yim](https://github.com/graceekyim)
-* [Joey Sabani](https://github.com/axhi)
-* [Joey Chamberlin](https://github.com/jochambo)
-* [Rob Schwartz](https://github.com/robschwartz)
+####Team!
+| Name          |   Github                                   |   Twitter / LinkedIn /anything?                                  |
+| :-----------: | :----------------------------------------: | :-----------------------------------------: |
+| Grace Yim | [graceekyim](https://github.com/graceekyim) | |
+| Joey Sabani | [axhi](https://github.com/axhi) | |
+| Joey Chamberlin  | [jochambo](https://github.com/jochambo) | |
+| Rob Schwartz | [robschwartz](https://github.com/robschwartz) | |
 
-## Licenses
+
+#### Licenses
 The MIT License (MIT)
 
 Copyright (c) [2014] [Browsin]

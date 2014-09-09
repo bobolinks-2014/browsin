@@ -88,12 +88,12 @@ describe SearchController do
 		end
 # testing remove method
 		it "user is able to hide a show from their list" do
-			SearchController.stub_chain('UserPreference.create'){preference}
-			patch(:remove, 
+
+			put(:remove, 
 					:id => hoc.id,
 					:format => 'json')
 			media = Media.find(hoc.id)
-			expect(user.hidden_media.count).to eq(1)
+			expect(media.status).to eq("hide")
 		end
 # testing top method --> tested in feature testing 
 
@@ -124,6 +124,5 @@ describe SearchController do
 					:format => 'json')
 			expect(response.body).to eq(hoc_json)
 		end
->>>>>>> Stashed changes
 	end
 end
