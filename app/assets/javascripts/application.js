@@ -17,20 +17,20 @@ $( document ).ready(function() {
     event.preventDefault();
     var asset = $(this).attr("id");
     $('.search-area').append("<div class='loader'>Loading...</div>");
-    assetLookUp(asset);
+    Search.lookUp(asset);
   });
 
   $("#search-results-area").on("click", ".load-item", function(event) {
     event.preventDefault();
     var asset = $(this).attr("id");
     $('.search-area').append("<div class='loader'>Loading...</div>");
-    assetLookUp(asset);
+    Search.lookUp(asset);
   });
 
   $(".triangle").on("click", function(event) {
     event.preventDefault();
     $('.search-area').append("<div class='loader'>Loading...</div>");
-    topTwentyFive();
+    Search.top25();
   });
 
   $("#sign-up-button").on("submit", function(event) {

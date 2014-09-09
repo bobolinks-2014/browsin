@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render :json current_user, except: [:email, :password], include: [:service_list, :hidden_media], 
+    render json: current_user, include: [:service_list, :hidden_media]
   end
 
   def edit
@@ -31,7 +31,7 @@ class UsersController < ApplicationController
   end
 
   def remove 
-    UserPreference.create(user_id: current_user.id, media_id: params[:id], view_status: "hidden")
+    UserPreference.create(user_id: current_user.id, imdb_id: params[:imdb_id], view_status: "hidden")
     render json: {success: true}
   end
 end

@@ -15,42 +15,41 @@ var Search = {
       }
     });
     return request;
+  },
+  lookUp: function(query) {
+    var request = $.ajax({
+      url: "/find?lookup="+query,
+      type: "GET",
+      dataType: "JSON"   
+    });
+    request.done(function(response) {
+      Render.removeLoader();
+      if(response.success == false) {
+        Render.fail(response.error);
+      } 
+      else {
+        Render.done(response);
+      }
+    });
+    return request;
+  },
+  top25: function() {
+    var request = $.ajax({
+      url: "/top25",
+      type: "GET",
+      datatType: "JSON"
+    });
+    request.done(function(response) {
+      Render.removeLoader();
+      if (response.success == false) {
+        Render.fail(response.error);
+      } 
+      else {
+        Render.done(response);
+      }
+    });
+    return request;
   }
-}
-
-var assetLookUp = function(query) {
-  var request = $.ajax({
-    url: "/find?lookup="+query,
-    type: "GET",
-    dataType: "JSON"   
-  });
-  request.done(function(response) {
-    Render.removeLoader();
-    if(response.success == false) {
-      Render.fail(response.error);
-    } 
-    else {
-      Render.done(response);
-    }
-  });
-  return request;
-}
-var topTwentyFive = function() {
-  var request = $.ajax({
-    url: "/top25",
-    type: "GET",
-    datatType: "JSON"
-  });
-  request.done(function(response) {
-    Render.removeLoader();
-    if (response.success == false) {
-      Render.fail(response.error);
-    } 
-    else {
-      Render.done(response);
-    }
-  });
-  return request;
 }
 
 var removeMediaItem = function(dataId, locationArea) {
