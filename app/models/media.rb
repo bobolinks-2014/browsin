@@ -37,8 +37,6 @@ class Media < ActiveRecord::Base
 				genre_array <<  genre
 			when "Drama"
 				genre_array <<  genre
-			when "History"
-				genre_array <<  genre
 			when "Sport"
 				genre_array <<  genre
 			when "Family"
