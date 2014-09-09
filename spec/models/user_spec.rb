@@ -1,48 +1,61 @@
 require 'rails_helper'
  
 describe User do
- 
-  it "fails because no passwrod" do
-    user = User.create({email: "rob@rob.com"})
-    expect(user.errors[:password].any?).to be_truthy
-  end
- 
-  it "fails because passwrod to short" do
-    user = User.create({email: "rob@rob.com", 
-      password: 'rob', password_confirmation: 'rob'})
-    expect(user.errors[:password].any?).to be_truthy
-  end
- 
-  it "succeeds because password is long enough" do
-    user = User.create({:email => "rob@rob.com",
-      :password => 'rob123', password_confirmation: 'rob123'})
-    expect(user.errors[:password].any?).to be_falsy
+
+  describe 'validations' do
+    it "should return an error if password is blank" do
+      user = User.create({email: "rob@rob.com"})
+      expect(user.errors[:password].any?).to be_truthy
+    end
+
+    it "should return an error if password is less than 6 chars" do
+      user = User.create({email: "rob@rob.com", password: 'rob', password_confirmation: 'rob'})
+      expect(user.errors[:password].any?).to be_truthy
+    end
+   
+    it "should not return an error with a password length of 6" do
+      user = User.create({email: "rob@rob.com", password: 'rob123', password_confirmation: 'rob123'})
+      expect(user.errors[:password].any?).to be_falsy
+    end
+
+   	it "should return an error if email is not valid" do
+      user = User.create({email: "rob.com", password: 'rob123', password_confirmation: "rob123"})
+      expect(user.errors[:email].any?).to be_truthy
+    end
+
+    it "should return an error if email is already taken" do
+      User.create({email: "rob@rob.com", password: 'rob123', password_confirmation: 'rob123', service_list: "hbo"})
+      user = User.create({email: "rob@rob.com", password: "rob123", password_confirmation: 'rob123', service_list: "hbo"})
+      expect(user.errors[:email].any?).to be_truthy
+    end
+
+    it 'should return an error if service list is missing' do 
+      user = User.create({email: "rob@rob.com", password: 'rob123', password_confirmation: 'rob123'})
+      expect(user.errors[:service_list].any?).to be_truthy
+    end
   end
 
- 	it "fails because email format is incorrect" do
-    user = User.create({:email => "rob.com",
-      :password => 'rob123', password_confirmation: "rob123"})
-    expect(user.errors[:email].any?).to be_truthy
+  describe 'tags' do 
+    it "should populate a user's service_list" do
+      user = User.new({email: "rob@rob.com", password: 'rob123', password_confirmation: 'rob123', service_list: "netflix"})
+      expect(user.service_list.to_s).to eq("netflix")
+    end
   end
 
-   it "fails since email is already take" do
-    User.create({:email => "rob@rob.com",
-      :password => 'rob123', password_confirmation: 'rob123'})
-    user = User.create({:email=> "rob@rob.com", :password => "rob123", password_confirmation: 'rob123'})
-    expect(user.errors[:email].any?).to be_truthy
-  end
+  describe 'user preferences' do
+    let(:user){User.create!({email: "grace@grace.com", password: 'grace123', password_confirmation: 'grace123', service_list: "hbo"})}
+    let(:media){Media.create!(service_list: "hbo", imdb_id: "12345", platform_list: "shows")}
 
-  it "shows a user has services tagged" do
-    user = User.new({:email => "rob@rob.com",
-      :password => 'rob123', :password_confirmation => 'rob123', :service_list => "netflix"})
-    expect(user.service_list.to_s).to eq("netflix")
-  end
+    before(:each) do 
+      UserPreference.create!(user_id: user.id, imdb_id: media.imdb_id, view_status: "hide")
+    end
 
-  it "checks if add_service_list adds a service" do
-  	Media.create(imdb_id: "123test", service_list: "netflix", platform_list: "movie")
-  	user = User.create({:email=> "rob@rob.com", :password => "rob123", password_confirmation: 'rob123'})
-  	user.add_service_list({services: ["netflix"]})
-  	expect(user.owned_taggings.count).to eq(1)
-  end
+    it "should increase user's user preferences by 1" do 
+      expect(user.user_preferences.count).to eq(1)
+    end
 
+    it "should increase user's hidden media by 1" do 
+      expect(user.hidden_media.count).to eq(1)
+    end
+  end
 end
