@@ -50,7 +50,7 @@ ActiveRecord::Schema.define(version: 20140908141630) do
 
   create_table "user_preferences", force: true do |t|
     t.integer  "user_id"
-    t.integer  "media_id"
+    t.string  "imdb_id"
     t.string   "view_status"
     t.datetime "created_at"
     t.datetime "updated_at"
