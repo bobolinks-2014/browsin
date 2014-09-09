@@ -1,5 +1,5 @@
 class Media < ActiveRecord::Base
-  has_many :user_preferences
+  has_many :user_preferences, foreign_key: 'imdb_id', primary_key: 'imdb_id'
   has_many :hidden_users, -> {where 'user_preferences.view_status'=> "hide"}, through: :user_preferences, source: :user
 
 	acts_as_taggable_on :services, :genres, :platforms, :actors
