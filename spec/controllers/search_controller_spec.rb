@@ -6,16 +6,17 @@ describe SearchController do
 	let(:hoc) {Media.create!(imdb_id: "testing321", service_list: "netflix", platform_list: "shows", run_time: 50, actor_list: "Frank, Claire", rating: 90, genre_list: "Comedy")}
 	let(:hoc_json) {[hoc].to_json(:include => [:genres, :services, :actors])}
 	let(:all_movies) {[got, hoc].to_json(:include => [:genres, :services, :actors])}
-	let(:user) {User.create!(email: "testing@testing.com", password: "testing", password_confirmation: "testing")}
+	let(:user) {User.create!(email: "testing@testing.com", password: "testing", password_confirmation: "testing", service_list: "hbo")}
 	let(:error) {{success: false, error: '20 minutes'}.to_json}
+	let(:preference){UserPreference.create!(user_id: user.id, media_id: got.id, view_status: "show")}
 
 	describe 'search route' do 
 		before(:each) do
-			user.tag(got, with: :"show", on: :status)
-			user.tag(hoc, with: :"show", on: :status)
 			allow(got).to receive(:runtime_search){50} 
 			allow(hoc).to receive(:runtime_search){50} 
 			allow(SearchController).to receive(:current_user){user}
+			(SearchController).stub_chain('current_user.service_list').and_return(user.service_list)
+
 		end
 
 		it "search for '60 minutes' gets a successful response" do
@@ -77,11 +78,13 @@ describe SearchController do
 
 	describe 'remove route' do
 		before(:each) do
-			user.tag(got, with: :"show", on: :status)
-			user.tag(hoc, with: :"show", on: :status)
+			user = User.create!(email: "testing@testing.com", password: "testing", password_confirmation: "testing", service_list: "hbo")
 			allow(got).to receive(:runtime_search){50} 
 			allow(hoc).to receive(:runtime_search){50} 
 			allow(SearchController).to receive(:current_user){user}
+			allow(UserPreference).to receive(:create){preference}
+
+			# allow(SearchController).to receive('UserPreference.create')
 		end
 # testing remove method
 		it "user is able to hide a show from their list" do
