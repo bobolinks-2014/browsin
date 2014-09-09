@@ -6,7 +6,7 @@ feature 'User browsing the website' do
     
     it 'should see a login link' do
       visit root_path
-      assert page.has_button?("Sign in"), "sign in button does not exit"
+      assert page.has_button?("Sign in"), "sign in button does not exist"
     end
 
     it 'should see a sign up link' do
