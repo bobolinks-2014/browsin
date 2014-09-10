@@ -10,4 +10,12 @@ class User < ActiveRecord::Base
   validates :password, :length => { :minimum => 6 }
 
   acts_as_taggable_on :services
+
+  def self.current
+  	Thread.current[:user]
+  end
+
+  def self.current=(user)
+  	Thread.current[:user] = user
+  end
 end
