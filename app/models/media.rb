@@ -31,11 +31,19 @@ class Media < ActiveRecord::Base
 				genre	
 			end
 		end
-		return list.uniq
+		return list.uniq.shift(3)
 	end
 
 	def service_icons
 		return self.service_list & User.current.service_list
+	end
+
+	def title_rating
+		if self.platform_list.to_s == "shows"
+			return "IMDB"
+		else
+			return "Rotten Tomatoes"		
+		end
 	end
 
 end

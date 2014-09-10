@@ -5,7 +5,7 @@ var MediaItem = React.createClass({
           <div className='panel panel-views'>
             <div className='panel-heading height-extend'>
               <div className='col-md-7 col-sm-7 col-xs-7'>
-              <span className='ratings pull-left' data-toggle='tooltip' title="Movie Rating">{this.props.rating}</span>
+              <span className='ratings pull-left' data-toggle='tooltip' title={this.props.title_rating}>{this.props.rating}</span>
               <h4 className='panel-title small-title'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.imdb_id}>
                   {this.props.title}
@@ -50,7 +50,7 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} key={index} />
+        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} title_rating={mediaItem.title_rating} key={index} />
       );
     });
 
