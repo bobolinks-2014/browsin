@@ -31,7 +31,7 @@ class Media < ActiveRecord::Base
 				genre	
 			end
 		end
-		return list.uniq
+		return list.uniq.shift(4)
 	end
 
 	def service_icons
