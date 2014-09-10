@@ -7,21 +7,20 @@ class SearchController < ApplicationController
     if @movies == []
       render json: {success: false, error: params[:query]}
     else
-      render json: @movies, include: [:genres, :services, :actors]
-      render json: {@movies.as_json(include: [:genres,:services,:actors], methods: :genres)}
+      render json: @movies.to_json(include: [:genres, :services, :actors], methods: :genre_icons)
     end
   end
 
   def top
     if user_signed_in?
-      render json: top_list, include: [:genres, :services, :actors]
+      render json: top_list.to_json(include: [:genres, :services, :actors], methods: :genre_icons)
     else
       render json: {success: false}
     end
   end
 
   def find
-    render json: find_media(params[:lookup]), include: [:genres, :services, :actors]
+    render json: find_media(params[:lookup]).to_json(include: [:genres, :services, :actors], methods: :genre_icons)
   end
 
   private
