@@ -3,12 +3,12 @@ class SessionsController < ActionController::Base
 
   def create
     if find_user == nil
-      render :json => {success: false, error: "Invalid username or password"} 
+      render :json => {success: false, error: "Invalid username or password"}
     elsif valid_password?
       session[:current_user_id] = @user.id
       render :json => {success: true, user: @user.email}
     else
-      render :json => {success: false, error: "Invalide username or password"}
+      render :json => {success: false, error: "Invalid username or password"}
     end
   end
 
