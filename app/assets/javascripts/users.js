@@ -22,7 +22,7 @@ $( document ).ready(function(){
 var Login = {
   fetch: function() {
     var request = $.ajax({
-      url: "/users",
+      url: "/users/show",
       type: "GET",
       dataType: "JSON"
     });

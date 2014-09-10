@@ -1,18 +1,14 @@
 Rails.application.routes.draw do
-  resources :users, only: [:show, :create, :update] do
-    collection do
-      post :sign_in, controller: 'sessions', action: 'create'
-      delete :sign_out, controller: 'sessions', action: 'destroy'
-      get :backdoor => 'sessions#backdoor' if Rails.env.test?
-    end
-    member do
-      patch :add
-    end
-  end
-
+  post '/users/sign_in' => 'sessions#create'
+  delete '/users/sign_out' => 'sessions#destroy'
+  post '/users' => 'users#create'
+  get '/users/show' => 'users#show'
+  patch '/users' => 'users#update'
+  patch '/users/add' => 'users#add'
   patch '/media/:id' => 'users#remove', :as => 'remove'
   get '/search' => 'search#search', :as => 'search' 
   get '/top25' => 'search#top'
   get '/find' => 'search#find'
+  get '/users/backdoor' => 'sessions#backdoor' if Rails.env.test?
   root 'home#index'
 end
