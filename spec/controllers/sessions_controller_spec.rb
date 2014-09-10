@@ -48,12 +48,5 @@ let	(:user) {User.create(email: "bobo@bobo.com", password: "testing", password_c
 					:user_id => 2
 			expect(response.code).to eq('302')
 		end
-
-		# best practice is not to test private methods
-		# xit 'current user id is same as session id' do
-		# 	@controller = SessionsController.new
-		# 	@controller.instance_eval {current_user}
-		# 	@controller.instance_eval {@current_user}.should eq(user.id)
-		# end
 	end
 end
