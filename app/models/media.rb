@@ -35,7 +35,11 @@ class Media < ActiveRecord::Base
 	end
 
 	def service_icons
+<<<<<<< HEAD
 		return self.service_list & User.current.service_list
+=======
+		self.service_list & User.current.service_list
+>>>>>>> 72f6aa9cc3536021eff9174b50052b3cc07c45e6
 	end
 
 end

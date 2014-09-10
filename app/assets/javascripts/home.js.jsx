@@ -20,10 +20,10 @@ var MediaItem = React.createClass({
                 </span>
                 <span className='genres hidden-xs' key={this.props.id}>
                   {this.props.genres.map(function(result, index) {
-                    return <a key={index} id={result} title={result} className={result.toLowerCase() + ' search-item sprite-size hand-cursor'} data-toggle='tooltip'></a>;
+                    return <a key={index} id={result} className={result.toLowerCase() + ' search-item sprite-size hand-cursor'} data-toggle='tooltip' title={result}></a>;
                   })}
                 </span>
-                <span className='delete-media-item small-trash' data-toggle='tooltip' title='Click to hide'>
+                <span className='delete-media-item small-trash' data-toggle='tooltip' title='Hide Media'>
                 </span>
                 </div>
             </div>

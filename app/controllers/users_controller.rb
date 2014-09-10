@@ -16,6 +16,7 @@ class UsersController < ApplicationController
 
   def update
     if user_signed_in?
+      p params[:service_list]
       current_user.update_attribute('service_list', params[:service_list])
       render :json => {success: true}
     else
@@ -32,5 +33,6 @@ class UsersController < ApplicationController
     update_user_preference
     render json: {success: true}
   end
+
 
 end
