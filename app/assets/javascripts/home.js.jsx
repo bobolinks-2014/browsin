@@ -15,12 +15,12 @@ var MediaItem = React.createClass({
                 <div className='col-md-5 col-sm-5 col-xs-5'>
                 <span className='services'>
                   {this.props.services.map(function(result, index) {
-                    return <a key={index} href={"http://"+Vendor.find(result.name) + this.props.title} target='blank' data-toggle='tooltip' title="Watch" className={result.name + " sprite-size"}></a>;
+                    return <a key={index} href={"http://"+Vendor.find(result) + this.props.title} target='blank' data-toggle='tooltip' title="Watch" className={result + " sprite-size"}></a>;
                   }.bind(this))}
                 </span>
-                <span className='genres hidden-xs'>
+                <span className='genres hidden-xs' key={this.props.id}>
                   {this.props.genres.map(function(result, index) {
-                    return <a key={index} id={result.name} className={result.name.toLowerCase() + ' search-item sprite-size hand-cursor'}></a>;
+                    return <a key={index} id={result} title={result} className={result.toLowerCase() + ' search-item sprite-size hand-cursor'} data-toggle='tooltip'></a>;
                   })}
                 </span>
                 <span className='delete-media-item small-trash' data-toggle='tooltip' title='Click to hide'>
@@ -50,7 +50,7 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.services} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} key={index} />
+        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} key={index} />
       );
     });
 
