@@ -58,17 +58,17 @@ class SearchController < ApplicationController
   end
 
   def re_actors
-    @actor_list ||= Media.actor_counts.pluck(:name)
-    Regexp.new(Regexp.union(@actor_list), Regexp::IGNORECASE)
+    @actor_list ||= Media.actor_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@actor_list)
   end
 
   def re_genres
-    @genre_list ||= Media.genre_counts.pluck(:name)
-    Regexp.new(Regexp.union(@genre_list), Regexp::IGNORECASE)
+    @genre_list ||= Media.genre_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@genre_list)
   end
 
   def get_matches
-    m = params[:query].scan(/(\d+)|(#{re_actors})|(#{re_genres})/)
+    m = params[:query].downcase.scan(/(\d+)|(#{re_actors})|(#{re_genres})/)
     @matches = m.flatten.compact.sort
   end
 
