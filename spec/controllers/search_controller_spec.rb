@@ -79,6 +79,14 @@ describe SearchController do
       expect(response.body).to eq(hoc_json)
     end
 
+		it "search for multiple exact titles" do
+      all_movies
+      hoc
+      hoc_json
+      get :search, :query => "House of Cards Game of Thrones", :format => 'json'
+      expect(response.body).to eq(all_movies)
+    end
+
 	end
 
 end

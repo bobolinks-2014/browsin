@@ -1,4 +1,8 @@
+require 'union'
+
 class Media < ActiveRecord::Base
+	include ActiveRecord::UnionScope
+
 	attr_accessor :current_user
 
   has_many :user_preferences, foreign_key: 'imdb_id', primary_key: 'imdb_id'
@@ -11,7 +15,7 @@ class Media < ActiveRecord::Base
 
 	def self.clear_incomplete_records
 		self.where(rating: 0).destroy_all
-		self.where(run_time: 0).destroy_all		
+		self.where(run_time: 0).destroy_all
 		self.where(rating: nil).destroy_all
 		self.where(run_time: 0).destroy_all
 	end
@@ -28,7 +32,7 @@ class Media < ActiveRecord::Base
 			when "Crime", "Film-Noir"
 				"Crime"
 			else
-				genre	
+				genre
 			end
 		end
 		return list.uniq
