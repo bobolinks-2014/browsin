@@ -5,11 +5,11 @@ describe SearchController do
 	describe 'search route' do
 		let(:user) {User.create!(email: "testing@testing.com", password: "testing", password_confirmation: "testing", service_list: "hbo, netflix")}
 		let(:hidden_show) { UserPreference.create!(user_id: user.id, imdb_id: "123tests") }
-		let(:game){Media.create!(imdb_id: "testing123", service_list: "hbo", platform_list: "shows", run_time: 50, actor_list: "Cersei, Arya, Brienne", rating: 100, genre_list: "Drama")}
-		let(:game_json) { [game].to_json(:include => [:genres, :services, :actors])}
-		let(:hoc) {Media.create!(imdb_id: "testing321", service_list: "netflix", platform_list: "shows", run_time: 70, actor_list: "Frank, Claire", rating: 90, genre_list: "Comedy")}
-		let(:all_movies) {[game, hoc].to_json(:include => [:genres, :services, :actors])}
-		let(:hoc_json) { [hoc].to_json(:include => [:genres, :services, :actors])}
+		let(:game){Media.create!(title: "Game of Thrones", imdb_id: "testing123", service_list: "hbo", platform_list: "shows", run_time: 50, actor_list: "Cersei, Arya, Brienne", rating: 100, genre_list: "Drama")}
+		let(:game_json) { [game].to_json(:include => :actors, :methods => [:genre_icons, :service_icons ])}
+		let(:hoc) {Media.create!(title: "House of Cards", imdb_id: "testing321", service_list: "netflix", platform_list: "shows", run_time: 70, actor_list: "Frank, Claire", rating: 90, genre_list: "Comedy")}
+		let(:all_movies) {[game, hoc].to_json(:include => :actors, :methods => [:genre_icons, :service_icons])}
+		let(:hoc_json) { [hoc].to_json(:include => :actors, :methods => [:genre_icons, :service_icons ])}
 
 		before (:each) do
 			allow_any_instance_of(SearchController).to receive(:current_user).and_return(user)
