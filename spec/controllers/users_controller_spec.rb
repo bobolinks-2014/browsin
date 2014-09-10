@@ -1,5 +1,4 @@
 require 'rails_helper'
-require 'json'
 
 RSpec.describe UsersController, :type => :controller do
 
@@ -41,7 +40,7 @@ RSpec.describe UsersController, :type => :controller do
 		end
 
 		it "should return a user's email" do
-			get :show
+			get :show, "current"
 			expect(JSON.parse(response.body)['user']['email']).to eq('bobo@bobo.com')
 		end
 
@@ -56,7 +55,7 @@ RSpec.describe UsersController, :type => :controller do
 		end
 	end
 
-	describe 'edit route' do
+	describe 'update route' do
 		let(:user){User.create!(email: "bobo@bobo.com", password: "testing", password_confirmation: "testing", service_list: "hbo")}
 
 		before(:each) do
@@ -65,14 +64,14 @@ RSpec.describe UsersController, :type => :controller do
 		end
 
 		it "should update the user's service list" do
-			get(:edit,
+			patch(:update,
 				:service_list => 'hbo, netflix',
 				:format => 'json')
 			expect(user.service_list).to eq(['hbo', 'netflix'])
 		end
 
 		it "should return success: true for when user's service is updated" do
-			get(:edit,
+			patch(:update,
 				:service_list => 'hbo, netflix',
 				:format => 'json')
 			expect(JSON.parse(response.body)['success']).to eq(true)
@@ -80,7 +79,7 @@ RSpec.describe UsersController, :type => :controller do
 
 		it "should return success: false for when user is not signed in" do
 			allow_any_instance_of(UsersController).to receive(:user_signed_in?).and_return(false)
-			get(:edit,
+			patch(:update,
 				:service_list => 'hbo, netflix',
 				:format => 'json')
 			expect(JSON.parse(response.body)['success']).to eq(false)
@@ -98,14 +97,14 @@ RSpec.describe UsersController, :type => :controller do
 		end
 
 		it 'should return success: true when user preference is added' do
-			post(:add,
+			patch(:add,
 				:item_id => 'testing',
 				:format => 'json')
 			expect(response.body).to eq({success: true}.to_json)
 		end
 
 		it 'should return increase user preference by 1' do
-			post(:add,
+			patch(:add,
 				:item_id => 'testing',
 				:format => 'json')
 			expect(UserPreference.count).to eq(1)
@@ -128,13 +127,13 @@ RSpec.describe UsersController, :type => :controller do
 			expect(UserPreference.count).to eq(1)
 		end
 
-		# it 'it should update an existing user preference' do
-		# 	test = UserPreference.create(user_id: user.id, imdb_id: "browsin", view_status: 'show')
-		# 	post(:remove,
-		# 		:id => 'browsin', 
-		# 		:format => 'json')
-		# 	expect(test.view_status).to eq('hide')
-		# end
+		it 'should update an existing user preference' do
+			test = UserPreference.create(user_id: user.id, imdb_id: "browsin", view_status: 'show')
+			post(:remove,
+				:id => 'browsin', 
+				:format => 'json')
+			expect(test.reload.view_status).to eq('hide')
+		end
 
 	end
 end

@@ -33,6 +33,4 @@ class UsersController < ApplicationController
     update_user_preference
     render json: {success: true}
   end
-
-
 end
