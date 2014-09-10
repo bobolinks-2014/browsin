@@ -6,10 +6,10 @@ describe SearchController do
 		let(:user) {User.create!(email: "testing@testing.com", password: "testing", password_confirmation: "testing", service_list: "hbo, netflix")}
 		let(:hidden_show) { UserPreference.create!(user_id: user.id, imdb_id: "123tests") }
 		let(:game){Media.create!(imdb_id: "testing123", service_list: "hbo", platform_list: "shows", run_time: 50, actor_list: "Cersei, Arya, Brienne", rating: 100, genre_list: "Drama")}
-		let(:game_json) { [game].to_json(:include => [:genres, :services, :actors], methods: :genre_icons)}
+		let(:game_json) { [game].to_json(:include => [:genres, :services, :actors])}
 		let(:hoc) {Media.create!(imdb_id: "testing321", service_list: "netflix", platform_list: "shows", run_time: 70, actor_list: "Frank, Claire", rating: 90, genre_list: "Comedy")}
-		let(:all_movies) {[game, hoc].to_json(:include => [:genres, :services, :actors], methods: :genre_icons)}
-		let(:hoc_json) { [hoc].to_json(:include => [:genres, :services, :actors], methods: :genre_icons)}
+		let(:all_movies) {[game, hoc].to_json(:include => [:genres, :services, :actors])}
+		let(:hoc_json) { [hoc].to_json(:include => [:genres, :services, :actors])}
 
 		before (:each) do
 			allow_any_instance_of(SearchController).to receive(:current_user).and_return(user)
@@ -64,7 +64,7 @@ describe SearchController do
 			expect(response.body).to_not eq(all_movies)
 		end
 
-		it "specific search actors and genres passes appropriate results" do
+		it "specific search including time, actors and genres passes appropriate results" do
 			all_movies
 			hoc
 			get(:search, :query => "I have frank and COMEDY", :format => 'json')
