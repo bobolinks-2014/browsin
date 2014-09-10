@@ -11,7 +11,6 @@ var Search = {
         Render.fail(response.error);
       } 
       else {
-        $('#media-items').collapse('toggle');
         Render.done(response);
       }
     });
@@ -44,7 +43,7 @@ var Search = {
     request.done(function(response) {
       Render.removeLoader();
       if (response.success == false) {
-        Render.fail(response.error);
+        Render.pleaseLogin();
       } 
       else {
         Render.done(response);
@@ -66,7 +65,15 @@ var removeMediaItem = function(dataId, locationArea) {
 
 var Render = {
   fail: function(query) {
-    $('#search-area').append("<br><div class='col-md-4 col-md-offset-4 alert alert-white' role='alert'><strong>Couldn't find any results for: "+query+"</strong></div>")
+    $('#search-area').append("<br><div class='col-md-6 col-md-offset-3 alert alert-white' role='alert'><strong>Couldn't find any results for: "+query+"</strong></div>")
+     window.setTimeout(function() {
+       $(".alert").fadeTo(500, 0).slideUp(500, function(){
+         $(this).remove();
+     });
+    }, 4000);
+  },
+  pleaseLogin: function() {
+    $('#search-area').append("<br><div class='col-md-7 col-md-offset-3 alert alert-white col-sm-12 col-xs-12' role='alert'><strong>Please login to search.</strong></div>")
      window.setTimeout(function() {
        $(".alert").fadeTo(500, 0).slideUp(500, function(){
          $(this).remove();
@@ -75,7 +82,7 @@ var Render = {
   },
   remove: function(area) {
     $(area.parents().eq(2)).fadeTo(500, 0).slideUp(500, function() {
-  });
+    });
   },
   animate: function() {
     $('body').css("background-color", "white");
@@ -97,7 +104,7 @@ var Render = {
 
 var Vendor = {
   find: function(vendor) {
-    if(vendor == "hulu_plus" || vendor == "hulu") {
+    if(vendor == "hulu_plus" || vendor == "hulu_free") {
       return "www.hulu.com/search?q="
     }
     else if(vendor == "netflix") {

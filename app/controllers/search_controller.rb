@@ -1,5 +1,4 @@
 class SearchController < ApplicationController
-  attr_accessor :matches
   respond_to :json
 
   def search

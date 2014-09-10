@@ -14,7 +14,7 @@ class UsersController < ApplicationController
     render :json => {user: current_user.as_json(include: :hidden_media, methods: :service_list)}
   end
 
-  def edit
+  def update
     if user_signed_in?
       p params[:service_list]
       current_user.update_attribute('service_list', params[:service_list])
