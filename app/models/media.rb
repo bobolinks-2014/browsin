@@ -1,4 +1,6 @@
 class Media < ActiveRecord::Base
+	attr_accessor :current_user
+
   has_many :user_preferences, foreign_key: 'imdb_id', primary_key: 'imdb_id'
   has_many :hidden_users, -> {where 'user_preferences.view_status'=> "hide"}, through: :user_preferences, source: :user
 
@@ -14,9 +16,8 @@ class Media < ActiveRecord::Base
 		self.where(run_time: 0).destroy_all
 	end
 
-
 	def genre_icons
-		self.genre_list.map! do |genre|
+		list = self.genre_list.map do |genre|
 			case genre
 			when "News", "Reality-Tv", "Talk-Show", "Game-Show"
 				"News"
@@ -24,10 +25,17 @@ class Media < ActiveRecord::Base
 				"War"
 			when "History", "Documentary"
 				"History"
+			when "Crime", "Film-Noir"
+				"Crime"
 			else
 				genre	
 			end
 		end
-		return self.genre_list.uniq
+		return list.uniq
 	end
+
+	def service_icons
+		self.service_list & User.current.service_list
+	end
+
 end
