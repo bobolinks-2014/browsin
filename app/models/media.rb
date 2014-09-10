@@ -16,56 +16,18 @@ class Media < ActiveRecord::Base
 
 
 	def genre_icons
-			genre_array =[]
-		self.genre_list.each do |genre|
+		self.genre_list.map! do |genre|
 			case genre
-			when "News"
-				genre_array <<  genre
-			when "Reality-Tv"
-			when "Talk-Show"
-			when "Game-Show"	
-			when "War"
-				genre_array <<  genre
-			when "Western"
-			when "History"
-				genre_array <<  genre
-			when "Documentary"
-			when "Sci-Fi"
-				genre_array <<  genre
-			when "Drama"
-				genre_array <<  genre
-			when "Sport"
-				genre_array <<  genre
-			when "Family"
-				genre_array <<  genre
-			when "Music"
-				genre_array <<  genre
-			when "Adventure"
-				genre_array <<  genre
-			when "Fantasy"
-				genre_array <<  genre
-			when "Biography"
-				genre_array <<  genre
-			when "Romance"
-				genre_array <<  genre
-			when "Thriller"
-				genre_array <<  genre
-			when "Horror"
-				genre_array <<  genre
-			when "Comedy"
-				genre_array <<  genre
-			when "Mystery"
-				genre_array <<  genre
-			when "Animation"
-				genre_array <<  genre
-			when "Action"
-				genre_array <<  genre
-			when "Crime"
-				genre_array <<  genre
+			when "News", "Reality-Tv", "Talk-Show", "Game-Show"
+				"News"
+			when "War", "Western"
+				"War"
+			when "History", "Documentary"
+				"History"
 			else
-				"Not a genre"			
+				genre	
 			end
 		end
-		return genre_array
+		return self.genre_list.uniq
 	end
 end
