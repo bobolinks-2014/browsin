@@ -5,12 +5,12 @@ describe("Search", function() {
     it("Sends parameters to rails server as variable in url", function () {
       var query = "comedy";
       var d = $.Deferred();
-      var call = spyOn($, 'ajax').and.returnValue(d);
+      spyOn($, 'ajax').and.returnValue(d);
   
       Search.query(query);
       expect($.ajax).toHaveBeenCalledWith({url: "/search?query="+query,
                                            type: "GET",
-                                           dataType: "JSON"})
+                                           dataType: "JSON"});
     });
   
     it("Should run Render.fail on error", function() {
@@ -109,11 +109,11 @@ describe("Search", function() {
       d.resolve({success: false});
   
       spyOn($, 'ajax').and.returnValue(d);
-      spyOn(Render, 'fail')
+      spyOn(Render, 'pleaseLogin')
   
       Search.top25();
   
-      expect(Render.fail).toHaveBeenCalled();
+      expect(Render.pleaseLogin).toHaveBeenCalled();
     });
 
     it("should render done if success is false", function() {
@@ -153,5 +153,19 @@ describe("Search", function() {
       removeMediaItem("12", location);
       expect(Render.remove).toHaveBeenCalledWith(location);
     });
+  });
+});
+
+describe("Vendor", function() {
+  it("should call with a vendor name", function() {
+    var vendor = "hulu"
+    spyOn(Vendor, 'find');    
+    Vendor.find(vendor);
+    expect(Vendor.find).toHaveBeenCalledWith(vendor);
+  });
+
+  it("return a url", function() {
+    var vendor = "hulu_plus"
+    expect(Vendor.find(vendor)).toEqual("www.hulu.com/search?q=");
   });
 });

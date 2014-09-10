@@ -1,22 +1,46 @@
-function submitSignUp(location) {
-  var request = $.ajax({
-    url: "/users",
-    type: "POST",
-    dataType: "JSON",
-    data: {user: submitDataParse(location), services: getServices(location) }
-  });
-  request.done(function(response) {
-    $('.loader').remove();
-    if(response.success == true) {
-      $('#sign-up-form').modal('hide');
-      renderSearchBar();
-      userLoggedIn(response.user);
-      $('').remove('#sign-up-button');
-    } else {
-      renderLoginFail(response);
-    }
-  });
-  return request;
+var Signup = {
+  submit: function(location) {
+    var request = $.ajax({
+      url: "/users",
+      type: "POST",
+      dataType: "JSON",
+      data: {user: submitDataParse(location), services: getServices(location) }
+    });
+    request.done(function(response) {
+      $('.loader').remove();
+      if(response.success == true) {
+        $('#sign-up-form').modal('hide');
+        renderSearchBar();
+        userLoggedIn(response.user);
+        $('').remove('#sign-up-button');
+      } else {
+        renderLoginFail(response);
+      }
+    });
+    return request;
+  }
+}
+
+var Session = {
+  signIn: function(email, pass) {
+   var request = $.ajax({
+     url: "/users/sign_in",
+     type: "POST",
+     dataType: "JSON",
+     data: {user: {email: email, password: pass} }
+   });
+   request.done(function(response) {
+     $('.loader').remove();
+     if(response.success == true) {
+       renderSearchBar();
+       userLoggedIn(response.user);
+       $('#sign-up-button').remove();
+     } else {
+       errorLoggingIn(response.error);
+     }
+   });
+   return request;
+  }
 }
 
 function getServices(data) {
@@ -44,26 +68,6 @@ function submitDataParse(data) {
   var passconf = $(data).find("#pass_conf").val();
   return {email: email, password: pass, password_confirmation: passconf}
 } 
-
-function submitSignIn(email, pass) {
-  var request = $.ajax({
-    url: "/users/sign_in",
-    type: "POST",
-    dataType: "JSON",
-    data: {user: {email: email, password: pass} }
-  });
-  request.done(function(response) {
-    $('.loader').remove();
-    if(response.success == true) {
-      renderSearchBar();
-      userLoggedIn(response.user);
-      $('#sign-up-button').remove();
-    } else {
-      errorLoggingIn(response.error);
-    }
-  });
-  return request;
-}
 
 function logOutUser() {
   var request = $.ajax({

@@ -218,6 +218,9 @@
 .animation {
   background: url('/assets/provider-sprite.png') -562px no-repeat;
 }
+.musical {
+  background: url('/assets/provider-sprite.png') -802px no-repeat;
+}
 .action {
   background: url('/assets/provider-sprite.png') -642px no-repeat;
 }
