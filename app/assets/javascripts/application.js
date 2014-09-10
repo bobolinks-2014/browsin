@@ -40,7 +40,7 @@ $( document ).ready(function() {
   $("#sign-up-submit").on("click", function(event) {
     event.preventDefault();
     $('.modal-dialog').prepend("<div class='loader'>Loading...</div>");
-    submitSignUp($("#sign-up-data"));
+    Signup.submit($("#sign-up-data"));
     $('#sign-up-button').remove();
   });
 
@@ -49,7 +49,7 @@ $( document ).ready(function() {
     var email = $("#login-form #email").val()
     var pass = $("#login-form #password").val()
     $('.search-area').append("<div class='loader'>Loading...</div>");
-    submitSignIn(email, pass);
+    Session.signIn(email, pass);
   });
 
   $(".login-area").on("click", ".logout", function(event) {
