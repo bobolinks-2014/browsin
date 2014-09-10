@@ -93,6 +93,12 @@ class ApplicationController < ActionController::Base
   	media = Media.find_by_
   end
 
+  def placeholder_text
+    p_text = ["I have 30 minutes for comedy", "I want to watch a Robin Williams comedy", "Make me cry for 120 minutes with Fried Green Tomatoes", "Die Hard. Yes!", "I like horror and thriller", "I have 60 minutes for comedy with John Oliver"]
+    p_text.sample
+  end
+
+  helper_method :placeholder_text
   helper_method :user_signed_in?
   helper_method :current_user
 end
