@@ -53,7 +53,7 @@ $( document ).ready(function() {
   });
 
   $(".login-area").on("click", ".logout", function(event) {
-    logOutUser();
+    Session.logout();
   });
 
   $("#search-results-area").on("click", ".delete-media-item", function(event) {
