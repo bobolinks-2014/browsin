@@ -11,6 +11,7 @@ var Search = {
         Render.fail(response.error);
       } 
       else {
+        $('#media-items').collapse('toggle');
         Render.done(response);
       }
     });
@@ -38,7 +39,7 @@ var Search = {
     var request = $.ajax({
       url: "/top25",
       type: "GET",
-      datatType: "JSON"
+      dataType: "JSON"
     });
     request.done(function(response) {
       Render.removeLoader();
@@ -52,7 +53,6 @@ var Search = {
     return request;
   }
 }
-
 var removeMediaItem = function(dataId, locationArea) {
   var request = $.ajax({
     url: "/media/"+dataId,
@@ -89,9 +89,6 @@ var Render = {
   },
   removeLoader: function() {
     $('.loader').remove();
-  },
-  displayKey: function() {
-
   },
   scrollToTop: function() {
     $('html, body').animate({ scrollTop: 0 }, 800);

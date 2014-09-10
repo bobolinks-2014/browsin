@@ -9,9 +9,19 @@
   font-family: 'abeatbyKai';
   src: url('/assets/ABEAKRG.ttf');
 }
+.caption {
+  margin-top: 15px;
+}
+.button-group-main {
+  text-align: center;
+}
 .top-button {
   padding:10px;
   cursor: pointer;
+  text-align: right;
+}
+.table {
+  margin-bottom: 0 !important;
 }
 .alert-white {
   background-color:white;
@@ -22,6 +32,10 @@
 }
 .mod-header-color {
   background: lightgrey;
+}
+
+.login-area{
+  height: 54px;
 }
 .title{
   color: #282827;
@@ -35,6 +49,7 @@
   line-height: 0;
   margin-left: 10px;
 }
+
 .user-modal {
   width: 500px !important;
   margin-right: 120px !important;
@@ -48,6 +63,10 @@
   position: relative;
   background-color: gold; /**rgb(122,201,67)*/
   border-radius: 150px;
+  cursor: pointer;
+}
+.button:hover{
+      box-shadow: 0px 0px 30px #fff;
 }
 
 .top-area-bar {
@@ -71,6 +90,7 @@
 }
 .search-results-area-div {
   margin-top:10px;
+  border: 0px !important;
 }
 
 .alert-login {
@@ -280,4 +300,110 @@ height: 4em;
     box-shadow: 0 -2em #ffffff;
 height: 5em;
   }
+}
+
+/*media queries*/
+@media (max-width: 1177px){
+  .panel-title{
+    font-size: 14px !important;
+  }
+}
+@media (max-width: 766px){
+  .small-title{
+    min-width: 430px;
+  }
+  .services{
+    right: 54px;
+    position: absolute;
+  }
+}
+
+@media (max-width: 626px){
+  .title{
+    color: #282827;
+    font-family: 'abeatbyKai';
+    font-size: 50px;
+    font-weight: 700;
+    letter-spacing: 15px;
+    margin-top: 100px;
+    margin-bottom: 20px;
+    margin-left: 10px;
+    width: 100%;     
+    text-align: center;
+  }
+
+  .button {
+    margin: -5px -52px;
+    display: inline-block;
+    width: 40px;
+    height: 40px;
+    position: relative;
+    background-color: gold; /**rgb(122,201,67)*/
+    border-radius: 150px;
+  }
+
+  .triangle {
+    left: 9px;
+    top: 7px;
+    position: relative;
+    border-top: 13px solid transparent;
+    border-bottom: 13px solid transparent;
+    border-left: 26px solid #fdf7ef;
+    z-index: 2;
+  }
+  .title-br{
+    padding-right: 5px
+
+  }
+
+  .title-wsin{
+    padding-left: 19px
+  }
+
+  .sub-head {
+    margin: 3px auto;
+    text-align: center;
+    padding: 0;
+    font-weight: 300;
+    padding-bottom: 10px;
+    font-size: 20px;
+  }
+  .small-title{
+    font-size: 14px !important;
+    text-align: left !important;
+    min-width: 300px;
+  }
+  .services{
+    right: 64px;
+    position: absolute;
+  }
+}
+
+@media (max-width: 600px){
+ 
+  .small-title{
+    min-width: 400px;
+  }
+}
+
+@media (max-width: 586px){
+  .small-title{
+    min-width: 300px;
+  }
+  .services{
+    padding-left: 0px;
+  }
+}
+
+@media (max-width: 500px){
+  .small-trash{
+    display: none;
+
+  }
+  .services{
+    right: -12px;
+    position: absolute;
+
+  }
+
 }

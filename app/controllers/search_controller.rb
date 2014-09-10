@@ -5,12 +5,13 @@ class SearchController < ApplicationController
   def search
     find_results
     if @movies == []
-      render json: {success: false, error: params_query}
+      render json: {success: false, error: params[:query]}
     else
       render json: @movies, include: [:genres, :services, :actors]
+      render json: {@movies.as_json(include: [:genres,:services,:actors], methods: :genres)}
     end
   end
-  
+
   def top
     if user_signed_in?
       render json: top_list, include: [:genres, :services, :actors]
@@ -33,17 +34,13 @@ class SearchController < ApplicationController
       current_user_media.tagged_with(matcher).order('rating DESC, title ASC').limit(25)
   end
 
-  def params_query
-    params[:query].downcase
-  end
-
   def top_list
     current_user_media.order('rating DESC, title ASC').limit(25)
   end
 
   def find_results
     get_matches
-    if is_number? && is_only_number?  
+    if is_number? && is_only_number?
       movies = current_user_media.where("run_time <= #{runtime_search}")
     elsif is_number?
       movies = current_user_media.where("run_time <= #{runtime_search}").tagged_with(@matches)
@@ -62,17 +59,17 @@ class SearchController < ApplicationController
   end
 
   def re_actors
-    @actor_list ||= Media.actor_counts.map{ |x| x.name.downcase }
-    Regexp.union(@actor_list)
+    @actor_list ||= Media.actor_counts.pluck(:name)
+    Regexp.new(Regexp.union(@actor_list), Regexp::IGNORECASE)
   end
 
   def re_genres
-    @genre_list ||= Media.genre_counts.map{ |x| x.name.downcase }
-    Regexp.union(@genre_list)
+    @genre_list ||= Media.genre_counts.pluck(:name)
+    Regexp.new(Regexp.union(@genre_list), Regexp::IGNORECASE)
   end
 
   def get_matches
-    m = params_query.scan(/(\d+)|(#{re_actors})|(#{re_genres})/i)
+    m = params[:query].scan(/(\d+)|(#{re_actors})|(#{re_genres})/)
     @matches = m.flatten.compact.sort
   end
 
@@ -83,8 +80,8 @@ class SearchController < ApplicationController
   def is_number?
     @matches[0].to_i > 0
   end
-  
+
   def is_only_number?
     @matches.length == 1
-  end 
+  end
 end
