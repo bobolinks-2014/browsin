@@ -21,6 +21,20 @@ describe("User Sessions", function() {
     });
   });
 
+  describe('Sessions', function() {
+    it('should request the right url on login', function() {
+      var email = "bob@bob.com";
+      var pass = "1234";
+
+      var d = $.Deferred();
+      d.resolve('a');
+      spyOn($, 'ajax').and.returnValue(d);
+      spyOn(Session, 'signIn') 
+      Session.signIn(email, pass);  
+      expect($.ajax.calls.argsFor(0).toEqual('asb');
+    });
+  });
+
   describe("getServices", function() {
 
     it('should return an array containing the value if true', function() {

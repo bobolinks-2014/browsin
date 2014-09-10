@@ -27,7 +27,7 @@ $( document ).ready(function() {
     Search.lookUp(asset);
   });
 
-  $(".triangle").on("click", function(event) {
+  $(".button").on("click", function(event) {
     event.preventDefault();
     $('.search-area').append("<div class='loader'>Loading...</div>");
     Search.top25();

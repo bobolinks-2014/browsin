@@ -15,6 +15,10 @@
 .button-group-main {
   text-align: center;
 }
+.results {
+  font-size: .85em;
+  color: grey;
+}
 .top-button {
   padding:10px;
   cursor: pointer;

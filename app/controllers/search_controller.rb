@@ -6,7 +6,7 @@ class SearchController < ApplicationController
     if @movies == []
       render json: {success: false, error: params[:query]}
     else
-      render json: @movies.to_json(include: :actors, methods: [:genre_icons, :service_icons])
+      render json: @movies.to_json(include: :actors, methods: [:genre_icons, :service_icons, :get_matches])
     end
   end
 
@@ -19,7 +19,7 @@ class SearchController < ApplicationController
   end
 
   def find
-    render json: find_media(params[:lookup]).to_json(include: :actors, methods: [:genre_icons, :service_icons])
+    render json: find_media(params[:lookup]).to_json(include: :actors, methods: [:genre_icons, :service_icons, :get_matches])
   end
 
 end
