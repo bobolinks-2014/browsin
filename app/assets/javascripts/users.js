@@ -58,7 +58,7 @@ var InfoCheck = {
 var UpdateProfile = {
   ajaxCall: function(list) {
     var request = $.ajax({
-      url: "/users/edit",
+      url: "/users",
       type: "PATCH",
       dataType: "JSON",
       data: {service_list: list}

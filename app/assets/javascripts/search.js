@@ -47,6 +47,7 @@ var Search = {
       } 
       else {
         Render.done(response);
+        $('.results').children().html('Showing results for: top 25 movies based on your available services')
       }
     });
     return request;
@@ -99,6 +100,9 @@ var Render = {
   },
   scrollToTop: function() {
     $('html, body').animate({ scrollTop: 0 }, 800);
+  },
+  searchResult: function(results) {
+    $('.search-results-area-div').prepend(results);
   }
 }
 

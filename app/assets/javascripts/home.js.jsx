@@ -5,7 +5,7 @@ var MediaItem = React.createClass({
           <div className='panel panel-views'>
             <div className='panel-heading height-extend'>
               <div className='col-md-7 col-sm-7 col-xs-7'>
-              <span className='ratings pull-left' data-toggle='tooltip' title={this.props.title_rating}>{this.props.rating}</span>
+              <span className='ratings pull-left' data-toggle='tooltip' title={this.props.titleRating}>{this.props.rating}</span>
               <h4 className='panel-title small-title'>
                 <a data-toggle='collapse' data-parent='#media-items' href={"#" + this.props.imdb_id}>
                   {this.props.title}
@@ -18,7 +18,7 @@ var MediaItem = React.createClass({
                     return <a key={index} href={"http://"+Vendor.find(result) + this.props.title} target='blank' data-toggle='tooltip' title="Watch" className={result + " sprite-size"}></a>;
                   }.bind(this))}
                 </span>
-                <span className='genres hidden-xs' key={this.props.id}>
+                <span className='genres hidden-xs col-md-offset-1 col-sm-offset-1' key={this.props.id}>
                   {this.props.genres.map(function(result, index) {
                     return <a key={index} id={result} className={result.toLowerCase() + ' search-item sprite-size hand-cursor'} data-toggle='tooltip' title={result}></a>;
                   })}
@@ -33,10 +33,10 @@ var MediaItem = React.createClass({
                 <span className='actors'>
                   See more from:
                     {this.props.actors.map(function(result, index) {
-                      return <a key={index} id={result.name} className='actor search-item'> {result.name} </a>
+                      return <span key={index}><a id={result.name} className='actor search-item'> {result.name}</a> | </span>
                      })}
                   <span className='runtime'>
-                    / Runtime: {this.props.runtime}
+                     Runtime: {this.props.runtime}
                   </span>
                 </span>
               </div>
@@ -50,14 +50,15 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} title_rating={mediaItem.title_rating} key={index} />
+        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} titleRating={mediaItem.title_rating} key={index} />
       );
     });
 
     return (
+        <div><p className='results'>Showing results for: {this.props.mediaItems.matches}</p>
         <div className='panel-group media-items' id='media-items'>
           {mediaNodes}
-        </div>
+        </div></div>
     );
     }
 });

@@ -27,7 +27,7 @@ $( document ).ready(function() {
     Search.lookUp(asset);
   });
 
-  $(".triangle").on("click", function(event) {
+  $(".button").on("click", function(event) {
     event.preventDefault();
     $('.search-area').append("<div class='loader'>Loading...</div>");
     Search.top25();
@@ -53,7 +53,7 @@ $( document ).ready(function() {
   });
 
   $(".login-area").on("click", ".logout", function(event) {
-    logOutUser();
+    Session.logout();
   });
 
   $("#search-results-area").on("click", ".delete-media-item", function(event) {
