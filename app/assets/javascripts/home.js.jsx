@@ -12,7 +12,7 @@ var MediaItem = React.createClass({
                 </a>
               </h4>
               </div>
-                <div className='col-md-5 col-sm-5 col-xs-5'>
+                <div className='col-md-5 col-sm-5 col-xs-5' key={this.props.imdb_id}>
                 <span className='services'>
                   {this.props.services.map(function(result, index) {
                     return <a key={index} href={"http://"+Vendor.find(result) + this.props.title} target='blank' data-toggle='tooltip' title="Watch" className={result + " sprite-size"}></a>;
@@ -23,8 +23,7 @@ var MediaItem = React.createClass({
                     return <a key={index} id={result} className={result.toLowerCase() + ' search-item sprite-size hand-cursor'} data-toggle='tooltip' title={result}></a>;
                   })}
                 </span>
-                <span className='delete-media-item small-trash' data-toggle='tooltip' title='Hide Media'>
-                </span>
+                <span className='delete-media-item small-trash' data-toggle='tooltip' data-placement='right' title='Hide Media'></span>
                 </div>
             </div>
             <div id={this.props.imdb_id} className='panel-collapse collapse'>

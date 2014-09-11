@@ -28,8 +28,10 @@ var Search = {
         Render.fail(response.error);
       } 
       else {
+        $('#search-bar-value').val('');;
         Render.done(response);
         Render.scrollToTop();
+        $('#search-bar-value').val(response.matches[0]);
       }
     });
     return request;
