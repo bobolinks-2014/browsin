@@ -42,12 +42,27 @@ class Media < ActiveRecord::Base
 		return self.service_list & User.current.service_list
 	end
 
-	def title_rating
+	def rating_source
 		if self.platform_list.to_s == "shows"
 			return "IMDB"
 		else
 			return "Rotten Tomatoes"		
 		end
 	end
+
+	 def self.actors_regex
+    @actor_list ||= Media.actor_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@actor_list)
+  end
+
+  def self.genres_regex
+    @genre_list ||= Media.genre_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@genre_list)
+  end
+
+  def self.titles_regex
+    @titles ||= Media.pluck(:title).map(&:downcase)
+    Regexp.union(@titles)
+  end
 
 end

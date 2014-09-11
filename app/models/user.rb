@@ -18,4 +18,13 @@ class User < ActiveRecord::Base
   def self.current=(user)
   	Thread.current[:user] = user
   end
+
+  def media
+      Media.tagged_with(self.service_list, :any => true).where.not(imdb_id: self.hidden_media_ids)
+  end
+
+  def hidden_media_ids
+    self.hidden_media.pluck(:imdb_id)
+  end
+
 end

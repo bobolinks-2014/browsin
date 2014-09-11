@@ -22,7 +22,7 @@ var UserInfo = React.createClass({
                 <div className='provider-list'>
                     <div className='row'>
                       {InfoCheck.providerList().map(function(item, index){
-                        return <div className='col-sm-6 col-md-4' key={index}>
+                        return <div className='col-sm-6 col-md-4 col-sm-4 col-xs-4' key={index}>
                           <div className='button-group-main' key={item}>
                             <span key={item} className={item + " sprite-size"}></span>
                             <div className='caption' id={this.props.userInfo.service_list}>
@@ -36,9 +36,9 @@ var UserInfo = React.createClass({
                 <div className='panel-group hidden-media' id='hidden-media'>
                   <div className='panel panel-default'>
                    <div className='panel-heading'>
-                  {(this.props.userInfo.hidden_media.length > 0) ? <h4 className='panel-title'> Hidden Media <button className='plus-button btn pull-right' data-toggle='collapse' data-parent='#hidden-media' href='#hidden-stuff'>expand</button></h4>: false}
-                    <div id='hidden-stuff' className='panel-collapse collapse'>
-                      <div className='panel-body'>
+                  {(this.props.userInfo.hidden_media.length > 0) ? <h4 className='panel-title'> Hidden Media <button className='plus-button btn pull-right' data-toggle='collapse' data-parent='#hidden-media' href='#hidden-stuff'>toggle</button></h4>: false}
+                    <div id='hidden-stuff' className='panel-collapse collapse in'>
+                      <div className='panel-body user-page'>
                     <table className='table table-hover' key={this.props.userInfo.id}>
                       <tbody>
                     {this.props.userInfo.hidden_media.map(function(item, index) {

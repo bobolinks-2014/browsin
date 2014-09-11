@@ -1,12 +1,13 @@
 class UsersController < ApplicationController
 
   def create
-    @user = User.create(email: params[:user][:email], password: params[:user][:password], password_confirmation: params[:user][:password_confirmation], service_list: params[:services].values.flatten.join(","))
-    if @user.save
-      session[:current_user_id] = @user.id
-      render :json => {success: true, user: @user.email}
+    params[:user].merge!(service_list: params[:services].values.flatten.join(","))
+    user = User.create(user_params)
+    if user.save
+      session[:current_user_id] = user.id
+      render :json => {success: true, user: user.email}
     else
-      render :json => {success: false, error: @user.errors.full_messages}
+      render :json => {success: false, error: user.errors.full_messages}
     end
   end
 
@@ -14,22 +15,10 @@ class UsersController < ApplicationController
     render :json => {user: current_user.as_json(include: :hidden_media, methods: :service_list)}
   end
 
-  def update
-    if user_signed_in?
-      current_user.update_attribute('service_list', params[:service_list])
-      render :json => {success: true}
-    else
-      render :json => {success: false}
-    end
+  private
+
+  def user_params
+    params.require(:user).permit(:email, :password, :password_confirmation, :service_list)
   end
 
-  def add
-    add_user_preference
-    render :json => {success: true}
-  end
-
-  def remove 
-    update_user_preference
-    render json: {success: true}
-  end
 end

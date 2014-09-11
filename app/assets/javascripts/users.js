@@ -81,7 +81,7 @@ var UpdateProfile = {
   },
   reShowItem: function(item, area) {
     var request = $.ajax({
-      url: "/users/add",
+      url: "/media/add",
       type: "PATCH",
       dataType: "JSON",
       data: {item_id: item}
