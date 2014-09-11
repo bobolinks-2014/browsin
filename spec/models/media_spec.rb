@@ -66,10 +66,16 @@ RSpec.describe Media, :type => :model do
 
 	it "genre list should return 'sci-fi' and 'drama" do
 		media1 = Media.create(imdb_id: "123test", genre_list: ["Sci-Fi", "Drama","History","Sport","Family","Music","Adventure","Fantasy","Biography","Romance","Thriller","Horror","Comedy","Mystery","Animation","Action","Crime"] , service_list: "netflix", platform_list: "movie")
-		expect(media1.genre_icons).to eq(["Sci-Fi", "Drama","History","Sport","Family","Music","Adventure","Fantasy","Biography","Romance","Thriller","Horror","Comedy","Mystery","Animation","Action","Crime"])
+		expect(media1.genre_icons).to eq(["Sci-Fi", "Drama","History"])
 	end
-		it "should return empty array when genres include 'silly-show'"do
-		media1 = Media.create(imdb_id: "123test", genre_list: ["silly-show"] , service_list: "netflix", platform_list: "movie")
-		expect(media1.genre_icons).to eq([])
+
+	it 'rating should be Rotten Tomatoes if the platform is a show' do
+				media1 = Media.create(imdb_id: "123test", genre_list: ["Sci-Fi", "Drama","History","Sport","Family","Music","Adventure","Fantasy","Biography","Romance","Thriller","Horror","Comedy","Mystery","Animation","Action","Crime"] , service_list: "netflix", platform_list: "movie")
+				expect(media1.title_rating).to eq("Rotten Tomatoes")
+	end
+
+	it 'rating shold be IMDB if platform is show' do
+				media1 = Media.create(imdb_id: "123test", genre_list: ["Sci-Fi", "Drama","History","Sport","Family","Music","Adventure","Fantasy","Biography","Romance","Thriller","Horror","Comedy","Mystery","Animation","Action","Crime"] , service_list: "netflix", platform_list: "shows")
+				expect(media1.title_rating).to eq("IMDB")
 	end
 end

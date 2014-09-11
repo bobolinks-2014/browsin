@@ -1,4 +1,8 @@
+require 'union'
+
 class Media < ActiveRecord::Base
+	include ActiveRecord::UnionScope
+
 	attr_accessor :current_user
 
   has_many :user_preferences, foreign_key: 'imdb_id', primary_key: 'imdb_id'
@@ -11,7 +15,7 @@ class Media < ActiveRecord::Base
 
 	def self.clear_incomplete_records
 		self.where(rating: 0).destroy_all
-		self.where(run_time: 0).destroy_all		
+		self.where(run_time: 0).destroy_all
 		self.where(rating: nil).destroy_all
 		self.where(run_time: 0).destroy_all
 	end
@@ -28,14 +32,37 @@ class Media < ActiveRecord::Base
 			when "Crime", "Film-Noir"
 				"Crime"
 			else
-				genre	
+				genre
 			end
 		end
-		return list.uniq
+		return list.uniq.shift(3)
 	end
 
 	def service_icons
 		return self.service_list & User.current.service_list
 	end
+
+	def rating_source
+		if self.platform_list.to_s == "shows"
+			return "IMDB"
+		else
+			return "Rotten Tomatoes"		
+		end
+	end
+
+	 def self.actors_regex
+    @actor_list ||= Media.actor_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@actor_list)
+  end
+
+  def self.genres_regex
+    @genre_list ||= Media.genre_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@genre_list)
+  end
+
+  def self.titles_regex
+    @titles ||= Media.pluck(:title).map(&:downcase)
+    Regexp.union(@titles)
+  end
 
 end

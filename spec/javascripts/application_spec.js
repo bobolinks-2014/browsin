@@ -1,7 +1,10 @@
 describe("Application File", function() {
-  it("", function () {
-    spyOn($.fn, "val").andReturn("bar");
-    var result = $("#Something").val();
-    expect(result).toEqual("bar");
+  it("runs Search.query on navbar-form submit", function () {
+    var searchArea = "<div class='search-area'><form class='navbar-form'><button type='submit'></button></form></div>";
+    spyOn(Search, 'query');
+    
+    $(searchArea).trigger('submit');
+    
+    expect(Search.query).toHaveBeenCalled(); 
   });
 });

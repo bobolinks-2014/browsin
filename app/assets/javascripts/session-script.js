@@ -40,6 +40,19 @@ var Session = {
      }
    });
    return request;
+  },
+  logout: function() {
+    var request = $.ajax({
+      url: "/users/sign_out",
+      type: "DELETE"
+    });
+    request.done(function(status) {
+      window.location = '/';
+      $( docuemnt ).ready(function() {
+        flashAlert();
+      });
+    });
+    return request;
   }
 }
 

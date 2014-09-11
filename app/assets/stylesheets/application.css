@@ -9,11 +9,25 @@
   font-family: 'abeatbyKai';
   src: url('/assets/ABEAKRG.ttf');
 }
+#sign-up-button {
+  padding-top:10px;
+}
 .caption {
   margin-top: 15px;
 }
+.match-result {
+  border-right: 1px solid grey;
+  margin-left: 5px;
+}
+.results :last-child {
+  border:none;
+}
 .button-group-main {
   text-align: center;
+}
+.results {
+  font-size: .85em;
+  color: grey;
 }
 .top-button {
   padding:10px;
@@ -36,6 +50,7 @@
 
 .login-area{
   height: 54px;
+  cursor: pointer;
 }
 .title{
   color: #282827;
@@ -51,7 +66,7 @@
 }
 
 .user-modal {
-  width: 500px !important;
+  width: 600px !important;
   margin-right: 120px !important;
   margin-top: 50px !important;
 }
@@ -66,7 +81,7 @@
   cursor: pointer;
 }
 .button:hover{
-      box-shadow: 0px 0px 30px #fff;
+  box-shadow: 0px 0px 30px #fff;
 }
 
 .top-area-bar {
@@ -243,11 +258,17 @@
 .actors a {
   cursor: pointer;
 }
-
+.plus-button {
+ width: 73px !important;
+ line-height: 0.60 !important;
+ margin-left: 15px !important;
+}
 .btn-main {
   background: lightseagreen;
 }
-
+.user-page {
+  padding: 15px 0 !important;
+}
 /* LOADING ANIMATION */
 .loader,
 .loader:before,
@@ -304,6 +325,7 @@ height: 4em;
 height: 5em;
   }
 }
+/* mobile media queries*/
 
 /*media queries*/
 @media (max-width: 1177px){
@@ -311,13 +333,16 @@ height: 5em;
     font-size: 14px !important;
   }
 }
-@media (max-width: 766px){
+@media (max-width: 768px){
   .small-title{
     min-width: 430px;
   }
   .services{
     right: 54px;
     position: absolute;
+  }
+  .form-control {
+    margin-bottom: 5px !important;
   }
 }
 
@@ -334,7 +359,9 @@ height: 5em;
     width: 100%;     
     text-align: center;
   }
-
+  .plus-button {
+    margin-top: -8px !important;
+  }
   .button {
     margin: -5px -52px;
     display: inline-block;
@@ -383,7 +410,6 @@ height: 5em;
 }
 
 @media (max-width: 600px){
- 
   .small-title{
     min-width: 400px;
   }
@@ -396,6 +422,10 @@ height: 5em;
   .services{
     padding-left: 0px;
   }
+  .login-area a:hover {
+    text-decoration: none;
+    color: black;
+  }
 }
 
 @media (max-width: 500px){
@@ -406,7 +436,34 @@ height: 5em;
   .services{
     right: -12px;
     position: absolute;
-
+  }
+  .title {
+    font-size: 40px;
+  }
+  #sign-up-button{
+    padding: 15px;
+    border: 1px solid black;
+    margin-top: 10px;
+    border-radius: 5px;
+  }
+  #sign-in-button{
+    padding: 15px;
+    border: 1px solid black;
+    width: 100%;
+    border-radius: 5px;
+  }
+  .btn{
+    padding: 10px !important;
+    border: 1px solid black !important;
+    border-radius: 5px !important;
+    background: none;
+    cursor: pointer;
   }
 
+  .provider-list{
+    display: inline-block;
+  }
+  .user-modal{
+    width: 100% !important;
+  }
 }

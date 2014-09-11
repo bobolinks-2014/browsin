@@ -58,7 +58,7 @@ var InfoCheck = {
 var UpdateProfile = {
   ajaxCall: function(list) {
     var request = $.ajax({
-      url: "/users/edit",
+      url: "/users",
       type: "PATCH",
       dataType: "JSON",
       data: {service_list: list}
@@ -81,7 +81,7 @@ var UpdateProfile = {
   },
   reShowItem: function(item, area) {
     var request = $.ajax({
-      url: "/users/add",
+      url: "/media/add",
       type: "PATCH",
       dataType: "JSON",
       data: {item_id: item}

@@ -91,7 +91,7 @@ var Render = {
   },
   done: function(response) {
     this.animate();
-    renderList(response);
+    renderList(this.cleanData(response));
     $('[data-toggle="tooltip"]').tooltip();
   },
   removeLoader: function() {
@@ -99,6 +99,12 @@ var Render = {
   },
   scrollToTop: function() {
     $('html, body').animate({ scrollTop: 0 }, 800);
+  },
+  searchResult: function(results) {
+    $('.search-results-area-div').prepend(results);
+  },
+  cleanData: function(data) {
+    return [JSON.parse(data['media']), data['matches']]
   }
 }
 
