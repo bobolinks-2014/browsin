@@ -15,6 +15,7 @@ class Search
       movies = Media.union_scope(user.media.where(generate_matches(:title, @all_matches)),
         user.media.tagged_with(@all_matches))
     end
+    @all_matches << "#{@num} minutes"
     {movies: movies.order('rating DESC, title ASC').limit(25), matches: @all_matches}
   end
 
@@ -35,11 +36,11 @@ class Search
   end
 
   def self.runtime_search
-    num = @all_matches.shift.to_i
-    if (0..4).include?(num)
-      return num * 60
+    @num = @all_matches.shift.to_i
+    if (0..4).include?(@num)
+      @num = @num * 60
     else
-      return num
+      return @num
     end
   end
 
