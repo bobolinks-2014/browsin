@@ -71,8 +71,14 @@ class ApplicationController < ActionController::Base
   def get_matches
     m = params[:query].downcase.scan(/(\d+)|(#{re_actors})|(#{re_genres})|(#{re_titles})/)
     @matches = m.flatten.compact.sort
+    @matches.include?('m') ? @matches.delete_at(@matches.index('m')) : @matches
+    return @matches
   end
 
+  def clean_matches
+
+  end
+  
   def runtime_search
     @matches.shift.to_i
   end
