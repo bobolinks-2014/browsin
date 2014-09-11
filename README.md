@@ -4,9 +4,7 @@
 
 ## Purpose
 
-browsin' provides users with an efficient way to search streaming movies and shows based on their subscriptions to Netflix, Hulu Plus and HBO. Results are sorted by ratings collected from IMDB and Rotten Tomatoes, allowing users to immediately discover the highest-rated content available to them. 
-
-browsin' allows users to search less and watch more. 
+browsin' provides users with an efficient way to search streaming movies and shows based on their subscriptions to Netflix, Hulu Plus and HBO. Results are sorted by ratings collected from IMDB and Rotten Tomatoes, allowing users to immediately discover the highest-rated content available to them. browsin' allows users to search less and watch more. 
 
 #### Getting Started
 The available database contains over 1,200 movies and tv shows from Netflix, HBO Go, and Hulu.
@@ -44,10 +42,10 @@ export GUIDEBOX_API_KEY="[your key]"
 ####Team!
 | Name          |   Github                                   |   Twitter / LinkedIn /anything?                                  |
 | :-----------: | :----------------------------------------: | :-----------------------------------------: |
-| Grace Yim | [graceekyim](https://github.com/graceekyim) | | [LinkedIn](www.linkedin.com/pub/grace-yim/a3/534/ab4)
-| Joey Sabani | [axhi](https://github.com/axhi) | | [LinkedIn](www.linkedin.com/pub/axhi-joey-sabani/57/1b9/49b)
-| Joey Chamberlin  | [jochambo](https://github.com/jochambo) | | [LinkedIn](www.linkedin.com/in/joeychamberlin)
-| Rob Schwartz | [robschwartz](https://github.com/robschwartz) | | [LinkedIn](www.linkedin.com/in/robschwartz10)
+| Grace Yim | [graceekyim](https://github.com/graceekyim) | | [LinkedIn](www.linkedin.com/pub/grace-yim/a3/534/ab4) |
+| Joey Sabani | [axhi](https://github.com/axhi) | | [LinkedIn](www.linkedin.com/pub/axhi-joey-sabani/57/1b9/49b) |
+| Joey Chamberlin  | [jochambo](https://github.com/jochambo) | | [LinkedIn](www.linkedin.com/in/joeychamberlin) |
+| Rob Schwartz | [robschwartz](https://github.com/robschwartz) | | [LinkedIn](www.linkedin.com/in/robschwartz10) |
 
 
 #### Licenses
