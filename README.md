@@ -1,6 +1,6 @@
 [ ![Codeship Status for bobolinks-2014/browsin](https://codeship.io/projects/fa0524b0-15f6-0132-f381-3ada423a8ca3/status)](https://codeship.io/projects/33778)
 
-# Browsin'
+# browsin'
 
 ## Purpose
 
@@ -29,17 +29,8 @@ export GUIDEBOX_API_KEY="[your key]"
 * [Instant Watcher](http://instantwatcher.com/)
 * [OMDB](http://www.omdbapi.com/)
 
-####How to contribute:
-
-* Fork the project
-* ```Git clone``` your forked repository
-* ```Git add upstream master https://github.com/bobolinks-2014/browsin.git```
-* Make a new branch describing the feature, bug, test or chore you are adding or editing, eg ```git checkout -b feature/search```
-* Make one or more well commented and clean commits to your fork.
-* Perform a pull request to the upstream master repository for review.
-
 ## Contributors
-####Team!
+####Team
 | Name          |   Github                                   |   LinkedIn                                  |
 | :-----------: | :----------------------------------------: | :-----------------------------------------: |
 | Grace Yim | [graceekyim](https://github.com/graceekyim) | [LinkedIn](https://www.linkedin.com/in/graceekyim) ||
