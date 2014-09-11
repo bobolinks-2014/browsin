@@ -5,13 +5,13 @@ class ApplicationController < ActionController::Base
 	def set_current_user
 		User.current = current_user
 	end
-  
+
   protected
-  
+
   def user_signed_in?
     session[:current_user_id] != nil
   end
-  
+
   def current_user
     @user ||= User.find(session[:current_user_id]) if user_signed_in?
   end
@@ -21,7 +21,7 @@ class ApplicationController < ActionController::Base
   end
 
   def find_media(matcher)
-      current_user_media.tagged_with(matcher).order('rating DESC, title ASC').limit(25)
+    current_user_media.tagged_with(matcher).order('rating DESC, title ASC').limit(25)
   end
 
   def top_list
@@ -35,9 +35,14 @@ class ApplicationController < ActionController::Base
     elsif is_number?
       movies = current_user_media.where("run_time <= #{runtime_search}").tagged_with(@matches)
     else
-      movies = current_user_media.tagged_with(@matches)
+      movies = Media.union_scope(current_user_media.where(generate_matches(:title, @matches)),
+        current_user_media.tagged_with(@matches))
     end
     @movies = movies.order('rating DESC, title ASC').limit(25)
+  end
+
+  def generate_matches(field, matches)
+    matches.map {|m| "media.#{field} ILIKE '%#{m}%'"}.join(" OR ")
   end
 
   def current_user_media
@@ -58,11 +63,22 @@ class ApplicationController < ActionController::Base
     Regexp.union(@genre_list)
   end
 
-  def get_matches
-    m = params[:query].downcase.scan(/(\d+)|(#{re_actors})|(#{re_genres})/)
-    @matches = m.flatten.compact.sort
+  def re_titles
+    @titles ||= Media.pluck(:title).map(&:downcase)
+    Regexp.union(@titles)
   end
 
+  def get_matches
+    m = params[:query].downcase.scan(/(\d+)|(#{re_actors})|(#{re_genres})|(#{re_titles})/)
+    @matches = m.flatten.compact.sort
+    @matches.include?('m') ? @matches.delete_at(@matches.index('m')) : @matches
+    return @matches
+  end
+
+  def clean_matches
+
+  end
+  
   def runtime_search
     @matches.shift.to_i
   end
