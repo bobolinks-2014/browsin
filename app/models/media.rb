@@ -1,4 +1,8 @@
+require 'union'
+
 class Media < ActiveRecord::Base
+	include ActiveRecord::UnionScope
+
 	attr_accessor :current_user
 
   has_many :user_preferences, foreign_key: 'imdb_id', primary_key: 'imdb_id'
@@ -45,5 +49,21 @@ class Media < ActiveRecord::Base
 			return "Rotten Tomatoes"		
 		end
 	end
+
+	 def self.actors_regex
+    @actor_list ||= Media.actor_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@actor_list)
+  end
+
+  def self.genres_regex
+    @genre_list ||= Media.genre_counts.pluck(:name).map(&:downcase)
+    Regexp.union(@genre_list)
+  end
+
+  def self.titles_regex
+    @titles ||= Media.pluck(:title).map(&:downcase)
+    Regexp.union(@titles)
+  end
+
 
 end
