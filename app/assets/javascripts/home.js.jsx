@@ -2,7 +2,7 @@
 var MediaItem = React.createClass({
   render: function() {
   return (
-          <div className='panel panel-views' key={this.props.id}>
+          <div className='panel panel-views' key={this.props.key}>
             <div className='panel-heading height-extend'>
               <div className='col-md-7 col-sm-7 col-xs-7'>
               <span className='ratings pull-left' data-toggle='tooltip' title={this.props.titleRating}>{this.props.rating}</span>
@@ -49,15 +49,15 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} titleRating={mediaItem.rating_source} key={index} />
+        <MediaItem id={mediaItem.imdb_id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} titleRating={mediaItem.rating_source} key={index} />
       );
     });
 
     return (
-        <div>
+        <div key={Render.getTime()}>
           <p className='results'>Showing results for:
               {this.props.matches.map(function (result, index) {
-              return <span className='match-result' key={index}> {result} </span>
+              return <span className='match-result' key={Render.getTime()}> {result} </span>
               })}
           </p>
         <div className='panel-group media-items' id='media-items'>
