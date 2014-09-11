@@ -62,7 +62,7 @@
 }
 
 .user-modal {
-  width: 500px !important;
+  width: 600px !important;
   margin-right: 120px !important;
   margin-top: 50px !important;
 }
@@ -77,7 +77,7 @@
   cursor: pointer;
 }
 .button:hover{
-      box-shadow: 0px 0px 30px #fff;
+  box-shadow: 0px 0px 30px #fff;
 }
 
 .top-area-bar {
@@ -254,11 +254,17 @@
 .actors a {
   cursor: pointer;
 }
-
+.plus-button {
+ width: 73px !important;
+ line-height: 0.60 !important;
+ margin-left: 15px !important;
+}
 .btn-main {
   background: lightseagreen;
 }
-
+.panel-body {
+  padding: 15px 0 !important;
+}
 /* LOADING ANIMATION */
 .loader,
 .loader:before,

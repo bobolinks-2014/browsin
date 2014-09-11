@@ -33,10 +33,14 @@ var UserInfo = React.createClass({
                       }.bind(this))}
                     </div>
                 </div>
-                <div className='hidden-media'>
-                  {(this.props.userInfo.hidden_media.length > 0) ? <h4>Hidden Media</h4> : false}
-                  <table className='table table-hover' key={this.props.userInfo.id}>
-                  <tbody>
+                <div className='panel-group hidden-media' id='hidden-media'>
+                  <div className='panel panel-default'>
+                   <div className='panel-heading'>
+                  {(this.props.userInfo.hidden_media.length > 0) ? <h4 className='panel-title'> Hidden Media <button className='plus-button btn pull-right' data-toggle='collapse' data-parent='#hidden-media' href='#hidden-stuff'>expand</button></h4>: false}
+                    <div id='hidden-stuff' className='panel-collapse collapse'>
+                      <div className='panel-body'>
+                    <table className='table table-hover' key={this.props.userInfo.id}>
+                      <tbody>
                     {this.props.userInfo.hidden_media.map(function(item, index) {
                       return <tr key={index}>
                       <td id={item.imdb_id} key={item.imdb_id} className='profile-media'><strong>{item.title}</strong></td>
@@ -45,9 +49,13 @@ var UserInfo = React.createClass({
                         <button key={item.id} id={item.imdb_id} className='btn btn-xs show pull-right'>show</button>
                       </td>
                       </tr>
-                    })}
+                    })} 
                   </tbody>
                    </table>
+                        </div>
+                        </div>
+                   </div>
+                 </div>
                 </div>
               </div>
         </div>
