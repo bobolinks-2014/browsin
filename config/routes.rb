@@ -4,7 +4,7 @@ Rails.application.routes.draw do
   post '/users' => 'users#create'
   get '/users/show' => 'users#show'
   patch '/users' => 'users#update'
-  patch '/users/add' => 'users#add'
+  patch '/users/add' => 'user_service#add'
   patch '/media/:id' => 'users#remove', :as => 'remove'
   get '/search' => 'search#search', :as => 'search' 
   get '/top25' => 'search#top'
