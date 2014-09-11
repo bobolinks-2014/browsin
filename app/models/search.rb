@@ -11,11 +11,11 @@ class Search
       if @all_matches != []
         movies = movies.tagged_with(@all_matches)
       end
+      @all_matches << "#{@num} minutes"
     else
       movies = Media.union_scope(user.media.where(generate_matches(:title, @all_matches)),
         user.media.tagged_with(@all_matches))
     end
-    @all_matches << "#{@num} minutes"
     {movies: movies.order('rating DESC, title ASC').limit(25), matches: @all_matches}
   end
 
