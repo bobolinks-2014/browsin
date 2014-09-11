@@ -12,6 +12,13 @@
 .caption {
   margin-top: 15px;
 }
+.match-result {
+  border-right: 1px solid grey;
+  margin-left: 5px;
+}
+.results :last-child {
+  border:none;
+}
 .button-group-main {
   text-align: center;
 }

@@ -55,7 +55,12 @@ var MediaList = React.createClass({
     });
 
     return (
-        <div><p className='results'>Showing results for: {this.props.mediaItems.matches}</p>
+        <div>
+          <p className='results'>Showing results for:
+              {this.props.matches.map(function (result, index) {
+              return <span className='match-result' key={index}> {result} </span>
+              })}
+          </p>
         <div className='panel-group media-items' id='media-items'>
           {mediaNodes}
         </div></div>
@@ -65,7 +70,7 @@ var MediaList = React.createClass({
 
 var renderList = function (list) {
   React.renderComponent(
-    <MediaList mediaItems={list} />,
+    <MediaList mediaItems={list[0]} matches={list[1]}  />,
     document.getElementById('search-results-area')
  );
 };
