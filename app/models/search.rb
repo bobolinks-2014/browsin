@@ -5,8 +5,8 @@ class Search
 
     if is_number?
 			movies = user.media.where("run_time <= #{runtime_search}")
-    	if is_only_number?
-      	movies.tagged_with(@all_matches)
+    	if @all_matches != []
+        movies = movies.tagged_with(@all_matches)
       end
     else
       movies = Media.union_scope(user.media.where(generate_matches(:title, @all_matches)),
@@ -32,7 +32,12 @@ class Search
   end
 
   def self.runtime_search
-    @all_matches.shift.to_i
+    num = @all_matches.shift.to_i
+    if (0..4).include?(num)
+      return num * 60
+    else
+      return num
+    end
   end
 
   def self.top_list(user)
