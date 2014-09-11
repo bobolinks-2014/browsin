@@ -4,31 +4,32 @@
 
 ## Purpose
 
-Browsin is designed for quick search of the best shows or movies based on your available time.
+browsin' provides users with an efficient way to search streaming movies and shows based on their subscriptions to Netflix, Hulu Plus and HBO. Results are sorted by ratings collected from IMDB and Rotten Tomatoes, allowing users to immediately discover the highest-rated content available to them. 
+
+browsin' allows users to search less and watch more. 
 
 #### Getting Started
-The available database contains over 1200 movies and tv shows from Netflix, HBO Go, and Hulu.
+The available database contains over 1,200 movies and tv shows from Netflix, HBO Go, and Hulu.
 
 * Fork our repository
 * Clone your fork
-* You will need to add your [Guidebox API](http://api.guidebox.com/) key to have access to their database. Add the following to your shell environment (eg. .bash_profile, .zshrc):
+* You will need to add a [Guidebox API](http://api.guidebox.com/) key to have access to their data. Add the following to your shell environment (eg. .bash_profile, .zshrc):
 ```
 export GUIDEBOX_API_KEY="[your key]"
 ```
 * run
   * ```bundle```
-  * ```rake db:create```
-  * ```rake db:migrate```
-  * ```rake db:seed```
+  * ```rake db:reset```
+  * ```rake db:media```
   * ```rails s```
 * Open your localhost in a webbrowser and start searching.
 * Or visit our herokuapp page!
   * [deployed app](http://browsin-dbc.herokuapp.com/)
 
 ## Dependencies
-* [Guidebox](#)
-* [Netflix](#)
-* [OMDB](#)
+* [Guidebox](http://api.guidebox.com/)
+* [Instant Watcher](http://instantwatcher.com/)
+* [OMDB](http://www.omdbapi.com/)
 
 ####How to contribute:
 
@@ -43,16 +44,16 @@ export GUIDEBOX_API_KEY="[your key]"
 ####Team!
 | Name          |   Github                                   |   Twitter / LinkedIn /anything?                                  |
 | :-----------: | :----------------------------------------: | :-----------------------------------------: |
-| Grace Yim | [graceekyim](https://github.com/graceekyim) | |
-| Joey Sabani | [axhi](https://github.com/axhi) | |
-| Joey Chamberlin  | [jochambo](https://github.com/jochambo) | |
-| Rob Schwartz | [robschwartz](https://github.com/robschwartz) | |
+| Grace Yim | [graceekyim](https://github.com/graceekyim) | | [LinkedIn](www.linkedin.com/pub/grace-yim/a3/534/ab4)
+| Joey Sabani | [axhi](https://github.com/axhi) | | [LinkedIn](www.linkedin.com/pub/axhi-joey-sabani/57/1b9/49b)
+| Joey Chamberlin  | [jochambo](https://github.com/jochambo) | | [LinkedIn](www.linkedin.com/in/joeychamberlin)
+| Rob Schwartz | [robschwartz](https://github.com/robschwartz) | | [LinkedIn](www.linkedin.com/in/robschwartz10)
 
 
 #### Licenses
 The MIT License (MIT)
 
-Copyright (c) [2014] [Browsin]
+Copyright (c) [2014] [browsin]
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal
