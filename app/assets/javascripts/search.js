@@ -107,6 +107,11 @@ var Render = {
   },
   cleanData: function(data) {
     return [JSON.parse(data['media']), data['matches']]
+  },
+  getTime: function() {
+    var d = new Date();
+    var n = d.getTime();
+    return n; 
   }
 }
 

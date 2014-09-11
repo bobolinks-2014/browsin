@@ -10,7 +10,7 @@ var UserInfo = React.createClass({
 
   render: function() {
     return (
-      <div className='modal-dialog user-modal'>
+      <div className='modal-dialog user-modal' key={Render.getTime()}>
         <div className='modal-content'>
           <div className='modal-header mod-header-color'>
             <button type='button' className='close' data-dismiss='modal'>
@@ -45,8 +45,8 @@ var UserInfo = React.createClass({
                       return <tr key={index}>
                       <td id={item.imdb_id} key={item.imdb_id} className='profile-media'><strong>{item.title}</strong></td>
                       <td key={item.rating}>Rating: {item.rating}</td>
-                      <td id={item.id} className='add-media-back'>
-                        <button key={item.id} id={item.imdb_id} className='btn btn-xs show pull-right'>show</button>
+                      <td id={item.imdb_id} className='add-media-back'>
+                        <button key={item.imdb_id} id={item.imdb_id} className='btn btn-xs show pull-right'>show</button>
                       </td>
                       </tr>
                     })} 
