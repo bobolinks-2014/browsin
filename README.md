@@ -42,7 +42,7 @@ export GUIDEBOX_API_KEY="[your key]"
 ####Team!
 | Name          |   Github                                   |   LinkedIn                                  |
 | :-----------: | :----------------------------------------: | :-----------------------------------------: |
-| Grace Yim | [graceekyim](https://github.com/graceekyim) | [LinkedIn](https://www.linkedin.com/pub/grace-yim/a3/534/ab4) ||
+| Grace Yim | [graceekyim](https://github.com/graceekyim) | [LinkedIn](https://www.linkedin.com/in/graceekyim) ||
 | Joey Sabani | [axhi](https://github.com/axhi) | [LinkedIn](https://www.linkedin.com/pub/axhi-joey-sabani/57/1b9/49b) ||
 | Joey Chamberlin | [jochambo](https://github.com/jochambo) | [LinkedIn](https://www.linkedin.com/in/joeychamberlin) ||
 | Rob Schwartz | [robschwartz](https://github.com/robschwartz) | [LinkedIn](https://www.linkedin.com/in/robschwartz10) ||
