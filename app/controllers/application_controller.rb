@@ -16,20 +16,6 @@ class ApplicationController < ActionController::Base
     @user ||= User.find(session[:current_user_id]) if user_signed_in?
   end
 
-  def add_user_preference
-    preference = UserPreference.where(user: current_user).find_by(imdb_id: params[:item_id])
-    preference.update(view_status: "show")
-  end
-
-  def update_user_preference
-    pref = UserPreference.where(user: current_user).find_by(imdb_id: params[:id])
-    if pref.nil?
-      UserPreference.create(user_id: current_user.id, imdb_id: params[:id], view_status: "hide")
-    else
-      pref.update(view_status: "hide")
-    end
-  end
-
   def placeholder_text
     [ "I want to watch a Robin Williams comedy", 
       "I have 60 minutes for comedy with John Oliver", 
