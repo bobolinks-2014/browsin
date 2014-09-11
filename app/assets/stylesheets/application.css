@@ -9,6 +9,9 @@
   font-family: 'abeatbyKai';
   src: url('/assets/ABEAKRG.ttf');
 }
+#sign-up-button {
+  padding-top:10px;
+}
 .caption {
   margin-top: 15px;
 }
@@ -47,6 +50,7 @@
 
 .login-area{
   height: 54px;
+  cursor: pointer;
 }
 .title{
   color: #282827;
@@ -62,7 +66,7 @@
 }
 
 .user-modal {
-  width: 500px !important;
+  width: 600px !important;
   margin-right: 120px !important;
   margin-top: 50px !important;
 }
@@ -77,7 +81,7 @@
   cursor: pointer;
 }
 .button:hover{
-      box-shadow: 0px 0px 30px #fff;
+  box-shadow: 0px 0px 30px #fff;
 }
 
 .top-area-bar {
@@ -254,11 +258,17 @@
 .actors a {
   cursor: pointer;
 }
-
+.plus-button {
+ width: 73px !important;
+ line-height: 0.60 !important;
+ margin-left: 15px !important;
+}
 .btn-main {
   background: lightseagreen;
 }
-
+.user-page {
+  padding: 15px 0 !important;
+}
 /* LOADING ANIMATION */
 .loader,
 .loader:before,
@@ -331,6 +341,9 @@ height: 5em;
     right: 54px;
     position: absolute;
   }
+  .form-control {
+    margin-bottom: 5px !important;
+  }
 }
 
 @media (max-width: 626px){
@@ -346,7 +359,9 @@ height: 5em;
     width: 100%;     
     text-align: center;
   }
-
+  .plus-button {
+    margin-top: -8px !important;
+  }
   .button {
     margin: -5px -52px;
     display: inline-block;
@@ -407,6 +422,10 @@ height: 5em;
   .services{
     padding-left: 0px;
   }
+  .login-area a:hover {
+    text-decoration: none;
+    color: black;
+  }
 }
 
 @media (max-width: 500px){
@@ -436,8 +455,9 @@ height: 5em;
   .btn{
     padding: 10px !important;
     border: 1px solid black !important;
-    margin-top: 10px !important;
     border-radius: 5px !important;
+    background: none;
+    cursor: pointer;
   }
 
   .provider-list{

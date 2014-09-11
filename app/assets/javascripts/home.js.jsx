@@ -2,7 +2,7 @@
 var MediaItem = React.createClass({
   render: function() {
   return (
-          <div className='panel panel-views'>
+          <div className='panel panel-views' key={this.props.id}>
             <div className='panel-heading height-extend'>
               <div className='col-md-7 col-sm-7 col-xs-7'>
               <span className='ratings pull-left' data-toggle='tooltip' title={this.props.titleRating}>{this.props.rating}</span>

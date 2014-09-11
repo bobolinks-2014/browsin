@@ -15,7 +15,7 @@ class Media < ActiveRecord::Base
 
 	def self.clear_incomplete_records
 		self.where(rating: 0).destroy_all
-		self.where(run_time: 0).destroy_all		
+		self.where(run_time: 0).destroy_all
 		self.where(rating: nil).destroy_all
 		self.where(run_time: 0).destroy_all
 	end
@@ -32,7 +32,7 @@ class Media < ActiveRecord::Base
 			when "Crime", "Film-Noir"
 				"Crime"
 			else
-				genre	
+				genre
 			end
 		end
 		return list.uniq.shift(3)
