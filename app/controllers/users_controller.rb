@@ -12,7 +12,7 @@ class UsersController < ApplicationController
   end
 
   def show
-    render :json => {user: current_user.as_json(include: :hidden_media, methods: :service_list)}
+    render :json => {user: UserConfigPresenter.new(current_user).to_hash}
   end
 
   private
