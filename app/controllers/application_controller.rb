@@ -17,10 +17,11 @@ class ApplicationController < ActionController::Base
   end
 
   def placeholder_text
-    [ "I want to watch a Robin Williams comedy", 
-      "I have 60 minutes for comedy with John Oliver", 
-      "I'm in the mood for a rom-com",
-      "I want to watch Heisenberg in Breaking Bad",
+    [ "I have 120 minutes",
+      "I want to watch a Robin Williams comedy", 
+      "I want to watch a comedy with John Oliver", 
+      "I'm in the mood for romance and comedy",
+      "Firefly!",
       "Do you have any movies with Julia Roberts?"
     ].sample
   end
