@@ -2,16 +2,20 @@ class Search
 	
 	def self.find_results(user, query)
     get_matches(query)
+    if @all_matches == []
+      return {movies: [], matches: @all_matches}
+    end
 
     if is_number?
-			movies = user.media.where("run_time <= #{runtime_search}")
-    	if @all_matches != []
+      movies = user.media.where("run_time <= #{runtime_search}")
+      if @all_matches != []
         movies = movies.tagged_with(@all_matches)
       end
     else
       movies = Media.union_scope(user.media.where(generate_matches(:title, @all_matches)),
         user.media.tagged_with(@all_matches))
     end
+    @all_matches << "#{@num} minutes"
     {movies: movies.order('rating DESC, title ASC').limit(25), matches: @all_matches}
   end
 
@@ -32,11 +36,11 @@ class Search
   end
 
   def self.runtime_search
-    num = @all_matches.shift.to_i
-    if (0..4).include?(num)
-      return num * 60
+    @num = @all_matches.shift.to_i
+    if (0..4).include?(@num)
+      @num = @num * 60
     else
-      return num
+      return @num
     end
   end
 
