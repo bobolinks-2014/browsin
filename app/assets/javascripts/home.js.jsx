@@ -50,7 +50,7 @@ var MediaList = React.createClass({
   render: function () {
     var mediaNodes = this.props.mediaItems.map(function (mediaItem, index) {
       return (
-        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} titleRating={mediaItem.title_rating} key={index} />
+        <MediaItem id={mediaItem.id} imdb_id={mediaItem.imdb_id} rating={mediaItem.rating} synopsis={mediaItem.synopsis} title={mediaItem.title} services={mediaItem.service_icons} runtime={mediaItem.run_time} genres={mediaItem.genre_icons} actors={mediaItem.actors} titleRating={mediaItem.rating_source} key={index} />
       );
     });
 
