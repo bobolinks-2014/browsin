@@ -2,10 +2,13 @@ class Search
 	
 	def self.find_results(user, query)
     get_matches(query)
+    if @all_matches == []
+      return {movies: [], matches: @all_matches}
+    end
 
     if is_number?
-			movies = user.media.where("run_time <= #{runtime_search}")
-    	if @all_matches != []
+      movies = user.media.where("run_time <= #{runtime_search}")
+      if @all_matches != []
         movies = movies.tagged_with(@all_matches)
       end
     else
