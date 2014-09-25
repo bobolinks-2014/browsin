@@ -29,6 +29,17 @@ export GUIDEBOX_API_KEY="[your key]"
 * [Instant Watcher](http://instantwatcher.com/)
 * [OMDB](http://www.omdbapi.com/)
 
+
+## Technologies
+* Ruby on Rails
+* Nokogiri
+* jQuery
+* React
+* PostgreSQL
+* Testing: RSpec, Capybara, Jasmine
+* Hosting: Heroku
+* CI Testing: Codeship
+
 ## Contributors
 ####Team
 | Name          |   Github                                   |   LinkedIn                                  |
