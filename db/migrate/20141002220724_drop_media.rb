@@ -1,6 +1,10 @@
-class CreateMedia < ActiveRecord::Migration
-  def change
-    create_table :media do |t|
+class DropMedia < ActiveRecord::Migration
+  def up
+  	drop_table :media
+  end
+
+  def down
+  	create_table :media do |t|
       t.string :imdb_id
       t.integer :run_time
       t.integer :rating
