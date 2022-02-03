@@ -31,6 +31,8 @@ class Media < ActiveRecord::Base
 				"History"
 			when "Crime", "Film-Noir"
 				"Crime"
+			when "Science Fiction"
+				"Fantasy"
 			else
 				genre
 			end

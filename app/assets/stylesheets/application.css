@@ -145,12 +145,19 @@
 .runtime {
   cursor: default !important;
 }
-.hbo {
+.hbo,.HBO {
   background: url('/assets/provider-sprite.png') -82px no-repeat;
 }
 
 .netflix {
-  background: url('/assets/provider-sprite.png') 0px no-repeat;
+  background: url('/assets/provider-sprite.png') 0 no-repeat;
+}
+
+.Disney {
+  background: url('/assets/provider-sprite.png') -1040px no-repeat;
+}
+.Amazon {
+  background: url('/assets/provider-sprite.png') -1080px no-repeat;
 }
 
 .delete-media-item {

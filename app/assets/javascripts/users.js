@@ -52,7 +52,7 @@ var InfoCheck = {
     }
   },
   providerList: function() {
-    return ['hulu_plus', 'hbo', 'netflix']
+    return ['hulu_plus', 'HBO Max', 'netflix', 'Disney Plus', 'Amazon Prime Video']
   }
 }
 var UpdateProfile = {

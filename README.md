@@ -1,5 +1,3 @@
-[ ![Codeship Status for bobolinks-2014/browsin](https://codeship.io/projects/fa0524b0-15f6-0132-f381-3ada423a8ca3/status)](https://codeship.io/projects/33778)
-
 # browsin'
 
 ## Purpose

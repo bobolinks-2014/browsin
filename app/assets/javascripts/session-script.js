@@ -60,19 +60,20 @@ function getServices(data) {
   var netflix = $(data).find("#netflixBox").is(':checked');
   var hbo = $(data).find("#hboBox").is(':checked');
   var hulu = $(data).find("#huluBox").is(':checked');
+  var disney = $(data).find("#disneyBox").is(':checked');
+  var amazon = $(data).find("#amazonBox").is(':checked');
   var hulu_free = false;
 
-  if(netflix == true) {
-    netflix = "netflix";
-  }
-  if(hbo == true) {
-    hbo = "HBO";
-  } 
-  if(hulu == true) {
+  if(netflix === true) netflix = "netflix";
+  if(hbo === true) hbo = "HBO Max";
+  if(hulu === true) {
     hulu = "hulu_plus";
     hulu_free = "hulu_free";
-  } 
-  return {services: [netflix, hbo, hulu, hulu_free]}
+  }
+  if (disney === true) disney = 'Disney Plus'
+  if (amazon === true) amazon = 'Amazon Prime Video';
+
+  return {services: [netflix, hbo, hulu, hulu_free, disney, amazon]}
 }
 
 function submitDataParse(data) {
